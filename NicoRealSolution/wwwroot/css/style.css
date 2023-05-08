@@ -6312,7 +6312,7 @@ textarea:focus {
 }
 .accordion-style1 .accordion-item {
   border: 1px solid #DDDDDD;
-  border-radius: 12px;
+  border-radius: 12px
   overflow: hidden;
   margin-bottom: 10px;
   padding: 4px 30px;
