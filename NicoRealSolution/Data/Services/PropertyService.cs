@@ -1,4 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
+using NicoRealSolution.DTOs;
 using NicoRealSolution.Models;
 
 namespace NicoRealSolution.Data.Services
@@ -19,9 +20,11 @@ namespace NicoRealSolution.Data.Services
             
         }
 
-        public Task DeleteAsync(int id)
+        public async Task DeleteAsync(int id)
         {
-            throw new NotImplementedException();
+            var result = await _context.Properties.FirstOrDefaultAsync(x => x.Id == id);
+            _context.Properties.Remove(result);
+            await _context.SaveChangesAsync();
         }
 
         public async Task<IEnumerable<Property>> GetProperties()
@@ -36,9 +39,36 @@ namespace NicoRealSolution.Data.Services
             return property;
         }
 
-        public Task<Property> UpdateAsync(Property newProperty)
+        public async Task UpdateProperty(PropertyUpdateDTO newDTO)
         {
-            throw new NotImplementedException();
+            var existingCategory = _context.Categories.FirstOrDefault(c => c.Id == newDTO.CategoryId);
+            var editProperty = new Property
+            {
+                Id = newDTO.Id,
+                TitleEN = newDTO.TitleEN,
+                TitleRO = newDTO.TitleRO,
+                TitleDE = newDTO.TitleDE,
+                DescriptionEN = newDTO.DescriptionEN,
+                DescriptionRO = newDTO.DescriptionRO,
+                DescriptionDE = newDTO.DescriptionDE,
+                FeaturesEN = newDTO.FeaturesEN,
+                FeaturesRO = newDTO.FeaturesRO,
+                FeaturesDE = newDTO.FeaturesDE,
+                Price = newDTO.Price,
+                DatePosted = newDTO.DatePosted,
+                Country = newDTO.Country,
+                City = newDTO.City,
+                Address = newDTO.Address,
+                Latitude = newDTO.Latitude,
+                Longitude = newDTO.Longitude,
+                Category = existingCategory,
+                CategoryId = existingCategory.Id
+            };
+
+
+            _context.Properties.Update(editProperty);
+            await _context.SaveChangesAsync();
+            
         }
     }
 }

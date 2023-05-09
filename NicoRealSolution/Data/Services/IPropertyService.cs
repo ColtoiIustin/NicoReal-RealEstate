@@ -1,5 +1,6 @@
 ﻿
 
+using NicoRealSolution.DTOs;
 using NicoRealSolution.Models;
 
 namespace NicoRealSolution.Data.Services
@@ -9,7 +10,7 @@ namespace NicoRealSolution.Data.Services
         Task<IEnumerable<Property>> GetProperties();
         Task<Property> GetByIdAsync(int id);
         Task AddProperty(Property property);
-        Task<Property> UpdateAsync( Property newProperty);
+        Task UpdateProperty(PropertyUpdateDTO newProperty);
         Task DeleteAsync(int id);
         
     }
