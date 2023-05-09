@@ -1,4 +1,5 @@
-﻿using NicoRealSolution.Models;
+﻿using Microsoft.EntityFrameworkCore;
+using NicoRealSolution.Models;
 
 namespace NicoRealSolution.Data.Services
 {
@@ -9,9 +10,13 @@ namespace NicoRealSolution.Data.Services
         {
             _context = context;
         }
-        public Task AddAsync(Property property)
+        public async Task AddProperty(Property newProperty)
         {
-            throw new NotImplementedException();
+            var existingCategory = _context.Categories.FirstOrDefault(c => c.CategEN == newProperty.Category.CategEN);
+            newProperty.CategoryId = existingCategory.Id;
+            _context.Properties.Add(newProperty);
+            await _context.SaveChangesAsync();
+            
         }
 
         public Task DeleteAsync(int id)
@@ -19,14 +24,16 @@ namespace NicoRealSolution.Data.Services
             throw new NotImplementedException();
         }
 
-        public Task<IEnumerable<Property>> GetProperties()
+        public async Task<IEnumerable<Property>> GetProperties()
         {
-            return null;
+            var properties = await _context.Properties.Include(p => p.Category).ToListAsync();
+            return properties;
         }
 
-        public Task<Property> GetByIdAsync(int id)
+        public async Task<Property> GetByIdAsync(int id)
         {
-            throw new NotImplementedException();
+            var property = await _context.Properties.Include(p => p.Category).FirstOrDefaultAsync(p => p.Id == id);
+            return property;
         }
 
         public Task<Property> UpdateAsync(Property newProperty)

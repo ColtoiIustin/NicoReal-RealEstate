@@ -8,7 +8,7 @@ namespace NicoRealSolution.Data.Services
     {
         Task<IEnumerable<Property>> GetProperties();
         Task<Property> GetByIdAsync(int id);
-        Task AddAsync(Property property);
+        Task AddProperty(Property property);
         Task<Property> UpdateAsync( Property newProperty);
         Task DeleteAsync(int id);
         
