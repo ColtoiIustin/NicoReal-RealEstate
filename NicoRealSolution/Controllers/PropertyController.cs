@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using NicoRealSolution.Data.Services;
+using NicoRealSolution.Extensions;
 
 namespace NicoRealSolution.Controllers
 {
@@ -10,9 +11,12 @@ namespace NicoRealSolution.Controllers
         {
             _propService= propService;
         }
-        public IActionResult Index()
-        {
-            return View();
+        public async Task<IActionResult> Index()
+        {    
+            var properties = await _propService.GetProperties();
+            var propertyDTOs = properties.ConvPropToDTOs();
+            return View(propertyDTOs);
+      
         }
     }
 }

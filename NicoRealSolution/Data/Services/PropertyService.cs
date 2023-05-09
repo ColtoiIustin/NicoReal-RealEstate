@@ -19,9 +19,9 @@ namespace NicoRealSolution.Data.Services
             throw new NotImplementedException();
         }
 
-        public Task<IEnumerable<Property>> GetAllAsync()
+        public Task<IEnumerable<Property>> GetProperties()
         {
-            throw new NotImplementedException();
+            return null;
         }
 
         public Task<Property> GetByIdAsync(int id)
