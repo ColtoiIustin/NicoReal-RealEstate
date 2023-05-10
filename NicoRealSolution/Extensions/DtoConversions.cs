@@ -1,4 +1,4 @@
-﻿using NicoRealSolution.DTOs;
+﻿using DTOs;
 using NicoRealSolution.Models;
 
 namespace NicoRealSolution.Extensions

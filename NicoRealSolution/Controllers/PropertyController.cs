@@ -1,9 +1,9 @@
-﻿using Microsoft.AspNetCore.Identity;
+﻿using DTOs;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Query.SqlExpressions;
 using NicoRealSolution.Data.Services;
-using NicoRealSolution.DTOs;
 using NicoRealSolution.Extensions;
 using System.Linq.Expressions;
 

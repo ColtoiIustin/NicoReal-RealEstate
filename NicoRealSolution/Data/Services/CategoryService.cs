@@ -20,9 +20,9 @@ namespace NicoRealSolution.Data.Services
             throw new NotImplementedException();
         }
 
-        public Task<IEnumerable<Category>> GetCategories()
+        public async Task<IEnumerable<Category>> GetCategories()
         {
-           var categories = _context.Categories.ToListAsync();
+           var categories = await _context.Categories.ToListAsync();
             return categories;
         }
 

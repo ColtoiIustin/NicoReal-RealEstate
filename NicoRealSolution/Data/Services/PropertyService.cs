@@ -1,5 +1,5 @@
-﻿using Microsoft.EntityFrameworkCore;
-using NicoRealSolution.DTOs;
+﻿using DTOs;
+using Microsoft.EntityFrameworkCore;
 using NicoRealSolution.Models;
 
 namespace NicoRealSolution.Data.Services
