@@ -34,7 +34,12 @@ namespace NicoRealSolution.Controllers
             
         }
 
-        public async Task<IActionResult> Create([FromBody] PropertyDTO properyDTO)
+        public async Task<IActionResult> Create()
+        {   
+            return View();
+        }
+
+        public async Task<IActionResult> AddProperty([FromBody] PropertyDTO properyDTO)
         {
 
             if (!ModelState.IsValid)
