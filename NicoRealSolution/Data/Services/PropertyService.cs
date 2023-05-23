@@ -25,13 +25,13 @@ namespace NicoRealSolution.Data.Services
 
         public async Task<IEnumerable<Property>> GetProperties()
         {
-            var properties = await _context.Properties.Include(p => p.Category).ToListAsync();
+            var properties = await _context.Properties.ToListAsync();
             return properties;
         }
 
         public async Task<Property> GetByIdAsync(int id)
         {
-            var property = await _context.Properties.Include(p => p.Category).FirstOrDefaultAsync(p => p.Id == id);
+            var property = await _context.Properties.FirstOrDefaultAsync(p => p.Id == id);
             return property;
         }
 
