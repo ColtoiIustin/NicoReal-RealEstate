@@ -1,10 +1,9 @@
-﻿using DTOs;
-using Microsoft.AspNetCore.Identity;
+﻿using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Query.SqlExpressions;
 using NicoRealSolution.Data.Services;
-using NicoRealSolution.Extensions;
+using NicoRealSolution.Models;
 using System.Linq.Expressions;
 
 namespace NicoRealSolution.Controllers
@@ -12,25 +11,22 @@ namespace NicoRealSolution.Controllers
     public class PropertyController : Controller
     {
         private readonly IPropertyService _propService;
-        private readonly ICategoryService _categService;
-        public PropertyController(IPropertyService propService, ICategoryService categService)
+
+        public PropertyController(IPropertyService propService)
         {
             _propService = propService;
-            _categService = categService; 
         }
         public async Task<IActionResult> Index()
         {    
             var properties = await _propService.GetProperties();
-            var propertyDTOs = properties.ConvPropToDTOs();
-            return View(propertyDTOs);
+            return View(properties);
       
         }
 
         public async Task<IActionResult> Details(int id)
         {
             var property = await _propService.GetByIdAsync(id);       
-            var propertyDTO = property.ConvertToDTO();
-            return View(propertyDTO); 
+            return View(property); 
             
         }
 
@@ -39,16 +35,15 @@ namespace NicoRealSolution.Controllers
             return View();
         }
 
-        public async Task<IActionResult> AddProperty([FromBody] PropertyDTO properyDTO)
+        
+        public async Task<IActionResult> AddProperty(Property property)
         {
 
             if (!ModelState.IsValid)
             {
-                return View("Create", properyDTO);
+                return View("Create", property);
             }
-            var newProperty = properyDTO.ConvertFromDTO();
-
-            await _propService.AddProperty(newProperty);
+            await _propService.AddProperty(property);
 
             return RedirectToAction(nameof(Index));
 
@@ -68,30 +63,22 @@ namespace NicoRealSolution.Controllers
         {
             var property = await _propService.GetByIdAsync(id);
             if (property == null) return View("NotFound");
-            var result = property.ConvertToDTO();
             return View(property);
 
         }
 
-        public async Task<IActionResult> ConfirmEdit([FromBody] PropertyUpdateDTO newDTO)
+        public async Task<IActionResult> ConfirmEdit( Property property)
         {
             if (!ModelState.IsValid)
             {
-                return View("EditPage", newDTO);
+                return View("EditPage", property);
             }
 
-            await _propService.UpdateProperty(newDTO);          
-            return RedirectToAction(nameof(Details), new { id = newDTO.Id });
+            await _propService.UpdateProperty(property);          
+            return RedirectToAction(nameof(Details), new { id = property.Id });
 
         }
 
-        public async Task<IActionResult> CategoryPage()
-        {
-            var categories = await _categService.GetCategories();
-            
-            return View(categories);
-           
-        }
 
 
     }

@@ -1,4 +1,4 @@
-﻿@model DTOs.PropertyDTO
+﻿@model Property
 @{
     ViewData["Title"] = "Adauga Proprietate";
 }
@@ -213,11 +213,12 @@
                                 </div>
                             </div>
                         </div>
-                        @using (Html.BeginForm("AddProperty", "Property", FormMethod.Post))
-                        {
+                    
+                        
                             <div class="row">
                                 <div class="col-xl-12">
                                     <div class="ps-widget bgc-white bdrs12 default-box-shadow2 pt30 mb30 overflow-hidden position-relative">
+                                <form asp-action="AddProperty" asp-controller="Property">
                                         <div class="navtab-style1">
                                             <div class="ps-widget bgc-white bdrs12 p30 overflow-hidden position-relative">
                                                 <h4 class="title fz17 mb30">Descrierea Proprietatii</h4>
@@ -409,15 +410,16 @@
                                             </div>
                                         </div>
                                         <div class="d-sm-flex justify-content-between">
-                                            <input class="ud-btn btn-dark" type="submit" value="Adauga Proprietatea" />
+                                        <button class="ud-btn btn-dark" type="submit">Adauga Proprietatea</button>
                                         </div>
+                                      </form>
                                     </div>
 
                                 </div>
 
                             </div>
 
-                        }
+                    
                         <footer class="dashboard_footer pt30 pb10">
                             <div class="container">
                                 <div class="row items-center justify-content-center justify-content-md-between">

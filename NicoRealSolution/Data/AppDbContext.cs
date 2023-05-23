@@ -11,6 +11,5 @@ namespace NicoRealSolution.Data
         }
 
         public DbSet<Property> Properties { get; set; }
-        public DbSet<Category> Categories { get; set; }
     }
 }

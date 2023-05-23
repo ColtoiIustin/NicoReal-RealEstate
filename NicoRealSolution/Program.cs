@@ -12,7 +12,6 @@ builder.Services.AddControllersWithViews();
 builder.Services.AddDbContext<AppDbContext>(options => options.UseSqlServer(builder.Configuration.GetConnectionString("ConnectionString")));
 
 builder.Services.AddScoped<IPropertyService, PropertyService>();
-builder.Services.AddScoped<ICategoryService, CategoryService>();
 
 var app = builder.Build();
 
