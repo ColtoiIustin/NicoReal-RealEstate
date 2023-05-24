@@ -41,7 +41,7 @@ namespace NicoRealSolution.Controllers
             return View();
         }
 
-        
+        [HttpPost]
         public async Task<IActionResult> AddProperty(Property property)
         {
             return RedirectToAction(nameof(Index));
