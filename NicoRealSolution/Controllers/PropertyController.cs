@@ -44,9 +44,7 @@ namespace NicoRealSolution.Controllers
         [HttpPost]
         public async Task<IActionResult> AddProperty(Property property)
         {
-            return RedirectToAction(nameof(Index));
-            try
-            {
+            
                 var images = Request.Form.Files;
                 if (!ModelState.IsValid)
                 {
@@ -70,11 +68,8 @@ namespace NicoRealSolution.Controllers
                     }
                 }
 
-                return RedirectToAction(nameof(Index));
-            }
-            catch (Exception ex) {
-                return RedirectToAction(nameof(Index));
-            }
+                return Json(new { redirectToUrl = Url.Action("Index", "Property") });
+            
 
         }
 
