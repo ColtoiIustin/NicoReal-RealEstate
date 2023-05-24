@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using NicoRealSolution.Data;
 
@@ -11,9 +12,10 @@ using NicoRealSolution.Data;
 namespace NicoRealSolution.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    partial class AppDbContextModelSnapshot : ModelSnapshot
+    [Migration("20230523144847_Initial8")]
+    partial class Initial8
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -60,10 +62,10 @@ namespace NicoRealSolution.Migrations
                     b.Property<int?>("Floors")
                         .HasColumnType("int");
 
-                    b.Property<bool>("IsFeatured")
+                    b.Property<bool?>("IsFeatured")
                         .HasColumnType("bit");
 
-                    b.Property<bool>("IsInvestment")
+                    b.Property<bool?>("IsInvestment")
                         .HasColumnType("bit");
 
                     b.Property<string>("Latitude")
