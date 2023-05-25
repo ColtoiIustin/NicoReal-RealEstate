@@ -1,5 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using NicoRealSolution.Models;
+using System.Linq.Expressions;
 
 namespace NicoRealSolution.Data.Services
 {
@@ -12,6 +13,7 @@ namespace NicoRealSolution.Data.Services
         }
         public async Task AddProperty(Property newProperty)
         {
+            newProperty.DatePosted = DateTime.Today.ToString("dd.MM.yyyy");
             _context.Properties.Add(newProperty);
             await _context.SaveChangesAsync();
         }

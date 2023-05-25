@@ -69,7 +69,7 @@ namespace NicoRealSolution.Controllers
                 }
             }
             string guidsString = string.Join(",", guidList);
-            
+            property.PhotoGuids = guidsString;
             await _propService.AddProperty(property);
 
 
