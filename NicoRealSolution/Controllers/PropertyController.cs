@@ -23,53 +23,58 @@ namespace NicoRealSolution.Controllers
             _webHostEnvironment = webHostEnvironment;
         }
         public async Task<IActionResult> Index()
-        {    
+        {
             var properties = await _propService.GetProperties();
             return View(properties);
-      
+
         }
 
         public async Task<IActionResult> Details(int id)
         {
-            var property = await _propService.GetByIdAsync(id);       
-            return View(property); 
-            
+            var property = await _propService.GetByIdAsync(id);
+            return View(property);
+
         }
 
         public async Task<IActionResult> Create()
-        {   
+        {
             return View();
         }
 
         [HttpPost]
         public async Task<IActionResult> AddProperty(Property property)
         {
-            
-                var images = Request.Form.Files;
-                if (!ModelState.IsValid)
-                {
-                    return View("Create", property);
-                }
-                await _propService.AddProperty(property);
+            List<string> guidList = new List<string>();
+            var images = Request.Form.Files;
+            if (!ModelState.IsValid)
+            {
+                return View("Create", property);
+            }
 
-                foreach (var image in images)
+            foreach (var image in images)
+            {
+                if (image.Length > 0)
                 {
-                    if (image.Length > 0)
+                    var fileExtension = Path.GetExtension(image.FileName);
+                    var uniqueFileName = $"{Guid.NewGuid()}{fileExtension}";
+                    var uploadPath = Path.Combine(_webHostEnvironment.WebRootPath, "Uploads");
+                    var filePath = Path.Combine(uploadPath, uniqueFileName);
+
+                    // Save the file to the server
+                    using (var fileStream = new FileStream(filePath, FileMode.Create))
                     {
-                        var fileName = Path.GetFileName(image.FileName);
-                        var uploadPath = Path.Combine(_webHostEnvironment.WebRootPath, "Uploads");
-                        var filePath = Path.Combine(uploadPath, fileName);
-
-                        // Save the file to the server
-                        using (var fileStream = new FileStream(filePath, FileMode.Create))
-                        {
-                            await image.CopyToAsync(fileStream);
-                        }
+                        await image.CopyToAsync(fileStream);
                     }
+                    guidList.Add(uniqueFileName);
                 }
-
-                return Json(new { redirectToUrl = Url.Action("Index", "Property") });
+            }
+            string guidsString = string.Join(",", guidList);
             
+            await _propService.AddProperty(property);
+
+
+            return Json(new { redirectToUrl = Url.Action("Index", "Property") });
+
 
         }
 
@@ -80,7 +85,7 @@ namespace NicoRealSolution.Controllers
 
             await _propService.DeleteAsync(id);
             return RedirectToAction(nameof(Index));
-            
+
         }
 
         public async Task<IActionResult> EditPage(int id)
@@ -91,14 +96,14 @@ namespace NicoRealSolution.Controllers
 
         }
 
-        public async Task<IActionResult> ConfirmEdit( Property property)
+        public async Task<IActionResult> ConfirmEdit(Property property)
         {
             if (!ModelState.IsValid)
             {
                 return View("EditPage", property);
             }
 
-            await _propService.UpdateProperty(property);          
+            await _propService.UpdateProperty(property);
             return RedirectToAction(nameof(Details), new { id = property.Id });
 
         }

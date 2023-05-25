@@ -5,8 +5,8 @@
         public int Id { get; set; }
         public string? Title { get; set; }
         public string? Category { get; set; }
-        public bool IsInvestment { get; set; }
-        public bool IsFeatured { get; set; }
+        public string? IsInvestment { get; set; }
+        public string? IsFeatured { get; set; }
         public string? Description { get; set; }
         public decimal? Price { get; set; }
         public int? Surface { get; set; }
@@ -22,6 +22,7 @@
         public int? ConstructionYear { get; set; }
         public int? Floors { get; set; }
         public string? Features { get; set; }
+        public string? PhotoGuids { get; set; }
 
 
     }
