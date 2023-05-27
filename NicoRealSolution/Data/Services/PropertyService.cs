@@ -2,6 +2,7 @@
 using NicoRealSolution.Models;
 using System.Linq.Expressions;
 
+
 namespace NicoRealSolution.Data.Services
 {
     public class PropertyService : IPropertyService
@@ -37,10 +38,19 @@ namespace NicoRealSolution.Data.Services
             return property;
         }
 
-        public async Task UpdateProperty( Property property)
+        public async Task UpdateProperty( Property property, Property oldProperty)
         {
-            _context.Properties.Update(property);
-            await _context.SaveChangesAsync();
+            if (oldProperty != null)
+            {
+                _context.Entry(oldProperty).State = EntityState.Detached;
+            }
+
+            try
+            {
+                _context.Properties.Update(property);
+                await _context.SaveChangesAsync();
+            }
+            catch ( Exception ex) { }
             
         }
     }

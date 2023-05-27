@@ -88,6 +88,7 @@ namespace NicoRealSolution.Controllers
 
         }
 
+        [HttpGet]
         public async Task<IActionResult> EditPage(int id)
         {
             var property = await _propService.GetByIdAsync(id);
@@ -96,15 +97,51 @@ namespace NicoRealSolution.Controllers
 
         }
 
-        public async Task<IActionResult> ConfirmEdit(Property property)
+        [HttpPost]
+        public async Task<IActionResult> Edit(Property property)
         {
+            var uploadPath = Path.Combine(_webHostEnvironment.WebRootPath, "Uploads");
+            var oldProperty = await _propService.GetByIdAsync(property.Id);
+            var oldGuids = oldProperty.PhotoGuids.Split(',');
+     
+            foreach (string oldGuid in oldGuids)
+            {
+  
+                var filePath = Path.Combine(uploadPath, oldGuid);
+                if (System.IO.File.Exists(filePath))
+                {
+                    System.IO.File.Delete(filePath);
+                }
+            }
+
+            List<string> guidList = new List<string>();
+            var images = Request.Form.Files;
             if (!ModelState.IsValid)
             {
                 return View("EditPage", property);
             }
 
-            await _propService.UpdateProperty(property);
-            return RedirectToAction(nameof(Details), new { id = property.Id });
+            foreach (var image in images)
+            {
+                if (image.Length > 0)
+                {
+                    var fileExtension = Path.GetExtension(image.FileName);
+                    var uniqueFileName = $"{Guid.NewGuid()}{fileExtension}";
+                    var filePath = Path.Combine(uploadPath, uniqueFileName);
+
+                    // Save the file to the server
+                    using (var fileStream = new FileStream(filePath, FileMode.Create))
+                    {
+                        await image.CopyToAsync(fileStream);
+                    }
+                    guidList.Add(uniqueFileName);
+                }
+            }
+            string guidsString = string.Join(",", guidList);
+            property.PhotoGuids = guidsString;
+
+            await _propService.UpdateProperty(property, oldProperty);
+            return Json(new { redirectToUrl = Url.Action("Index", "Property") });
 
         }
 

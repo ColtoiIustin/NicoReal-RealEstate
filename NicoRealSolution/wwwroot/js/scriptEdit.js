@@ -1,6 +1,7 @@
-﻿//create
+﻿
+//edit
 Dropzone.options.myDropzone = {
-    url: '/Property/AddProperty',
+    url: '/Property/Edit',
     autoProcessQueue: false,
     uploadMultiple: true,
     parallelUploads: 5,
@@ -12,7 +13,7 @@ Dropzone.options.myDropzone = {
         var dzClosure = this;
 
         // Handle the form submission
-        document.getElementById("submit-all").addEventListener("click", function (e) {
+        document.getElementById("submit-all-edit").addEventListener("click", function (e) {
             e.preventDefault();
             e.stopPropagation();
             dzClosure.processQueue();
@@ -39,4 +40,3 @@ Dropzone.options.myDropzone = {
 // Disable autoDiscover and manually initialize Dropzone
 Dropzone.autoDiscover = false;
 var myDropzone = new Dropzone("#myDropzone");
-
