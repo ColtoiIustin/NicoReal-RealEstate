@@ -283,14 +283,14 @@
                                             <div class="row">
                                                 <div class="col-sm-6 col-xl-4">
                                                     <div class="mb30">
-                                                        <label class="heading-color ff-heading fw600 mb10">Latitude</label>
-                                                        <input type="text" class="form-control" id="latitude" placeholder="Latitude" hidden>
+                                                        
+                                                        <input  asp-for=Latitude type="text" class="form-control" id="latitude" placeholder="Latitude" >
                                                     </div>
                                                 </div>
                                                 <div class="col-sm-6 col-xl-4">
                                                     <div class="mb30">
-                                                        <label class="heading-color ff-heading fw600 mb10">Longitude</label>
-                                                        <input type="text" class="form-control" id="longitude" placeholder="Longitude" hidden>
+                                                       
+                                                        <input asp-for=Longitude type="text" class="form-control" id="longitude" placeholder="Longitude" >
                                                     </div>
                                                 </div>
                                             </div>
@@ -388,80 +388,10 @@
 <script src="~/js/dashboard-script.js"></script>
 <!-- Custom script for all pages -->
 <script src="~/js/script.js"></script>
+<script src="~/js/google_maps.js"></script>
 <script src="https://maps.googleapis.com/maps/api/js?&libraries=places&callback=initMap&v=weekly" defer></script>
 
-<script>
-    //custom Andrei
 
-    function initMap() {
-        const myLatlng = { lat: 44.439, lng: 26.096 };
-        let circle;
-
-        //// AUTOCOMPLETE ////
-        const options = {
-            fields: ["geometry.location"],
-        };
-
-        const autocomplete = new google.maps.places.Autocomplete(
-            document.getElementById("autocomplete"), options
-        );
-
-        // Event listener for place_changed event
-        autocomplete.addListener("place_changed", function () {
-            const place = autocomplete.getPlace();
-            if (place.geometry) {
-                map.setCenter(place.geometry.location);
-                map.setZoom(16);
-            }
-        });
-
-        //// MAP ////
-        const map = new google.maps.Map(document.getElementById("map"), {
-            zoom: 6,
-            center: myLatlng,
-        });
-
-        map.addListener("center_changed", () => {
-            marker.setPosition(map.getCenter());
-
-            //lat si long
-            const center = map.getCenter();
-            drawCircle(center);
-            updateInputFields(center.lat(), center.lng());
-        });
-
-        //// MARKER ////
-        const marker = new google.maps.Marker({
-            position: myLatlng,
-            map,
-            title: "Click to zoom",
-        });
-
-        // Function to update input fields with latitude and longitude values
-        function updateInputFields(latitude, longitude) {
-            $("#latitude").val(latitude);
-            $("#longitude").val(longitude);
-        }
-
-        function drawCircle(center) {
-            if (circle) {
-                circle.setMap(null); // Remove existing circle from the map
-            }
-
-            circle = new google.maps.Circle({
-                map: map,
-                center: center,
-                radius: 100, // Radius in meters (200 meters diameter)
-                strokeColor: "#FF0000",
-                strokeOpacity: 0.8,
-                strokeWeight: 2,
-                fillColor: "#FF0000",
-                fillOpacity: 0.35,
-            });
-        }
-
-    }
-</script>
 
 
 

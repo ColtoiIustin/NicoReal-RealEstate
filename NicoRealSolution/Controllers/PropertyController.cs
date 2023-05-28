@@ -100,7 +100,7 @@ namespace NicoRealSolution.Controllers
             var property = await _propService.GetByIdAsync(id);
             if (property == null) return View("NotFound");
             return View(property);
-
+            
         }
 
         [HttpPost]
