@@ -38,13 +38,8 @@ namespace NicoRealSolution.Data.Services
             return property;
         }
 
-        public async Task UpdateProperty( Property property, Property oldProperty)
+        public async Task UpdateProperty( Property property)
         {
-            if (oldProperty != null)
-            {
-                _context.Entry(oldProperty).State = EntityState.Detached;
-            }
-
             try
             {
                 _context.Properties.Update(property);
