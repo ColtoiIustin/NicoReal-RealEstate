@@ -2,7 +2,6 @@
 @{
     ViewData["Title"] = "Adauga Proprietate";
 }
-
 <link rel="stylesheet" href="~/css/bootstrap.min.css">
 <link rel="stylesheet" href="~/css/ace-responsive-menu.css">
 <link rel="stylesheet" href="~/css/menu.css">
@@ -106,7 +105,7 @@
                 <div class="menu_and_widgets">
                     <div class="mobile_menu_bar d-flex justify-content-between align-items-center">
                         <a class="mobile_logo" href="#"><img src="~/images/MyLogoDark.png" alt=""></a>
-                        <a ></a>
+                        <a></a>
                     </div>
                 </div>
             </div>
@@ -221,8 +220,8 @@
                                                     <div class="location-area">
                                                         <select asp-for="IsFeatured" class="selectpicker">
                                                             <option value="">-- Recomandata --</option>
-                                                            <option >Nu</option>
-                                                            <option >Da</option>
+                                                            <option>Nu</option>
+                                                            <option>Da</option>
                                                         </select>
                                                     </div>
                                                 </div>
@@ -231,7 +230,7 @@
                                                     <div class="location-area">
                                                         <select asp-for="IsInvestment" class="selectpicker">
                                                             <option value="">-- Investitie --</option>
-                                                            <option >Nu</option>
+                                                            <option>Nu</option>
                                                             <option>Da</option>
 
                                                         </select>
@@ -240,7 +239,7 @@
                                             </div>
                                         </div>
                                         <div class="ps-widget bgc-white bdrs12 p30 overflow-hidden position-relative">
-                                        <h4 class="title fz17 mb30">Incarca fotografii (cel putin una)</h4>
+                                            <h4 class="title fz17 mb30">Incarca fotografii (cel putin una)</h4>
                                             <input name="userFiles" type="file" multiple="multiple" />
 
                                         </div>
@@ -276,14 +275,8 @@
                                                 </div>
                                                 <div class="col-sm-12">
                                                     <div class="mb20 mt30">
-                                                        <label class="heading-color ff-heading fw600 mb30">
-                                                            Place the listing pin on the
-                                                            map
-                                                        </label>
-                                                        <iframe class="h550" loading="lazy"
-                                                                src="https://maps.google.com/maps?q=London%20Eye%2C%20London%2C%20United%20Kingdom&amp;t=m&amp;z=14&amp;output=embed&amp;iwloc=near"
-                                                                title="London Eye, London, United Kingdom"
-                                                                aria-label="London Eye, London, United Kingdom"></iframe>
+                                                        <input type="text" id="autocomplete" placeholder="Enter a location" class="form-control">
+                                                        <div id="map" class="h550" loading="lazy"></div>
                                                     </div>
                                                 </div>
                                             </div>
@@ -291,13 +284,13 @@
                                                 <div class="col-sm-6 col-xl-4">
                                                     <div class="mb30">
                                                         <label class="heading-color ff-heading fw600 mb10">Latitude</label>
-                                                        <input asp-for="Latitude" type="text" class="form-control" placeholder="">
+                                                        <input type="text" class="form-control" id="latitude" placeholder="Latitude" hidden>
                                                     </div>
                                                 </div>
                                                 <div class="col-sm-6 col-xl-4">
                                                     <div class="mb30">
                                                         <label class="heading-color ff-heading fw600 mb10">Longitude</label>
-                                                        <input asp-for=Longitude type="text" class="form-control" placeholder="">
+                                                        <input type="text" class="form-control" id="longitude" placeholder="Longitude" hidden>
                                                     </div>
                                                 </div>
                                             </div>
@@ -384,19 +377,91 @@
         <a class="scrollToHome" href="#"><i class="fas fa-angle-up"></i></a>
     </div>
 </div>
-    <script src="~/js/jquery-3.6.4.min.js"></script>
-    <script src="~/js/jquery-migrate-3.0.0.min.js"></script>
-    <script src="~/js/popper.min.js"></script>
-    <script src="~/js/bootstrap.min.js"></script>
-    <script src="~/js/bootstrap-select.min.js"></script>
-    <script src="~/js/jquery.mmenu.all.js"></script>
-    <script src="~/js/ace-responsive-menu.js"></script>
-    <script src="~/js/jquery-scrolltofixed-min.js"></script>
-    <script src="~/js/dashboard-script.js"></script>
-    <!-- Custom script for all pages -->
-    <script src="~/js/script.js"></script>
-    
+<script src="~/js/jquery-3.6.4.min.js"></script>
+<script src="~/js/jquery-migrate-3.0.0.min.js"></script>
+<script src="~/js/popper.min.js"></script>
+<script src="~/js/bootstrap.min.js"></script>
+<script src="~/js/bootstrap-select.min.js"></script>
+<script src="~/js/jquery.mmenu.all.js"></script>
+<script src="~/js/ace-responsive-menu.js"></script>
+<script src="~/js/jquery-scrolltofixed-min.js"></script>
+<script src="~/js/dashboard-script.js"></script>
+<!-- Custom script for all pages -->
+<script src="~/js/script.js"></script>
+<script src="https://maps.googleapis.com/maps/api/js?&libraries=places&callback=initMap&v=weekly" defer></script>
 
-    
-    
+<script>
+    //custom Andrei
+
+    function initMap() {
+        const myLatlng = { lat: 44.439, lng: 26.096 };
+        let circle;
+
+        //// AUTOCOMPLETE ////
+        const options = {
+            fields: ["geometry.location"],
+        };
+
+        const autocomplete = new google.maps.places.Autocomplete(
+            document.getElementById("autocomplete"), options
+        );
+
+        // Event listener for place_changed event
+        autocomplete.addListener("place_changed", function () {
+            const place = autocomplete.getPlace();
+            if (place.geometry) {
+                map.setCenter(place.geometry.location);
+                map.setZoom(16);
+            }
+        });
+
+        //// MAP ////
+        const map = new google.maps.Map(document.getElementById("map"), {
+            zoom: 6,
+            center: myLatlng,
+        });
+
+        map.addListener("center_changed", () => {
+            marker.setPosition(map.getCenter());
+
+            //lat si long
+            const center = map.getCenter();
+            drawCircle(center);
+            updateInputFields(center.lat(), center.lng());
+        });
+
+        //// MARKER ////
+        const marker = new google.maps.Marker({
+            position: myLatlng,
+            map,
+            title: "Click to zoom",
+        });
+
+        // Function to update input fields with latitude and longitude values
+        function updateInputFields(latitude, longitude) {
+            $("#latitude").val(latitude);
+            $("#longitude").val(longitude);
+        }
+
+        function drawCircle(center) {
+            if (circle) {
+                circle.setMap(null); // Remove existing circle from the map
+            }
+
+            circle = new google.maps.Circle({
+                map: map,
+                center: center,
+                radius: 100, // Radius in meters (200 meters diameter)
+                strokeColor: "#FF0000",
+                strokeOpacity: 0.8,
+                strokeWeight: 2,
+                fillColor: "#FF0000",
+                fillOpacity: 0.35,
+            });
+        }
+
+    }
+</script>
+
+
 
