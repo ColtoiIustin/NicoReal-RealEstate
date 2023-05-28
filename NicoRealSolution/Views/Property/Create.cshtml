@@ -17,7 +17,6 @@
 <link rel="stylesheet" href="~/css/dashbord_navitaion.css">
 <!-- Responsive stylesheet -->
 <link rel="stylesheet" href="~/css/responsive.css">
-<link rel="stylesheet" href="https://unpkg.com/dropzone@5/dist/min/dropzone.min.css" type="text/css" />
 <div class="wrapper">
     <div class="preloader"></div>
 
@@ -176,7 +175,7 @@
                     <div class="row">
                         <div class="col-xl-12">
                             <div class="ps-widget bgc-white bdrs12 default-box-shadow2 pt30 mb30 overflow-hidden position-relative">
-                                <form id="formular" asp-controller="Property" method="post" enctype="multipart/form-data">
+                                <form id="formular" asp-action="AddProperty" asp-controller="Property" method="post" enctype="multipart/form-data">
                                     <div class="navtab-style1">
                                         <div class="ps-widget bgc-white bdrs12 p30 overflow-hidden position-relative">
                                             <h4 class="title fz17 mb30">Descrierea Proprietatii</h4>
@@ -241,7 +240,8 @@
                                         </div>
                                         <div class="ps-widget bgc-white bdrs12 p30 overflow-hidden position-relative">
                                         <h4 class="title fz17 mb30">Incarca fotografii (cel putin una)</h4>
-                                        <div id="myDropzone" class="dropzone"></div>
+                                            <input name="userFiles" type="file" multiple="multiple" />
+
                                         </div>
 
                                         <div class="ps-widget bgc-white bdrs12 p30 overflow-hidden position-relative">
@@ -382,6 +382,7 @@
         </div>
         <a class="scrollToHome" href="#"><i class="fas fa-angle-up"></i></a>
     </div>
+</div>
     <script src="~/js/jquery-3.6.4.min.js"></script>
     <script src="~/js/jquery-migrate-3.0.0.min.js"></script>
     <script src="~/js/popper.min.js"></script>
@@ -393,8 +394,7 @@
     <script src="~/js/dashboard-script.js"></script>
     <!-- Custom script for all pages -->
     <script src="~/js/script.js"></script>
-    <script src="https://unpkg.com/dropzone@5/dist/min/dropzone.min.js"></script>
-    <script src="~/js/script2.js"></script>
+    
 
     
     

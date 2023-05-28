@@ -73,7 +73,7 @@ namespace NicoRealSolution.Controllers
             await _propService.AddProperty(property);
 
 
-            return Json(new { redirectToUrl = Url.Action("Index", "Property") });
+            return RedirectToAction(nameof(Index));
 
 
         }
@@ -103,7 +103,9 @@ namespace NicoRealSolution.Controllers
             var uploadPath = Path.Combine(_webHostEnvironment.WebRootPath, "Uploads");
             var oldProperty = await _propService.GetByIdAsync(property.Id);
             var oldGuids = oldProperty.PhotoGuids.Split(',');
-     
+            var photoFilenames = oldProperty.PhotoGuids.Split(',');
+            ViewBag.PhotoFilenames = photoFilenames;
+
             foreach (string oldGuid in oldGuids)
             {
   
