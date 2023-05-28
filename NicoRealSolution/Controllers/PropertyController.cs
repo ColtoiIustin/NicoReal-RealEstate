@@ -32,6 +32,12 @@ namespace NicoRealSolution.Controllers
         public async Task<IActionResult> Details(int id)
         {
             var property = await _propService.GetByIdAsync(id);
+            if (property.Price != null && property.Surface != null)
+            {
+                decimal priceMp = (decimal)(property.Price / property.Surface);
+                decimal roundedPriceMp = decimal.Round(priceMp, 2);
+                ViewBag.priceMp = roundedPriceMp.ToString("0.00");
+            }
             return View(property);
 
         }

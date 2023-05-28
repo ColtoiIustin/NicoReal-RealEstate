@@ -19,7 +19,7 @@
         public string? Longitude { get; set; }
         public int? Rooms { get; set; }
         public int? Bathrooms { get; set; }
-        public int? ConstructionYear { get; set; }
+        public string? ConstructionYear { get; set; }
         public int? Floors { get; set; }
         public string? Features { get; set; }
         public string? PhotoGuids { get; set; }
