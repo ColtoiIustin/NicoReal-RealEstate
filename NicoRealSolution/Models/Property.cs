@@ -23,6 +23,11 @@
         public int? Floors { get; set; }
         public string? Features { get; set; }
         public string? PhotoGuids { get; set; }
+        public string? Nearby1 { get; set; }
+        public string? Nearby2 { get; set; }
+        public string? Nearby3 { get; set; }
+        public string? IsSold { get; set; }
+
 
 
     }

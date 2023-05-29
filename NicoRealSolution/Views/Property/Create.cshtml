@@ -189,7 +189,7 @@
                                                 <div class="col-sm-12">
                                                     <div class="mb20">
                                                         <label class="heading-color ff-heading fw600 mb10">Descriere</label>
-                                                        <textarea asp-for="Description" cols="30" rows="5"
+                                                        <textarea class="small_width1" asp-for="Description" cols="30" rows="5"
                                                                   placeholder="Descriere"></textarea>
                                                     </div>
                                                 </div>
@@ -236,6 +236,19 @@
                                                         </select>
                                                     </div>
                                                 </div>
+
+                                                <div class="col-sm-6 col-xl-4">
+                                                    <label class="heading-color ff-heading fw600 mb10"><span style="color: red">Vandut?</span></label>
+                                                    <div class="location-area">
+                                                        <select asp-for="IsSold" class="selectpicker">
+                                                            <option value="">-- Vandut? --</option>
+                                                            <option>Nu</option>
+                                                            <option>Da</option>
+
+                                                        </select>
+                                                    </div>
+                                                </div>
+
                                             </div>
                                         </div>
                                         <div class="ps-widget bgc-white bdrs12 p30 overflow-hidden position-relative">
@@ -284,13 +297,13 @@
                                                 <div class="col-sm-6 col-xl-4">
                                                     <div class="mb30">
                                                         
-                                                        <input  asp-for=Latitude type="text" class="form-control" id="latitude" placeholder="Latitude" >
+                                                        <input  asp-for=Latitude type="text" class="form-control" id="latitude" placeholder="Latitude" hidden>
                                                     </div>
                                                 </div>
                                                 <div class="col-sm-6 col-xl-4">
                                                     <div class="mb30">
                                                        
-                                                        <input asp-for=Longitude type="text" class="form-control" id="longitude" placeholder="Longitude" >
+                                                        <input asp-for=Longitude type="text" class="form-control" id="longitude" placeholder="Longitude" hidden>
                                                     </div>
                                                 </div>
                                             </div>
@@ -344,6 +357,22 @@
                                                 <label>Facilitati (separate prin virgula)</label>
                                                 <input asp-for=Features id="features" class="form-control" />
 
+                                            </div>
+                                        </div>
+
+                                        <div class="ps-widget bgc-white bdrs12 p30 overflow-hidden position-relative">
+                                            <h4 class="title fz17 mb30">Ce se afla in imprejurimi?</h4>
+                                            <div class="row">
+                                                <label>Imprejurimi_1</label>
+                                                <input  asp-for="Nearby1" class="form-control" />
+                                            </div>
+                                            <div class="row">
+                                                <label>Imprejurimi_2</label>
+                                                <input asp-for="Nearby2" class="form-control" />
+                                            </div>
+                                            <div class="row">
+                                                <label>Imprejurimi_3</label>
+                                                <input  asp-for="Nearby3" class="form-control" />
                                             </div>
                                         </div>
                                     </div>

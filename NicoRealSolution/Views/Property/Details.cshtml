@@ -1,6 +1,6 @@
 ﻿@model Property
 @{
-    ViewData["Title"] = "Details";
+    ViewData["Title"] = "Detalii";
 }
 
 <link rel="stylesheet" href="~/css/bootstrap.min.css">
@@ -28,6 +28,22 @@
 <link href="~/images/apple-touch-icon-114x114.png" sizes="114x114" rel="apple-touch-icon">
 <link href="~/images/apple-touch-icon-180x180.png" sizes="180x180" rel="apple-touch-icon">
 
+<style>
+#imageContainer {
+        <!-- width: 1200px;
+        height: 600px; -->
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+#imageContainer img {
+  max-width: 100%;
+  max-height: 100%;
+  object-fit: contain;
+}
+</style>
 
     <div class="wrapper ovh">
         <div class="preloader"></div>
@@ -142,16 +158,18 @@
                             <div class="container">
                                 <div class="row wow fadeInUp" data-wow-delay="300ms">
                                     <div class="col-lg-12">
-                                        <div class="ps-v4-hero-slider dots_none slider-dib-sm slider-1-grid vam_nav_style owl-theme owl-carousel">
-                                            <div class="item">
-                                            <img class="bdrs12" src="~/images/listings/listing-single-slide1.jpg" alt="">
-                                            </div>
-                                            <div class="item">
-                                                <img class="bdrs12" src="~/images/listings/listing-single-slide2.jpg" alt="">
-                                            </div>
-                                            <div class="item">
-                                            <img class="bdrs12" src="~/images/listings/listing-single-slide3.jpg" alt="">
-                                            </div>
+                                        <div id="imageContainerParent" class="ps-v4-hero-slider dots_none slider-dib-sm slider-1-grid vam_nav_style owl-theme owl-carousel">
+
+                                        @if (!string.IsNullOrEmpty(Model.PhotoGuids))
+                                        {
+                                            var photoNames = Model.PhotoGuids.Split(new[] { ',' }, StringSplitOptions.RemoveEmptyEntries);
+                                            foreach (var photoName in photoNames)
+                                            {
+                                                <div class="item" id="imageContainer">
+                                                    <img class="bdrs12" src="~/Uploads/@photoName.Trim()" alt="">
+                                                </div>
+                                            }
+                                        }
                                         </div>
                                     </div>
                                 </div>
@@ -172,12 +190,12 @@
                     <div class="row wow fadeInUp" data-wow-delay="100ms">
                         <div class="col-lg-8">
                             <div class="single-property-content mb30-md">
-                            <h2 class="sp-lg-title">@Html.DisplayFor(modelitem => Model.Title)</h2>
+                            <h2 class="sp-lg-title">@Model.Title</h2>
                                 <div class="pd-meta mb15 d-md-flex align-items-center">
                                     <p class="text fz15 mb-0 pr10 bdrrn-sm">@Model.City , @Model.Country</p>
                                 </div>
                                 <div class="property-meta d-flex align-items-center">
-                                <i class="far fa-clock pe-2"></i>@Html.DisplayFor(modelitem => Model.DatePosted)
+                                <span style="color: green;"><i class="far fa-clock pe-2"></i>@Model.DatePosted</span>
                                 </div>
                             </div>
                         </div>
@@ -188,7 +206,12 @@
                                     </div>
                                 <h3 class="price mb-0">@Html.DisplayFor(modelitem => Model.Price) €</h3>
                                 <p class="text space fz15">@ViewBag.priceMp €/mp</p>
-                                </div>
+                                <p class="text space fz15"><span style="color:green">Oportunitate Investitie</span></p>
+                                @if (Model.IsSold == "Da")
+                                {
+                                    <h3 class="price mb-0"><span style="color: red">Vândut!</span></h3>
+                                }
+                            </div>
                             </div>
                         </div>
                     </div>
@@ -270,7 +293,7 @@
                             </div>
                             <div class="ps-widget mb30 overflow-hidden position-relative">
                                 <h4 class="title fz17 mb30">Descriere</h4>
-                                <p class="text mb10">@Model.Description</p>
+                            <p class="text mb10" style="white-space: pre-line;">@Model.Description</p>
                             <h4 class="title fz17 mb30 mt50">Detalii</h4>
                                 <div class="row">
                                     <div class="col-md-6 col-xl-4">
@@ -300,7 +323,7 @@
                                                 
                                             @if (Model.Surface != null)
                                             {
-                                                <p class="text mb10">@Model.Surface</p>
+                                                <p class="text mb10">@Model.Surface mp</p>
                                             }
                                             @if (Model.Floors != null)
                                             {
@@ -385,10 +408,10 @@
                                             <div class="pd-list">
                                                 @for (int j = i * columnCount; j < Math.Min((i + 1) * columnCount, features.Length); j++)
                                                 {
-                                                    <p class="text mb10">
-                                                        <i class="fas fa-circle fz6 align-middle pe-2"></i>
-                                                        @features[j].Trim()
-                                                    </p>
+                                                        <p class="text mb10">
+                                                            <i class="fas fa-circle fz6 align-middle pe-2"></i>
+                                                            @features[j].Trim()
+                                                        </p>
                                                 }
                                             </div>
                                         </div>
@@ -405,21 +428,21 @@
                                                 <div class="tab-pane fade fz15 active show" id="nav-item1" role="tabpanel" aria-labelledby="nav-item1-tab">
                                                     <div class="nearby d-sm-flex align-items-center mb20">
                                                         <div class="details">
-                                                            <p class="dark-color fw600 mb-0">South Londonderry Elementary School</p>
+                                                            <p class="dark-color fw600 mb-0">@Model.Nearby1</p>
                                                             <div class="blog-single-review">
                                                             </div>
                                                         </div>
                                                     </div>
                                                     <div class="nearby d-sm-flex align-items-center mb20">
                                                         <div class="details">
-                                                            <p class="dark-color fw600 mb-0">Londonderry Senior High School</p>
+                                                            <p class="dark-color fw600 mb-0">@Model.Nearby2</p>
                                                             <div class="blog-single-review">
                                                             </div>
                                                         </div>
                                                     </div>
                                                     <div class="nearby d-sm-flex align-items-center">
                                                         <div class="details">
-                                                            <p class="dark-color fw600 mb-0">Londonderry Middle School</p>
+                                                            <p class="dark-color fw600 mb-0">@Model.Nearby3</p>
                                                             <div class="blog-single-review">
                                                             </div>
                                                         </div>
@@ -435,7 +458,7 @@
                             <div class="column">
                                 <div class="agen-personal-info position-relative bgc-white default-box-shadow1 bdrs12 p30 mt30">
                                     <div class="widget-wrapper mb-0">
-                                        <h6 class="title fz17 mb30">Get More Information</h6>
+                                        <h6 class="title fz17 mb30">Afla mai multe</h6>
                                         <div class="agent-single d-sm-flex align-items-center pb25">
                                             <div class="single-img mb30-sm">
                                             <img class="w90" src="~/images/team/neuro.png" alt="">
@@ -657,7 +680,7 @@
     <!-- Custom script for all pages -->
     <script src="~/js/script.js"></script>
 
-    <script>
+ <script>
         //  Fixed sidebar Custom Script For That
         $(function () {
             var cols = $('.wrap .column');
@@ -668,4 +691,58 @@
             // bind to scroll and resize events
             scrollbalance.bind();
         });
-    </script>
+
+    $(document).ready(function () {
+
+        if ($(window).width() > 768) {
+
+        var containerWidth = $("#imageContainer").width();
+        var containerHeight = $("#imageContainer").height();
+
+            $('#imageContainerParent img').each(function () {
+        var img = $(this);
+
+        // Function to resize the image and fit it within the container
+        function resizeImage(img) {
+            var imgWidth = img.width();
+            var imgHeight = img.height();
+            var widthRatio = containerWidth / imgWidth;
+            var heightRatio = containerHeight / imgHeight;
+            var scaleRatio = Math.min(widthRatio, heightRatio);
+
+            img.css({
+                width: imgWidth * scaleRatio,
+                height: imgHeight * scaleRatio
+            });
+        }
+        resizeImage(img);
+        });
+        }
+
+        if ($(window).width() <= 768) {
+
+        var containerWidth = $("#imageContainer").width();
+        var containerHeight = $("#imageContainer").height();
+
+            $('#imageContainerParent img').each(function () {
+        var img = $(this);
+
+        // Function to resize the image and fit it within the container
+        function resizeImage(img) {
+            var imgWidth = img.width();
+            var imgHeight = img.height();
+            var widthRatio = containerWidth / imgWidth;
+            var heightRatio = containerHeight / imgHeight;
+            var scaleRatio = Math.min(widthRatio, heightRatio);
+
+            img.css({
+                width: containerWidth,
+                height: imgHeight * scaleRatio
+            });
+        }
+        resizeImage(img);
+        });
+        }
+    });
+
+ </script>

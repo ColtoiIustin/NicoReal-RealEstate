@@ -108,7 +108,7 @@ namespace NicoRealSolution.Controllers
         {
 
             await _propService.UpdateProperty(property);
-            return RedirectToAction(nameof(Index));
+            return RedirectToAction("Details", new { id = property.Id });
 
         }
 
