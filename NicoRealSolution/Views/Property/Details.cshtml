@@ -1,4 +1,6 @@
-﻿@model Property
+﻿@using NicoRealSolution.ViewModels;
+
+@model ViewModelDetails
 @{
     ViewData["Title"] = "Detalii";
 }
@@ -160,9 +162,9 @@
                                     <div class="col-lg-12">
                                         <div id="imageContainerParent" class="ps-v4-hero-slider dots_none slider-dib-sm slider-1-grid vam_nav_style owl-theme owl-carousel">
 
-                                        @if (!string.IsNullOrEmpty(Model.PhotoGuids))
+                                        @if (!string.IsNullOrEmpty(Model.SingleProp.PhotoGuids))
                                         {
-                                            var photoNames = Model.PhotoGuids.Split(new[] { ',' }, StringSplitOptions.RemoveEmptyEntries);
+                                            var photoNames = Model.SingleProp.PhotoGuids.Split(new[] { ',' }, StringSplitOptions.RemoveEmptyEntries);
                                             foreach (var photoName in photoNames)
                                             {
                                                 <div class="item" id="imageContainer">
@@ -190,12 +192,12 @@
                     <div class="row wow fadeInUp" data-wow-delay="100ms">
                         <div class="col-lg-8">
                             <div class="single-property-content mb30-md">
-                            <h2 class="sp-lg-title">@Model.Title</h2>
+                            <h2 class="sp-lg-title">@Model.SingleProp.Title</h2>
                                 <div class="pd-meta mb15 d-md-flex align-items-center">
-                                    <p class="text fz15 mb-0 pr10 bdrrn-sm">@Model.City , @Model.Country</p>
+                                    <p class="text fz15 mb-0 pr10 bdrrn-sm">@Model.SingleProp.City , @Model.SingleProp.Country</p>
                                 </div>
                                 <div class="property-meta d-flex align-items-center">
-                                <span style="color: green;"><i class="far fa-clock pe-2"></i>@Model.DatePosted</span>
+                                <span style="color: green;"><i class="far fa-clock pe-2"></i>@Model.SingleProp.DatePosted</span>
                                 </div>
                             </div>
                         </div>
@@ -204,10 +206,10 @@
                                 <div class="property-action text-lg-end">
                                     <div class="d-flex mb20 mb10-md align-items-center justify-content-lg-end">
                                     </div>
-                                <h3 class="price mb-0">@Html.DisplayFor(modelitem => Model.Price) €</h3>
+                                <h3 class="price mb-0">@Model.SingleProp.Price €</h3>
                                 <p class="text space fz15">@ViewBag.priceMp €/mp</p>
                                 <p class="text space fz15"><span style="color:green">Oportunitate Investitie</span></p>
-                                @if (Model.IsSold == "Da")
+                                @if (Model.SingleProp.IsSold == "Da")
                                 {
                                     <h3 class="price mb-0"><span style="color: red">Vândut!</span></h3>
                                 }
@@ -225,66 +227,66 @@
                                             <span class="icon flaticon-home-1"></span>
                                             <div class="ml15">
                                                 <h6 class="mb-0">Categorie</h6>
-                                                <p class="text mb-0 fz15">@Model.Category</p>
+                                                <p class="text mb-0 fz15">@Model.SingleProp.Category</p>
                                             </div>
                                         </div>
                                     </div>
-                                @if (Model.Surface != null)
+                                @if (Model.SingleProp.Surface != null)
                                 {
                                     <div class="col-sm-6 col-lg-4">
                                         <div class="overview-element mb25-xs d-flex align-items-center">
                                             <span class="icon flaticon-expand"></span>
                                             <div class="ml15">
                                                 <h6 class="mb-0">Suprafata</h6>
-                                                <p class="text mb-0 fz15">@Model.Surface mp</p>
+                                                <p class="text mb-0 fz15">@Model.SingleProp.Surface mp</p>
                                             </div>
                                         </div>
                                     </div>
                                 }
-                                @if (Model.Rooms != null)
+                                @if (Model.SingleProp.Rooms != null)
                                 {
                                     <div class="col-sm-6 col-lg-4">
                                         <div class="overview-element mb25 d-flex align-items-center">
                                             <span class="icon flaticon-bed"></span>
                                             <div class="ml15">
                                                 <h6 class="mb-0">Camere</h6>
-                                                <p class="text mb-0 fz15">@Model.Rooms</p>
+                                                <p class="text mb-0 fz15">@Model.SingleProp.Rooms</p>
                                             </div>
                                         </div>
                                     </div>
                                 }
-                                @if (Model.Bathrooms != null)
+                                @if (Model.SingleProp.Bathrooms != null)
                                 {
                                     <div class="col-sm-6 col-lg-4">
                                         <div class="overview-element mb25 d-flex align-items-center">
                                             <span class="icon flaticon-shower"></span>
                                             <div class="ml15">
                                                 <h6 class="mb-0">Bai</h6>
-                                                <p class="text mb-0 fz15">@Model.Bathrooms</p>
+                                                <p class="text mb-0 fz15">@Model.SingleProp.Bathrooms</p>
                                             </div>
                                         </div>
                                     </div>
                                 }
-                                @if (Model.Floors != null)
+                                @if (Model.SingleProp.Floors != null)
                                 {
                                     <div class="col-sm-6 col-lg-4">
                                         <div class="overview-element mb25-xs d-flex align-items-center">
                                             <span class="icon flaticon-garage"></span>
                                             <div class="ml15">
                                                 <h6 class="mb-0">Etaje</h6>
-                                                <p class="text mb-0 fz15">@Model.Floors</p>
+                                                <p class="text mb-0 fz15">@Model.SingleProp.Floors</p>
                                             </div>
                                         </div>
                                     </div>
                                 }
-                                @if (Model.ConstructionYear != null)
+                                @if (Model.SingleProp.ConstructionYear != null)
                                 {
                                     <div class="col-sm-6 col-lg-4">
                                         <div class="overview-element mb25 d-flex align-items-center">
                                             <span class="icon flaticon-event"></span>
                                             <div class="ml15">
                                                 <h6 class="mb-0">Anul Constructiei</h6>
-                                                <p class="text mb-0 fz15">@Model.ConstructionYear</p>
+                                                <p class="text mb-0 fz15">@Model.SingleProp.ConstructionYear</p>
                                             </div>
                                         </div>
                                     </div>
@@ -293,49 +295,49 @@
                             </div>
                             <div class="ps-widget mb30 overflow-hidden position-relative">
                                 <h4 class="title fz17 mb30">Descriere</h4>
-                            <p class="text mb10" style="white-space: pre-line;">@Model.Description</p>
+                            <p class="text mb10" style="white-space: pre-line;">@Model.SingleProp.Description</p>
                             <h4 class="title fz17 mb30 mt50">Detalii</h4>
                                 <div class="row">
                                     <div class="col-md-6 col-xl-4">
                                         <div class="d-flex justify-content-between">
                                             <div class="pd-list">
                                                 <p class="fw600 mb10 ff-heading dark-color">Categorie</p>
-                                                @if (Model.Surface != null)
+                                                @if (Model.SingleProp.Surface != null)
                                             {
                                                 <p class="fw600 mb10 ff-heading dark-color">Suprafata</p>
                                             }
-                                            @if (Model.Floors != null)
+                                            @if (Model.SingleProp.Floors != null)
                                             {
                                                 <p class="fw600 mb10 ff-heading dark-color">Etaje</p>
                                             }
-                                            @if (Model.Rooms != null)
+                                            @if (Model.SingleProp.Rooms != null)
                                             {
                                                 <p class="fw600 mb10 ff-heading dark-color">Camere</p>
                                             }
-                                            @if (Model.Bathrooms != null)
+                                            @if (Model.SingleProp.Bathrooms != null)
                                             {
                                                 <p class="fw600 mb-0 ff-heading dark-color">Bai</p>
                                             }
                                            
                                             </div>
                                             <div class="pd-list">
-                                                <p class="text mb10">@Model.Category</p>
+                                                <p class="text mb10">@Model.SingleProp.Category</p>
                                                 
-                                            @if (Model.Surface != null)
+                                            @if (Model.SingleProp.Surface != null)
                                             {
-                                                <p class="text mb10">@Model.Surface mp</p>
+                                                <p class="text mb10">@Model.SingleProp.Surface mp</p>
                                             }
-                                            @if (Model.Floors != null)
+                                            @if (Model.SingleProp.Floors != null)
                                             {
-                                                <p class="text mb10">@Model.Floors</p>
+                                                <p class="text mb10">@Model.SingleProp.Floors</p>
                                             }
-                                            @if (Model.Rooms != null)
+                                            @if (Model.SingleProp.Rooms != null)
                                             {
-                                                <p class="text mb10">@Model.Rooms</p>
+                                                <p class="text mb10">@Model.SingleProp.Rooms</p>
                                             }
-                                            @if (Model.Bathrooms != null)
+                                            @if (Model.SingleProp.Bathrooms != null)
                                             {
-                                                <p class="text mb-0">@Model.Bathrooms</p>
+                                                <p class="text mb-0">@Model.SingleProp.Bathrooms</p>
                                             }
                                             </div>
                                         </div>
@@ -343,7 +345,7 @@
                                     <div class="col-md-6 col-xl-4 offset-xl-2">
                                         <div class="d-flex justify-content-between">
                                             <div class="pd-list">
-                                                @if (Model.ConstructionYear != null)
+                                                @if (Model.SingleProp.ConstructionYear != null)
                                             {
                                                 <p class="fw600 mb10 ff-heading dark-color">Anul constructiei</p>  
                                             }
@@ -351,12 +353,12 @@
                                                 <p class="fw600 mb10 ff-heading dark-color">Oportunitate investitie</p>
                                             </div>
                                             <div class="pd-list">
-                                                @if (Model.ConstructionYear != null)
+                                                @if (Model.SingleProp.ConstructionYear != null)
                                             {
-                                                <p class="text mb10">@Model.ConstructionYear</p>
+                                                <p class="text mb10">@Model.SingleProp.ConstructionYear</p>
                                             }
-                                                <p class="text mb10">@Model.Price €</p>
-                                                <p class="text mb10">@Model.IsInvestment</p>
+                                                <p class="text mb10">@Model.SingleProp.Price €</p>
+                                                <p class="text mb10">@Model.SingleProp.IsInvestment</p>
                                             </div>
                                         </div>
                                     </div>
@@ -372,8 +374,8 @@
                                                 <p class="fw600 mb10 ff-heading dark-color">City</p>
                                             </div>
                                             <div class="pd-list">
-                                                <p class="text mb10">@Model.Address</p>
-                                                <p class="text mb10">@Model.City</p>
+                                                <p class="text mb10">@Model.SingleProp.Address</p>
+                                                <p class="text mb10">@Model.SingleProp.City</p>
                                             </div>
                                         </div>
                                     </div>
@@ -384,8 +386,8 @@
                                                 <p class="fw600 mb-0 ff-heading dark-color">Country</p>
                                             </div>
                                             <div class="pd-list">
-                                                <p class="text mb10">@Model.Zip</p>
-                                                <p class="text mb-0">@Model.Country</p>
+                                                <p class="text mb10">@Model.SingleProp.Zip</p>
+                                                <p class="text mb-0">@Model.SingleProp.Country</p>
                                             </div>
                                         </div>
                                     </div>
@@ -397,9 +399,9 @@
                             <div class="ps-widget mb30 overflow-hidden position-relative">
                                 <h4 class="title fz17 mb30">Facilitati</h4>
                             <div class="row">
-                                @if (!string.IsNullOrEmpty(Model.Features))
+                                @if (!string.IsNullOrEmpty(Model.SingleProp.Features))
                                 {
-                                    var features = Model.Features.Split(',');
+                                    var features = Model.SingleProp.Features.Split(',');
                                     var columnCount = (int)Math.Ceiling((double)features.Length / 3);
 
                                     @for (int i = 0; i < 3; i++)
@@ -428,21 +430,21 @@
                                                 <div class="tab-pane fade fz15 active show" id="nav-item1" role="tabpanel" aria-labelledby="nav-item1-tab">
                                                     <div class="nearby d-sm-flex align-items-center mb20">
                                                         <div class="details">
-                                                            <p class="dark-color fw600 mb-0">@Model.Nearby1</p>
+                                                            <p class="dark-color fw600 mb-0">@Model.SingleProp.Nearby1</p>
                                                             <div class="blog-single-review">
                                                             </div>
                                                         </div>
                                                     </div>
                                                     <div class="nearby d-sm-flex align-items-center mb20">
                                                         <div class="details">
-                                                            <p class="dark-color fw600 mb-0">@Model.Nearby2</p>
+                                                            <p class="dark-color fw600 mb-0">@Model.SingleProp.Nearby2</p>
                                                             <div class="blog-single-review">
                                                             </div>
                                                         </div>
                                                     </div>
                                                     <div class="nearby d-sm-flex align-items-center">
                                                         <div class="details">
-                                                            <p class="dark-color fw600 mb-0">@Model.Nearby3</p>
+                                                            <p class="dark-color fw600 mb-0">@Model.SingleProp.Nearby3</p>
                                                             <div class="blog-single-review">
                                                             </div>
                                                         </div>
@@ -610,7 +612,7 @@
                                             </div>
                                         </div>
                                     </div>
-                                </div>
+                            </div>
                             </div>
                         </div>
                     </div>
@@ -743,6 +745,9 @@
         resizeImage(img);
         });
         }
+
+
+
     });
 
  </script>

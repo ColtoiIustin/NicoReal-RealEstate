@@ -8,7 +8,7 @@ using NicoRealSolution.Models;
 using System.Linq.Expressions;
 using static System.Net.Mime.MediaTypeNames;
 using System.Web;
-
+using NicoRealSolution.ViewModels;
 
 namespace NicoRealSolution.Controllers
 {
@@ -32,13 +32,21 @@ namespace NicoRealSolution.Controllers
         public async Task<IActionResult> Details(int id)
         {
             var property = await _propService.GetByIdAsync(id);
+            var properties = await _propService.GetProperties();
             if (property.Price != null && property.Surface != null)
             {
                 decimal priceMp = (decimal)(property.Price / property.Surface);
                 decimal roundedPriceMp = decimal.Round(priceMp, 2);
                 ViewBag.priceMp = roundedPriceMp.ToString("0.00");
             }
-            return View(property);
+
+            var viewModel = new ViewModelDetails
+            {
+                SingleProp = property,
+                PropList = properties
+
+            };
+            return View(viewModel);
 
         }
 
@@ -100,7 +108,7 @@ namespace NicoRealSolution.Controllers
             var property = await _propService.GetByIdAsync(id);
             if (property == null) return View("NotFound");
             return View(property);
-            
+
         }
 
         [HttpPost]
@@ -111,6 +119,7 @@ namespace NicoRealSolution.Controllers
             return RedirectToAction("Details", new { id = property.Id });
 
         }
+
 
 
 
