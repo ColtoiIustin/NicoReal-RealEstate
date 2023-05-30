@@ -1,4 +1,5 @@
 ﻿//custom Andrei
+//create and edit
 
 function initMap() {
 
@@ -79,3 +80,4 @@ function initMap() {
     }
 
 }
+

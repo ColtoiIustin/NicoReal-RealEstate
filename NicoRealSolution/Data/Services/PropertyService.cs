@@ -65,9 +65,15 @@ namespace NicoRealSolution.Data.Services
 
             foreach (var product in products)
             {
-                string category = product.Category;
+                if (product.Category != null)
+                {
+                    string category = product.Category;
 
-                categoryCountMap[category]++;
+                    if (categoryCountMap.ContainsKey(category))
+                    {
+                        categoryCountMap[category]++;
+                    }
+                }
                 if (product.IsInvestment == "Da")
                 {
                     categoryCountMap["Investitie"]++;

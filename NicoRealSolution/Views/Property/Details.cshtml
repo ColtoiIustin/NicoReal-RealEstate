@@ -56,6 +56,8 @@
 }
 </style>
 
+
+
     <div class="wrapper ovh">
         <div class="preloader"></div>
 
@@ -185,12 +187,6 @@
                                     </div>
                                 </div>
                             </div>
-                        </div>
-                        <div class="tab-pane fade" id="pills-profile" role="tabpanel" aria-labelledby="pills-profile-tab">
-                            <iframe class="position-relative h600" loading="lazy" src="https://maps.google.com/maps?q=London%20Eye%2C%20London%2C%20United%20Kingdom&amp;t=m&amp;z=14&amp;output=embed&amp;iwloc=near" title="London Eye, London, United Kingdom" aria-label="London Eye, London, United Kingdom"></iframe>
-                        </div>
-                        <div class="tab-pane fade" id="pills-contact" role="tabpanel" aria-labelledby="pills-contact-tab">
-                            <iframe class="h600 w-100" src="https://www.google.com/maps/embed?pb=!4v1553797194458!6m8!1m7!1sR4K_5Z2wRHTk9el8KLTh9Q!2m2!1d36.82551718071267!2d-76.34864590837246!3f305.15097!4f0!5f0.7820865974627469" allowfullscreen=""></iframe>
                         </div>
                     </div>
                 </div>
@@ -404,9 +400,11 @@
                                         </div>
                                     </div>
                                     <div class="col-lg-12">
-                                        <iframe class="position-relative bdrs12 mt30 h250" loading="lazy" src="https://maps.google.com/maps?q=London%20Eye%2C%20London%2C%20United%20Kingdom&amp;t=m&amp;z=14&amp;output=embed&amp;iwloc=near" title="London Eye, London, United Kingdom" aria-label="London Eye, London, United Kingdom"></iframe>
+                                        <div id="mapForDetails" class="h550" loading="lazy"></div>
                                     </div>
-                                </div>
+                                <p id="latitude" class="text mb10">@Model.SingleProp.Latitude</p>
+                                <p id="longitude" class="text mb10">@Model.SingleProp.Longitude</p>
+                            </div>
                             </div>
                             <div class="ps-widget mb30 overflow-hidden position-relative">
                                 <h4 class="title fz17 mb30">Facilitati</h4>
@@ -613,6 +611,8 @@
     <script src="~/js/scrollbalance.js"></script>
     <!-- Custom script for all pages -->
     <script src="~/js/script.js"></script>
+    <script src="~/js/google_maps_details.js"></script>
+<script src="https://maps.googleapis.com/maps/api/js?&libraries=places&callback=initMapForDetails&v=weekly" defer></script>
 
  <script>
         //  Fixed sidebar Custom Script For That
@@ -681,5 +681,6 @@
 
 
     });
+
 
  </script>

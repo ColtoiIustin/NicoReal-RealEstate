@@ -266,13 +266,12 @@
                             <div class="bdrr1 bdrrn-sm pe-0 pe-lg-3 bb1-sm">
                               <div class="bootselect-multiselect">
                                 <select class="selectpicker" data-width="100%">
-                                  <option data-tokens="Apartments">Apartments</option>
-                                  <option data-tokens="Bungalow">Bungalow</option>
-                                  <option data-tokens="Houses">Houses</option>
-                                  <option data-tokens="Loft">Loft</option>
-                                  <option data-tokens="Office">Office</option>
-                                  <option data-tokens="TownHome">TownHome</option>
-                                  <option data-tokens="Villa">Villa</option>
+                                  <option data-tokens="Apartamente">Apartments</option>
+                                  <option data-tokens="Case">Bungalow</option>
+                                  <option data-tokens="Terenuri">Houses</option>
+                                  <option data-tokens="Investitii">Loft</option>
+                                  <option data-tokens="Hoteluri">Office</option>
+
                                 </select>
                               </div>
                             </div>
@@ -303,13 +302,12 @@
                             <div class="bdrr1 bdrrn-sm pe-0 pe-lg-3 bb1-sm">
                               <div class="bootselect-multiselect">
                                 <select class="selectpicker" data-width="100%">
-                                  <option data-tokens="Apartments">Apartments</option>
-                                  <option data-tokens="Bungalow">Bungalow</option>
-                                  <option data-tokens="Houses">Houses</option>
-                                  <option data-tokens="Loft">Loft</option>
-                                  <option data-tokens="Office">Office</option>
-                                  <option data-tokens="TownHome">TownHome</option>
-                                  <option data-tokens="Villa">Villa</option>
+                                  <option data-tokens="Apartamente">Apartamente</option>
+                                  <option data-tokens="Case">Case</option>
+                                  <option data-tokens="Terenuri">Terenuri</option>
+                                  <option data-tokens="Investitii">Investitii</option>
+                                  <option data-tokens="Hoteluri">Hoteluri</option>
+
                                 </select>
                               </div>
                             </div>
@@ -336,17 +334,15 @@
                               </form>
                             </div>
                           </div>
-                          <div class="col-md-3 col-lg-3 ps-md-0">
+                                                        <div class="col-md-3 col-lg-3 ps-md-0">
                             <div class="bdrr1 bdrrn-sm pe-0 pe-lg-3 bb1-sm">
                               <div class="bootselect-multiselect">
                                 <select class="selectpicker" data-width="100%">
-                                  <option data-tokens="Apartments">Apartments</option>
-                                  <option data-tokens="Bungalow">Bungalow</option>
-                                  <option data-tokens="Houses">Houses</option>
-                                  <option data-tokens="Loft">Loft</option>
-                                  <option data-tokens="Office">Office</option>
-                                  <option data-tokens="TownHome">TownHome</option>
-                                  <option data-tokens="Villa">Villa</option>
+                                                                        <option data-tokens="Apartamente">Apartamente</option>
+                                                                        <option data-tokens="Case">Case</option>
+                                                                        <option data-tokens="Terenuri">Terenuri</option>
+                                                                        <option data-tokens="Investitii">Investitii</option>
+                                                                        <option data-tokens="Hoteluri">Hoteluri</option>
                                 </select>
                               </div>
                             </div>
@@ -362,7 +358,7 @@
                     </div>
                   </div>
                 </div>
-                <h2 class="hero-title animate-up-2">Găsește-ți casa visurilor</h2>
+                                    <h2 class="hero-title animate-up-2">Explorează proprietăți</h2>
                                     <p class="hero-text fz15 animate-up-3">Hai să căutam ceva perfect pentru tine</p>
               </div>
             </div>
@@ -376,20 +372,21 @@
       <div class="container">
         <div class="row justify-content-center wow fadeInUp" data-wow-delay="300ms">
           <div class="col-lg-12">
-            <div class="dots_none nav_none slider-dib-sm slider-5-grid owl-theme owl-carousel">
+                            <div class="dots_none slider-dib-sm slider-5-grid vam_nav_style owl-theme owl-carousel">
               <div class="item landingCarousel">
-                <a href="page-property-single-v1.html">
+                 <a asp-controller="Property" asp-action="Listings" >
                   <div class="iconbox-style4">
                     <span class="icon flaticon-home"></span>
                     <div class="iconbox-content">
                       <h6 class="title">Case</h6>
+                     
                       <p class="text mb-0">@ViewBag.Houses Proprietăți</p>
                     </div>
                   </div>
                 </a>
               </div>
               <div class="item landingCarousel">
-                <a href="page-property-single-v1.html">
+                <a asp-controller="Property" asp-action="Listings" >
                   <div class="iconbox-style4">
                     <span class="icon flaticon-corporation"></span>
                     <div class="iconbox-content">
@@ -400,7 +397,7 @@
                 </a>
               </div>
               <div class="item landingCarousel">
-                <a href="page-property-single-v1.html">
+                                    <a asp-controller="Property" asp-action="Listings">
                   <div class="iconbox-style4">
                     <span class="icon flaticon-network"></span>
                     <div class="iconbox-content">
@@ -411,7 +408,7 @@
                 </a>
               </div>
               <div class="item landingCarousel">
-                <a href="page-property-single-v1.html">
+                                    <a asp-controller="Property" asp-action="Listings">
                   <div class="iconbox-style4">
                     <span class="icon flaticon-garden"></span>
                     <div class="iconbox-content">
@@ -422,7 +419,7 @@
                 </a>
                                 </div>
               <div class="item landingCarousel">
-                                    <a href="page-property-single-v1.html">
+                                    <a asp-controller="Property" asp-action="Listings">
                   <div class="iconbox-style4">
                     <span class="icon flaticon-chat"></span>
                     <div class="iconbox-content">
@@ -460,6 +457,7 @@
             <div class="feature-listing-slider2 vam_nav_style dots_none slider-dib-sm slider-3-grid owl-carousel owl-theme">
                 @foreach(var prop in Model) {
               <div class="item">
+              <a asp-action="Details" asp-controller="Property" asp-route-id="@prop.Id" >
                 <div class="listing-style1 style4">
                   <div class="list-thumb">
                                             @if (!string.IsNullOrEmpty(prop.PhotoGuids))
@@ -479,24 +477,25 @@
                                             <div class="list-price">@prop.Price €</div>
                   </div>
                   <div class="list-content">
-                                                <h6 class="list-title"><a href="page-property-single-v1.html">@prop.Title</a></h6>
+                                                    <h6 class="list-title"><a href="@Url.Action("Details", "Property", new { id = prop.Id })">@prop.Title</a></h6>
                                                 <p class="list-text">@prop.City , @prop.Country</p>
                                                 <div class="list-meta d-flex align-items-center">
-                                                    <a href=""><span class="flaticon-home"></span>@prop.Category</a>
-                                                    <a href=""><span class="flaticon-expand"></span>@prop.Surface mp</a>
+                                                    <a href="@Url.Action("Details", "Property", new { id = prop.Id })"><span class="flaticon-home"></span>@prop.Category</a>
+                                                    <a href="@Url.Action("Details", "Property", new { id = prop.Id })"><span class="flaticon-expand"></span>@prop.Surface mp</a>
                                                     @if (prop.Bathrooms != null)
                                                     {
-                                                        <a href=""><span class="flaticon-bed"></span>@prop.Rooms camere</a>
+                                                        <a href="@Url.Action("Details", "Property", new { id = prop.Id })"><span class="flaticon-bed"></span>@prop.Rooms camere</a>
                                                     }
 
                                                     @if (prop.Bathrooms != null)
                                                     {
-                                                        <a href=""><span class="flaticon-shower"></span>@prop.Bathrooms bai</a>
+                                                            <a href="@Url.Action("Details", "Property", new { id = prop.Id })"><span class="flaticon-shower"></span>@prop.Bathrooms bai</a>
                                                     }
                                                 </div>
                     <hr class="mt-2 mb-2">
                   </div>
                 </div>
+              </a>
               </div>
               }
               
@@ -517,7 +516,7 @@
           <div class="row">
             <div class="col-lg-6 m-auto wow fadeInUp" data-wow-delay="300ms">
               <div class="main-title text-center">
-                                    <h2 class="title">...de ce NicoReal?</h2>
+                                    <h2 class="title">de ce NicoReal ?</h2>
               </div>
             </div>
           </div>
