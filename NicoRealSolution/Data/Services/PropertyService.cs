@@ -48,5 +48,34 @@ namespace NicoRealSolution.Data.Services
             catch ( Exception ex) { }
             
         }
+
+
+        public async Task<Dictionary<string, int>> CategCountMap()
+        {
+            Dictionary<string, int> categoryCountMap = new Dictionary<string, int>
+            {
+                { "Casa", 0 },
+                { "Apartament", 0 },
+                { "Teren", 0 },
+                { "Investitie", 0 },
+                { "Hotel", 0 }
+            };
+
+            var products = await _context.Properties.ToListAsync();
+
+            foreach (var product in products)
+            {
+                string category = product.Category;
+
+                categoryCountMap[category]++;
+                if (product.IsInvestment == "Da")
+                {
+                    categoryCountMap["Investitie"]++;
+                }
+
+            }
+
+            return categoryCountMap;
+        }
     }
 }

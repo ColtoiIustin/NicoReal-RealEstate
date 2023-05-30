@@ -11,6 +11,8 @@ namespace NicoRealSolution.Data.Services
         Task UpdateProperty(Property newProperty);
         Task DeleteAsync(int id);
 
+        Task <Dictionary<string, int>> CategCountMap();
+
 
     }
 }

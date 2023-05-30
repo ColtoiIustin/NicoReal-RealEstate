@@ -103,7 +103,7 @@
                         </div>
                         <div class="col-auto">
                             <div class="d-flex align-items-center">
-                                <a class="login-info d-flex align-items-center me-3" href="2-911-098-7654"><i class="far fa-phone fz16 me-2"></i> <span class="d-none d-xl-block d-md-block d-lg-block">+43 676 681 5845</span></a>
+                            <a class="login-info d-flex align-items-center me-3" href="2-911-098-7654"><i class="far fa-phone fz16 me-2"></i> <span class="d-none d-xl-block d-md-block d-lg-block">+43 665 65 66 7000</span></a>
                             </div>
                         </div>
 
@@ -217,7 +217,10 @@
                                     </div>
                                 <h3 class="price mb-0">@Model.SingleProp.Price €</h3>
                                 <p class="text space fz15">@ViewBag.priceMp €/mp</p>
-                                <p class="text space fz15"><span style="color:green">Oportunitate Investitie</span></p>
+                                @if (Model.SingleProp.IsInvestment == "Da")
+                                {
+                                    <p class="text space fz15"><span style="color:green">Oportunitate Investitie</span></p>
+                                }
                                 @if (Model.SingleProp.IsSold == "Da")
                                 {
                                     <h3 class="price mb-0"><span style="color: red">Vândut!</span></h3>
@@ -503,7 +506,7 @@
                                 @foreach(var prop in Model.PropList) {
                                 <div class="item">
                                     <div class="listing-style1">
-                                        <div class="list-thumb">
+                                        <div class="list-thumb bdrs12">
                                             @if (!string.IsNullOrEmpty(prop.PhotoGuids))
                                             {
                                                 var photoNames = prop.PhotoGuids.Split(new[] { ',' }, StringSplitOptions.RemoveEmptyEntries);

@@ -9,6 +9,8 @@ using System.Linq.Expressions;
 using static System.Net.Mime.MediaTypeNames;
 using System.Web;
 using NicoRealSolution.ViewModels;
+using NicoRealSolution.Areas.Identity.Data;
+using Microsoft.AspNetCore.Authorization;
 
 namespace NicoRealSolution.Controllers
 {
@@ -16,16 +18,29 @@ namespace NicoRealSolution.Controllers
     {
         private readonly IPropertyService _propService;
         private readonly IWebHostEnvironment _webHostEnvironment;
+        private readonly UserManager<ApplicationUser> _userManager;
 
-        public PropertyController(IPropertyService propService, IWebHostEnvironment webHostEnvironment)
+        public PropertyController(IPropertyService propService, IWebHostEnvironment webHostEnvironment, UserManager<ApplicationUser> userManager)
         {
             _propService = propService;
             _webHostEnvironment = webHostEnvironment;
+            _userManager = userManager;
         }
         public async Task<IActionResult> Index()
         {
+            Dictionary<string, int> map = new Dictionary<string, int>();
+            map = await _propService.CategCountMap();
+
+            ViewBag.Houses = map["Casa"];
+            ViewBag.Apartments = map["Apartament"];
+            ViewBag.Lands = map["Teren"];
+            ViewBag.Investments = map["Investitie"];
+            ViewBag.Hotels = map["Hotel"];
+
+
             var properties = await _propService.GetProperties();
-            return View(properties);
+            var filteredProperties = properties.Where(p => p.IsFeatured == "Da").ToList();
+            return View(filteredProperties);
 
         }
 
@@ -50,6 +65,7 @@ namespace NicoRealSolution.Controllers
 
         }
 
+        [Authorize]
         public async Task<IActionResult> Create()
         {
             return View();
@@ -88,10 +104,11 @@ namespace NicoRealSolution.Controllers
 
 
             return RedirectToAction(nameof(Index));
-          
+
 
         }
-          
+
+        [Authorize]
         public async Task<IActionResult> Delete(int id)
         {
             var property = await _propService.GetByIdAsync(id);
@@ -103,6 +120,7 @@ namespace NicoRealSolution.Controllers
         }
 
         [HttpGet]
+        [Authorize]
         public async Task<IActionResult> EditPage(int id)
         {
             var property = await _propService.GetByIdAsync(id);
@@ -117,6 +135,15 @@ namespace NicoRealSolution.Controllers
 
             await _propService.UpdateProperty(property);
             return RedirectToAction("Details", new { id = property.Id });
+
+        }
+
+
+        [HttpGet]
+        public async Task<IActionResult> Listings()
+        {
+            var properties = await _propService.GetProperties();
+            return View(properties);
 
         }
 

@@ -85,7 +85,7 @@ Tag: advanced search, agency, agent, classified, directory, house, listing, prop
 /* Typography Styles */
 html,
 body {
-  scroll-behavior: auto !important;
+  scroll-behavior: smooth !important;
 }
 
 body {
@@ -6312,7 +6312,7 @@ textarea:focus {
 }
 .accordion-style1 .accordion-item {
   border: 1px solid #DDDDDD;
-  border-radius: 12px
+  border-radius: 12px;
   overflow: hidden;
   margin-bottom: 10px;
   padding: 4px 30px;
@@ -10430,6 +10430,20 @@ input:focus-visible {
     border-bottom: 1px solid #DDDDDD;
   }
 }
+
+/* COD CUSTOM ANDREI*/
+.customList {
+    width: 54.05px;
+    height: 58.4px;
+}
+
+.customSection {
+    margin-left: -12px;
+}
+
+    .customSection .landingCarousel {
+        margin-left : 10px;
+    }
 
 
 
