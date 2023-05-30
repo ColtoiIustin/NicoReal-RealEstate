@@ -61,19 +61,19 @@
           <div class="col-auto">
             <div class="d-flex align-items-center justify-content-between">
               <div class="logos mr35">
-                <a class="header-logo logo1" href="index.html"><img src="~/images/MyLogoWhite.png" alt="Header Logo"></a>
-                <a class="header-logo logo2" href="index.html"><img src="~/images/MyLogoDark.png" alt="Header Logo"></a>
+                <a class="header-logo logo1" asp-action="Index"><img src="~/images/MyLogoWhite.png" alt="Header Logo"></a>
+                                    <a class="header-logo logo2" asp-action="Index"><img src="~/images/MyLogoDark.png" alt="Header Logo"></a>
               </div>
               <!-- Responsive Menu Structure-->
               <ul id="respMenu" class="ace-responsive-menu" data-menu-style="horizontal">
                 <li class="visible_list"> <a class="list-item" href="#"><span class="title">Categorii</span></a>
                   <!-- Level Two-->
                   <ul>
-                    <li><a href="index.html">Casa</a></li>
-                    <li><a href="index2.html">Apartament</a></li>
-                    <li><a href="index3.html">Teren</a></li>
-                    <li><a href="index4.html">Hotel</a></li>
-                    <li><a href="index5.html">Investitii</a></li>
+                    <li><a asp-action="Listings">Case</a></li>
+                                            <li><a asp-action="Listings">Apartamente</a></li>
+                    <li><a asp-action="Listings">Terenuri</a></li>
+                                            <li><a asp-action="Listings">Hoteluri</a></li>
+                                            <li><a asp-action="Listings">Investitii</a></li>
 
 
                   </ul>
@@ -134,13 +134,11 @@
                   <div class="form-style2 input-group">
                     <select class="selectpicker" data-live-search="true" data-width="100%">
                       <option>Property</option>
-                      <option data-tokens="Apartments">Apartments</option>
-                      <option data-tokens="Bungalow">Bungalow</option>
-                      <option data-tokens="Houses">Houses</option>
-                      <option data-tokens="Loft">Loft</option>
-                      <option data-tokens="Office">Office</option>
-                      <option data-tokens="Townhome">Townhome</option>
-                      <option data-tokens="Villa">Villa</option>
+                                                <option data-tokens="Apartamente">Apartamente</option>
+                                                <option data-tokens="Case">Case</option>
+                                                <option data-tokens="Terenuri">Terenuri</option>
+                                                <option data-tokens="Investitii">Investitii</option>
+                                                <option data-tokens="Hoteluri">Hoteluri</option>
                     </select>
                   </div>
                 </div>
@@ -169,15 +167,8 @@
                   <div class="form-style2 input-group">
                     <select class="selectpicker" data-live-search="true" data-width="100%">
                       <option>All Cities</option>
-                      <option data-tokens="California">California</option>
-                      <option data-tokens="Chicago">Chicago</option>
-                      <option data-tokens="LosAngeles">Los Angeles</option>
-                      <option data-tokens="Manhattan">Manhattan</option>
-                      <option data-tokens="NewJersey">New Jersey</option>
-                      <option data-tokens="NewYork">New York</option>
-                      <option data-tokens="SanDiego">San Diego</option>
-                      <option data-tokens="SanFrancisco">San Francisco</option>
-                      <option data-tokens="Texas">Texas</option>
+                      <option data-tokens="California">Romania</option>
+
                     </select>
                   </div>
                 </div>
@@ -216,18 +207,18 @@
       <ul>
         <li><span>Categorii</span>
           <ul>
-                            <li><a href="index.html">Casa</a></li>
-                            <li><a href="index2.html">Apartament</a></li>
-                            <li><a href="index3.html">Teren</a></li>
-                            <li><a href="index4.html">Hotel</a></li>
-                            <li><a href="index5.html">Investitii</a></li>
+                            <li><a asp-action="Listings">Case</a></li>
+                            <li><a asp-action="Listings">Apartamente</a></li>
+                            <li><a asp-action="Listings">Terenuri</a></li>
+                            <li><a asp-action="Listings">Hoteluri</a></li>
+                            <li><a asp-action="Listings">Investitii</a></li>
           </ul>
         </li>
         <li><a href="#featuredSection">Recomandate</a></li>
         <li><a href="#ourServicesSection">Serviciile Noastre</a></li>
 
         <li class="px-3 mobile-menu-btn">
-                        <a href="page-dashboard-add-property.html" class="ud-btn btn-thm text-white m30">Vezi toate proprietatile<i class="fal fa-arrow-right-long"></i></a>
+                        <a asp-action="Listings" class="ud-btn btn-thm text-white m30">Vezi toate proprietatile<i class="fal fa-arrow-right-long"></i></a>
         </li>
         <!-- Only for Mobile View -->
       </ul>
@@ -266,11 +257,11 @@
                             <div class="bdrr1 bdrrn-sm pe-0 pe-lg-3 bb1-sm">
                               <div class="bootselect-multiselect">
                                 <select class="selectpicker" data-width="100%">
-                                  <option data-tokens="Apartamente">Apartments</option>
-                                  <option data-tokens="Case">Bungalow</option>
-                                  <option data-tokens="Terenuri">Houses</option>
-                                  <option data-tokens="Investitii">Loft</option>
-                                  <option data-tokens="Hoteluri">Office</option>
+                                  <option data-tokens="Apartamente">Apartamente</option>
+                                  <option data-tokens="Case">Case</option>
+                                  <option data-tokens="Terenuri">Terenuri</option>
+                                  <option data-tokens="Investitii">Investitii</option>
+                                  <option data-tokens="Hoteluri">Hoteluri</option>
 
                                 </select>
                               </div>
@@ -448,7 +439,7 @@
           </div>
           <div class="col-lg-3">
             <div class="text-start text-lg-end mb-3">
-              <a class="ud-btn2" href="">Vezi toate proprietatile<i class="fal fa-arrow-right-long"></i></a>
+                                <a class="ud-btn2" asp-action="Listings">Vezi toate proprietatile<i class="fal fa-arrow-right-long"></i></a>
             </div>
           </div>
         </div>
@@ -516,7 +507,7 @@
           <div class="row">
             <div class="col-lg-6 m-auto wow fadeInUp" data-wow-delay="300ms">
               <div class="main-title text-center">
-                                    <h2 class="title">de ce NicoReal ?</h2>
+                                    <h2 class="title">De ce NicoReal ?</h2>
               </div>
             </div>
           </div>
@@ -526,8 +517,8 @@
                                 <div class="icon"><img class="w-100" src="~/images/icon/property-buy-2.svg" alt=""></div>
                 <div class="iconbox-content">
                   <h4 class="title">Găsește-ți caminul mult visat</h4>
-                                        <p class="text">Experimentează bucuria de a locui într-o casă care rezonează cu sufletul tău..</p>
-                                        <a href="page-property-single-v1.html" class="ud-btn btn-thm3">Descoperă case<i class="fal fa-arrow-right-long"></i></a>
+                                        <p class="text">Experimentează bucuria de a locui într-un mediu care rezonează cu sufletul tău.</p>
+                                        <a asp-action="Listings" class="ud-btn btn-thm3">Descoperă case<i class="fal fa-arrow-right-long"></i></a>
                 </div>
               </div>
             </div>
@@ -536,8 +527,8 @@
                                 <div class="icon"><img class="w-100" src="~/images/icon/property-sell-2.svg" alt=""></div>
                 <div class="iconbox-content">
                                         <h4 class="title">Descoperă oportunități de investiții</h4>
-                  <p class="text">Alegeți proprietăți cu încredere prin Indrumări de specialitate in alegerea proprietăților.</p>
-                                        <a href="page-property-single-v1.html" class="ud-btn btn-thm3">Investește înţelept<i class="fal fa-arrow-right-long"></i></a>
+                                        <p class="text">Explorează noi oportunități de investiții pentru a-ți spori creșterea financiară.</p>
+                                        <a asp-action="Listings" class="ud-btn btn-thm3">Investește înţelept<i class="fal fa-arrow-right-long"></i></a>
                 </div>
               </div>
             </div>
@@ -547,7 +538,7 @@
                 <div class="iconbox-content">
                                         <h4 class="title">Sfaturi de la experți în imobiliare</h4>
                                         <p class="text">Îndrumări de specialitate în alegerea proprietăților.</p>
-                  <a href="page-property-single-v1.html" class="ud-btn btn-thm3">Contactează-ne<i class="fal fa-arrow-right-long"></i></a>
+                                        <a asp-action="Listings" class="ud-btn btn-thm3">Contactează-ne<i class="fal fa-arrow-right-long"></i></a>
                 </div>
               </div>
             </div>
@@ -646,7 +637,7 @@
               <div class="cta-style2">
                 <h2 class="cta-title">World of NicoReal, Where Your Dream Homes are the Deal!</h2>
                 <p class="cta-text">Talk to our experts or Browse through more properties.</p>
-                <a href="page-property-single-v1.html" class="ud-btn btn-dark mt10">Vezi toate proprietatile<i class="fal fa-arrow-right-long"></i></a>
+                                    <a asp-action="Listings" class="ud-btn btn-dark mt10">Vezi toate proprietatile<i class="fal fa-arrow-right-long"></i></a>
               </div>
             </div>
           </div>
@@ -660,7 +651,7 @@
         <div class="row">
           <div class="col-lg-5">
             <div class="footer-widget mb-4 mb-lg-5">
-                            <a class="footer-logo" href="index.html"><img class="mb40" src="~/images/MyLogoWhite.png" alt=""></a>
+                            <a class="footer-logo" asp-action="Index" ><img class="mb40" src="~/images/MyLogoWhite.png" alt=""></a>
               <div class="row mb-4 mb-lg-5">
                 <div class="col-auto">
                   <div class="contact-info">
