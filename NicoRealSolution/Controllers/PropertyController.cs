@@ -143,6 +143,7 @@ namespace NicoRealSolution.Controllers
         public async Task<IActionResult> Listings()
         {
             var properties = await _propService.GetProperties();
+            ViewBag.Results = properties.Count();
             return View(properties);
 
         }

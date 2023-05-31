@@ -8,7 +8,6 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="keywords" content="advanced search, agency, agent, classified, directory, house, listing, property, real estate, real estate agency, real estate agent, realestate, realtor, rental">
-    <meta name="description" content="Homez - Real Estate HTML Template">
     <meta name="CreativeLayers" content="ATFN">
     <!-- css file -->
     <link rel="stylesheet" href="~/css/bootstrap.min.css">
@@ -24,8 +23,7 @@
     <link rel="stylesheet" href="~/css/style.css">
     <!-- Responsive stylesheet -->
     <link rel="stylesheet" href="~/css/responsive.css">
-    <!-- Title -->
-    <title>Homez - Real Estate HTML Template</title>
+    
     <!-- Favicon -->
     <link href="~/images/favicon.ico" sizes="128x128" rel="shortcut icon" type="image/x-icon" />
     <link href="~/images/favicon.ico" sizes="128x128" rel="shortcut icon" />
@@ -42,6 +40,7 @@
 
 #divItem img{
      min-height: 100%;
+     min-width:100%;
 
 }
 </style>
@@ -56,12 +55,12 @@
                 <div class="container posr menu_bdrt1">
                     <div class="row align-items-center justify-content-between">
                         <div class="col-auto">
-                        <a class="header-logo" href="index.html"><img src="~/images/MyLogoDark.png" alt="Header Logo"></a>
+                        <a class="header-logo" href="@Url.Action("Index", "Property")"><img src="~/images/MyLogoDark.png" alt="Header Logo"></a>
                         </div>
 
                         <div class="col-auto">
                             <div class="d-flex align-items-center">
-                                <a class="login-info d-flex align-items-center me-3" href="2-911-098-7654"><i class="far fa-phone fz16 me-2"></i> <span class="d-none d-xl-block d-md-block d-lg-block">+43 676 681 5845</span></a>
+                            <a class="login-info d-flex align-items-center me-3" href=""><i class="far fa-phone fz16 me-2"></i> <span class="d-none d-xl-block d-md-block d-lg-block">+43 665 65 66 7000</span></a>
                             </div>
                         </div>
                     </div>
@@ -80,7 +79,7 @@
                 <div class="widget-wrapper">
                     <h6 class="list-title">Cautare</h6>
                     <div class="search_area">
-                        <input type="text" class="form-control" placeholder="What are you looking for?">
+                        <input type="text" class="form-control" placeholder="Ce cauti?">
                         <label><span class="flaticon-search"></span></label>
                     </div>
                 </div>
@@ -180,7 +179,7 @@
                 <div class="header innerpage-style">
                     <div class="menu_and_widgets">
                         <div class="mobile_menu_bar d-flex justify-content-between align-items-center">
-                        <a class="mobile_logo" href="#"><img src="~/images/MyLogoDark.png" alt=""></a>
+                        <a class="mobile_logo" href="@Url.Action("Index", "Property")"><img src="~/images/MyLogoDark.png" alt=""></a>
                         </div>
                     </div>
                 </div>
@@ -199,7 +198,7 @@
                             <div class="breadcumb-style1">
                                 <h2 class="title">Cauta o proprietate</h2>
                                 <div class="breadcumb-list">
-                                    <a href="">Acasa</a>
+                                <a href="@Url.Action("Index", "Property")">Acasa</a>
                                 </div>
                                 <a href="" class="filter-btn-left mobile-filter-btn d-block d-lg-none"><span class="flaticon-settings"></span> Filter</a>
                             </div>
@@ -217,7 +216,7 @@
                                 <div class="widget-wrapper">
                                     <h6 class="list-title">Cautare</h6>
                                     <div class="search_area">
-                                        <input type="text" class="form-control" placeholder="What are you looking for?">
+                                        <input type="text" class="form-control" placeholder="Ce cauti?">
                                         <label><span class="flaticon-search"></span></label>
                                     </div>
                                 </div>
@@ -304,7 +303,7 @@
                             <div class="row align-items-center mb20">
                                 <div class="col-sm-6">
                                     <div class="text-center text-sm-start">
-                                        <p class="pagination_page_count mb-0">Rezultate</p>
+                                        <p class="pagination_page_count mb-0">@ViewBag.Results Rezultate</p>
                                     </div>
                                 </div>
                                 <div class="col-sm-6">
@@ -363,7 +362,14 @@
                                                 
                                                
                                             </div>
-                                            <p class="list-text2">@prop.Description </p>
+
+                                                @if (prop.Description != null)
+                                                {
+                                                    string description = prop.Description;
+                                                    string[] words = description.Split(new[] { ' ' }, StringSplitOptions.RemoveEmptyEntries);
+                                                    string first10Words = string.Join(" ", words.Take(15));
+                                                    <p class="list-text2">@first10Words </p>
+                                                }                                           
 
                                         </div>
                                     </div>
@@ -404,12 +410,12 @@
                     <div class="row">
                         <div class="col-lg-5">
                             <div class="footer-widget mb-4 mb-lg-5">
-                            <a class="footer-logo" href="index.html"><img class="mb40" src="~/images/MyLogoWhite.png" alt=""></a>
+                            <a class="footer-logo" href="@Url.Action("Index", "Property")"><img class="mb40" src="~/images/MyLogoWhite.png" alt=""></a>
                                 <div class="row mb-4 mb-lg-5">
                                     <div class="col-auto">
                                         <div class="contact-info">
-                                            <p class="info-title">Contact us</p>
-                                            <h6 class="info-phone"><a href="+43 676 6815845">+43 676 6815845</a></h6>
+                                            <p class="info-title">Contacteaza-ne</p>
+                                        <h6 class="info-phone"><a href="">+43 665 65 66 7000</a></h6>
                                         </div>
                                     </div>
 
