@@ -2,7 +2,6 @@
 using Microsoft.EntityFrameworkCore;
 using NicoRealSolution.Models;
 using NicoRealSolution.Areas.Identity.Data;
-using NicoRealSolution.Models;
 using Microsoft.AspNetCore.Identity;
 
 namespace NicoRealSolution.Data

@@ -402,8 +402,8 @@
                                     <div class="col-lg-12">
                                         <div id="mapForDetails" class="h550" loading="lazy"></div>
                                     </div>
-                                <p id="latitude" class="text mb10">@Model.SingleProp.Latitude</p>
-                                <p id="longitude" class="text mb10">@Model.SingleProp.Longitude</p>
+                                <p id="latitude" class="text mb10" hidden>@Model.SingleProp.Latitude </p>
+                                <p id="longitude" class="text mb10"hidden>@Model.SingleProp.Longitude </p>
                             </div>
                             </div>
                             <div class="ps-widget mb30 overflow-hidden position-relative">
@@ -504,6 +504,7 @@
                                 @foreach(var prop in Model.PropList) {
                                 <div class="item">
                                     <div class="listing-style1">
+                                        <a asp-action="Details" asp-controller="Property" asp-route-id="@prop.Id" >
                                         <div class="list-thumb bdrs12">
                                             @if (!string.IsNullOrEmpty(prop.PhotoGuids))
                                             {
@@ -521,20 +522,21 @@
                                             }
                                             <div class="list-price">@prop.Price €</div>
                                         </div>
+                                        </a>
                                         <div class="list-content">
-                                            <h6 class="list-title"><a href="page-property-single-v1.html">@prop.Title</a></h6>
+                                            <h6 class="list-title"><a href="@Url.Action("Details", "Property", new { id = prop.Id })">@prop.Title</a></h6>
                                             <p class="list-text">@prop.City , @prop.Country</p>
                                             <div class="list-meta d-flex align-items-center">
-                                                <a href=""><span class="flaticon-home"></span>@prop.Category</a>
-                                                <a href=""><span class="flaticon-expand"></span>@prop.Surface mp</a>
+                                                <a href="@Url.Action("Details", "Property", new { id = prop.Id })"><span class="flaticon-home"></span>@prop.Category</a>
+                                                <a href="@Url.Action("Details", "Property", new { id = prop.Id })"><span class="flaticon-expand"></span>@prop.Surface mp</a>
                                                 @if (prop.Bathrooms != null)
                                                 {
-                                                    <a href=""><span class="flaticon-bed"></span>@prop.Rooms camere</a>
+                                                    <a href="@Url.Action("Details", "Property", new { id = prop.Id })"><span class="flaticon-bed"></span>@prop.Rooms camere</a>
                                                 }
 
                                                 @if (prop.Bathrooms != null)
                                                 {
-                                                    <a href=""><span class="flaticon-shower"></span>@prop.Bathrooms bai</a>
+                                                    <a href="@Url.Action("Details", "Property", new { id = prop.Id })"><span class="flaticon-shower"></span>@prop.Bathrooms bai</a>
                                                 }
                                             </div>
 
