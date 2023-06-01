@@ -1,4 +1,10 @@
 ﻿@using NicoRealSolution.ViewModels;
+@using Microsoft.AspNetCore.Identity;
+@using Microsoft.Extensions.Options;
+@using NicoRealSolution.Areas.Identity.Data;
+
+@inject UserManager<ApplicationUser> UserManager
+@inject SignInManager<ApplicationUser> SignInManager
 
 @model ViewModelDetails
 @{
@@ -70,37 +76,30 @@
                         <div class="col-auto">
                             <div class="d-flex align-items-center justify-content-between">
                                 <div class="logos mr40 mr10-lg">
-                                <a class="header-logo logo2" href="~/index.html"><img src="~/images/MyLogoDark.png" alt="Header Logo"></a>
+                                <a class="header-logo logo2" href="@Url.Action("Index", "Property")"><img src="~/images/MyLogoDark.png" alt=""></a>
                                 </div>
                                 <!-- Responsive Menu Structure-->
                                 <ul id="respMenu" class="ace-responsive-menu" data-menu-style="horizontal">
-                                    <li class="visible_list">
-                                        <a class="list-item" href="#"><span class="title">Home</span></a>
+                                <li class="megamenu_style">
+                                    <a class="list-item" href="@Url.Action("Index", "Property")"><span class="title">Acasa</span></a>
                                         <!-- Level Two-->
-                                        <ul>
-                                            <li><a href="">NicoReal</a></li>
-                                            <li><a href="">NicoReal</a></li>
-                                            <li><a href="">NicoReal</a></li>
-                                            <li><a href="">NicoReal</a></li>
-                                            <li><a href="">NicoReal</a></li>
-                                            <li><a href="">NicoReal</a></li>
-                                            <li><a href="">NicoReal</a></li>
-                                            <li><a href="">NicoReal</a></li>
-                                        </ul>
-                                    </li>
+                                <li class="megamenu_style">
+                                    <a class="list-item" href="@Url.Action("Listings", "Property")"><span class="title">Toate anunturile</span></a>
+                                </li>
 
-                                    <li class="visible_list">
-                                        <a class="list-item" href="#"><span class="title">Pages</span></a>
-                                        <ul>
-                                            <li><a href="">NicoReal</a></li>
-                                            <li><a href="">NicoReal</a></li>
-                                            <li><a href="">NicoReal</a></li>
-                                            <li><a href="">NicoReal</a></li>
-                                            <li><a href="">NicoReal</a></li>
-                                            <li><a href="">NicoReal</a></li>
-                                        </ul>
+                                    @if (User.Identity.IsAuthenticated)
+                                    {
+                                        <li class="megamenu_style">
+                                            <a class="list-item" href="@Url.Action("EditPage", "Property", new { id = Model.SingleProp.Id })"><span class="title"><span style="color:red">Modifica anunt</span></span></a>
+                                        </li>
+                                        <li class="megamenu_style">
+                                            <a class="list-item" href="@Url.Action("Delete", "Property", new { id = Model.SingleProp.Id })"><span class="title"><span style="color:red">Sterge anunt</span></span></a>
+                                        </li>
+                                    <li class="megamenu_style">
+                                        <a class="list-item" href="@Url.Action("Create", "Property")"><span class="title"><span style="color:red">Adauga anunt</span></span></a>
                                     </li>
-                                </ul>
+                                    }
+                            </ul>
                             </div>
                         </div>
                         <div class="col-auto">
@@ -557,7 +556,7 @@
                     <div class="row">
                         <div class="col-lg-5">
                             <div class="footer-widget mb-4 mb-lg-5">
-                            <a class="footer-logo" href="index.html"><img class="mb40" src="~/images/MyLogoWhite.png" alt=""></a>
+                            <a class="footer-logo" href="@Url.Action("Index", "Property")"><img class="mb40" src="~/images/MyLogoWhite.png" alt=""></a>
                                 <div class="row mb-4 mb-lg-5">
                                     <div class="col-auto">
                                         <div class="contact-info">

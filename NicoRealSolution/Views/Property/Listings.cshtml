@@ -43,6 +43,11 @@
      min-width:100%;
 
 }
+
+    .list-sidebar-style1{
+    border-style: groove;
+    border-color: red;
+    }
 </style>
 
     <div class="wrapper ovh">
@@ -53,10 +58,23 @@
             <!-- Ace Responsive Menu -->
             <nav class="posr">
                 <div class="container posr menu_bdrt1">
-                    <div class="row align-items-center justify-content-between">
+             
+                <div class="d-flex align-items-center justify-content-between">
                         <div class="col-auto">
                         <a class="header-logo" href="@Url.Action("Index", "Property")"><img src="~/images/MyLogoDark.png" alt="Header Logo"></a>
                         </div>
+                        <ul id="respMenu" class="ace-responsive-menu" data-menu-style="horizontal">
+                                    <li class="visible_list">
+                                    <a class="list-item" href="@Url.Action("Index", "Property")"><span class="title">Acasa</span></a>
+                                        <!-- Level Two-->
+                                <li class="megamenu_style">
+                                    <a class="list-item" href="@Url.Action("Listings", "Property")"><span class="title">Toate anunturile</span></a>
+                                </li>
+                        <li class="megamenu_style">
+                            <a class="list-item" href="@Url.Action("Create", "Property")"><span class="title"><span style="color:red">Adauga anunt</span></span></a>
+                        </li>
+
+                                </ul>
 
                         <div class="col-auto">
                             <div class="d-flex align-items-center">
@@ -64,6 +82,7 @@
                             </div>
                         </div>
                     </div>
+              
                 </div>
             </nav>
         </header>
@@ -214,7 +233,7 @@
                         <div class="col-lg-4 d-none d-lg-block">
                             <div class="list-sidebar-style1">
                                 <div class="widget-wrapper">
-                                    <h6 class="list-title">Cautare</h6>
+                                <h6 class="list-title">Cautare<span style="color:red">(ÎN CURÂND)</span></h6>
                                     <div class="search_area">
                                         <input type="text" class="form-control" placeholder="Ce cauti?">
                                         <label><span class="flaticon-search"></span></label>

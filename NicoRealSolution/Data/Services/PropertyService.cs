@@ -8,9 +8,11 @@ namespace NicoRealSolution.Data.Services
     public class PropertyService : IPropertyService
     {
         private readonly AppDbContext _context;
-        public PropertyService(AppDbContext context)
+        private readonly IWebHostEnvironment _webHostEnvironment;
+        public PropertyService(AppDbContext context, IWebHostEnvironment webHostEnvironment)
         {
             _context = context;
+            _webHostEnvironment = webHostEnvironment;
         }
         public async Task AddProperty(Property newProperty)
         {
@@ -22,7 +24,20 @@ namespace NicoRealSolution.Data.Services
         public async Task DeleteAsync(int id)
         {
             var result = await _context.Properties.FirstOrDefaultAsync(x => x.Id == id);
-            _context.Properties.Remove(result);
+            if(!string.IsNullOrEmpty(result.PhotoGuids))
+            { 
+                var photoNames =result.PhotoGuids.Split(new[] { ',' }, StringSplitOptions.RemoveEmptyEntries);
+                foreach (var photoName in photoNames) {
+                    var uploadsPath = Path.Combine(_webHostEnvironment.WebRootPath, "Uploads");
+                    var filePath = Path.Combine(uploadsPath, photoName);
+                    if (File.Exists(filePath))
+                    {
+                        File.Delete(filePath);
+                    }
+                }
+
+            }
+_context.Properties.Remove(result);
             await _context.SaveChangesAsync();
         }
 
