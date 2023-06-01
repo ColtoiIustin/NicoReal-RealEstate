@@ -527,8 +527,11 @@
                                             <p class="list-text">@prop.City , @prop.Country</p>
                                             <div class="list-meta d-flex align-items-center">
                                                 <a href="@Url.Action("Details", "Property", new { id = prop.Id })"><span class="flaticon-home"></span>@prop.Category</a>
-                                                <a href="@Url.Action("Details", "Property", new { id = prop.Id })"><span class="flaticon-expand"></span>@prop.Surface mp</a>
-                                                @if (prop.Bathrooms != null)
+                                                @if (prop.Rooms != null)
+                                                {
+                                                    <a href="@Url.Action("Details", "Property", new { id = prop.Id })"><span class="flaticon-expand"></span>@prop.Surface mp</a>
+                                                }
+                                                @if (prop.Rooms != null)
                                                 {
                                                     <a href="@Url.Action("Details", "Property", new { id = prop.Id })"><span class="flaticon-bed"></span>@prop.Rooms camere</a>
                                                 }

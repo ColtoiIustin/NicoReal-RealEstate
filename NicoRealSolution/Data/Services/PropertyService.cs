@@ -37,7 +37,7 @@ namespace NicoRealSolution.Data.Services
                 }
 
             }
-_context.Properties.Remove(result);
+            _context.Properties.Remove(result);
             await _context.SaveChangesAsync();
         }
 

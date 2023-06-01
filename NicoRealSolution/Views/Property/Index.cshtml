@@ -1,4 +1,12 @@
-﻿@model IEnumerable<Property>
+﻿@using Microsoft.AspNetCore.Identity;
+@using Microsoft.Extensions.Options;
+@using NicoRealSolution.Areas.Identity.Data;
+
+@inject UserManager<ApplicationUser> UserManager
+@inject SignInManager<ApplicationUser> SignInManager
+
+@model IEnumerable<Property>
+
 @{
     ViewData["Title"] = "Acasă";
 }
@@ -85,9 +93,12 @@
                 </li>
                 <li class="visible_list"> <a class="list-item" href="#ourServicesSection"><span class="title">Serviciile Noastre</span></a>
                 </li>
-                                    <li class="megamenu_style">
-                                        <a class="list-item" href="@Url.Action("Create", "Property")"><span class="title"><span style="color:red">Adauga anunt</span></span></a>
-                                    </li>
+                    @if (User.Identity.IsAuthenticated)
+                                    {
+                                        <li class="megamenu_style">
+                                            <a class="list-item" href="@Url.Action("Create", "Property")"><span class="title"><span style="color:red">Adauga anunt</span></span></a>
+                                        </li>
+                                    }
 
               </ul>
             </div>
@@ -478,8 +489,11 @@
                                                 <p class="list-text">@prop.City , @prop.Country</p>
                                                 <div class="list-meta d-flex align-items-center">
                                                     <a href="@Url.Action("Details", "Property", new { id = prop.Id })"><span class="flaticon-home"></span>@prop.Category</a>
-                                                    <a href="@Url.Action("Details", "Property", new { id = prop.Id })"><span class="flaticon-expand"></span>@prop.Surface mp</a>
-                                                    @if (prop.Bathrooms != null)
+                                                    @if (prop.Surface != null)
+                                                        {
+                                                            <a href="@Url.Action("Details", "Property", new { id = prop.Id })"><span class="flaticon-expand"></span>@prop.Surface mp</a>
+                                                        }
+                                                        @if (prop.Bathrooms != null)
                                                     {
                                                         <a href="@Url.Action("Details", "Property", new { id = prop.Id })"><span class="flaticon-bed"></span>@prop.Rooms camere</a>
                                                     }

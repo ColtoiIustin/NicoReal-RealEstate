@@ -1,4 +1,11 @@
-﻿@model IEnumerable<Property>
+﻿@using Microsoft.AspNetCore.Identity;
+@using Microsoft.Extensions.Options;
+@using NicoRealSolution.Areas.Identity.Data;
+
+@inject UserManager<ApplicationUser> UserManager
+@inject SignInManager<ApplicationUser> SignInManager
+
+@model IEnumerable<Property>
 @{
     ViewData["Title"] = "Proprietăți";
 }
@@ -70,9 +77,12 @@
                                 <li class="megamenu_style">
                                     <a class="list-item" href="@Url.Action("Listings", "Property")"><span class="title">Toate anunturile</span></a>
                                 </li>
+                                 @if (User.Identity.IsAuthenticated)
+                                    {
                         <li class="megamenu_style">
                             <a class="list-item" href="@Url.Action("Create", "Property")"><span class="title"><span style="color:red">Adauga anunt</span></span></a>
                         </li>
+                                    }
 
                                 </ul>
 
