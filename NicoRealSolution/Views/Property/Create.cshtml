@@ -29,7 +29,7 @@
                     <div class="col-6 col-lg-auto">
                         <div class="text-center text-lg-start d-flex align-items-center">
                             <div class="dashboard_header_logo position-relative me-2 me-xl-5">
-                                <a href="index.html" class="logo"><img src="~/images/MyLogoDark.png" alt=""></a>
+                                <a href="@Url.Action("Index", "Property")" class="logo"><img src="~/images/MyLogoDark.png" alt=""></a>
                             </div>
                             <div class="fz20 ms-2 ms-xl-5">
                                 <a href="#" class="dashboard_sidebar_toggle_icon text-thm1 vam">
@@ -104,7 +104,7 @@
             <div class="header innerpage-style">
                 <div class="menu_and_widgets">
                     <div class="mobile_menu_bar d-flex justify-content-between align-items-center">
-                        <a class="mobile_logo" href="#"><img src="~/images/MyLogoDark.png" alt=""></a>
+                        <a class="mobile_logo" href="@Url.Action("Index", "Property")"><img src="~/images/MyLogoDark.png" alt=""></a>
                         <a></a>
                     </div>
                 </div>
@@ -118,21 +118,16 @@
         <div class="dashboard dashboard_wrapper pr30 pr0-md">
             <div class="dashboard__sidebar d-none d-lg-block">
                 <div class="dashboard_sidebar_list">
-                    <div class="sidebar_list_item">
-                        <a href="page-dashboard.html" class="items-center"><i class="flaticon-discovery mr15"></i>Dashboard</a>
-                    </div>
-                    <div class="sidebar_list_item ">
-                        <a href="" class="items-center"><i class="flaticon-chat-1 mr15"></i>NicoReal</a>
-                    </div>
+                    
                     <p class="fz15 fw400 ff-heading mt30">NICO REAL</p>
                     <div class="sidebar_list_item ">
-                        <a href="" class="items-center -is-active"><i class="flaticon-new-tab mr15"></i>Adauga anunt</a>
+                        <a href="@Url.Action("Create", "Property")" class="items-center -is-active"><i class="flaticon-new-tab mr15"></i>Adauga anunt</a>
                     </div>
                     <div class="sidebar_list_item ">
-                        <a href="" class="items-center"><i class="flaticon-home mr15"></i>NicoReal</a>
+                        <a href="@Url.Action("Index", "Property")" class="items-center"><i class="flaticon-home mr15"></i>Acasa</a>
                     </div>
                     <div class="sidebar_list_item ">
-                        <a href="" class="items-center"><i class="flaticon-like mr15"></i>NicoReal</a>
+                        <a href="@Url.Action("Listings", "Property")" class="items-center"><i class="flaticon-like mr15"></i>Toate anunturile</a>
                     </div>
                 </div>
             </div>
@@ -146,18 +141,16 @@
                                         <i class="fa fa-bars pr10"></i> Menu Navigation
                                     </button>
                                     <ul id="myDropdown" class="dropdown-content">
-                                        <li><a href="page-dashboard.html"><i class="flaticon-discovery mr10"></i>Dashboard</a></li>
-                                        <li><a href="page-dashboard-message.html"><i class="flaticon-chat-1 mr10"></i>NicoReal</a></li>
-                                        <li>
+                                       
                                             <p class="fz15 fw400 ff-heading mt30 pl30">NICO REAL</p>
                                         </li>
                                         <li class="active">
-                                            <a href="page-dashboard-add-property.html">
+                                            <a href="@Url.Action("Create", "Property")">
                                                 <i class="flaticon-new-tab mr10"></i>Adauga anunt
                                             </a>
                                         </li>
-                                        <li><a href="page-dashboard-properties.html"><i class="flaticon-home mr10"></i>NicoReal</a></li>
-                                        <li><a href="page-dashboard-favorites.html"><i class="flaticon-like mr10"></i>NicoReal</a></li>
+                                        <li><a href="@Url.Action("Index", "Property")"><i class="flaticon-home mr10"></i>Acasa</a></li>
+                                        <li><a href="@Url.Action("Listings", "Property")"><i class="flaticon-like mr10"></i>Toate anunturile</a></li>
                                     </ul>
                                 </div>
                             </div>
@@ -348,7 +341,7 @@
                                                 <div class="col-sm-6 col-xl-4">
                                                     <div class="mb20">
                                                         <span asp-validation-for="Floors" class="text-danger"></span>
-                                                        <label class="heading-color ff-heading fw600 mb10"><span style="color: red"> (numar)</span>Etaje</label>
+                                                        <label class="heading-color ff-heading fw600 mb10">Etaje<span style="color: red"> (numar)</span></label>
                                                         <input asp-for=Floors type="text" class="form-control" placeholder="Etaje">
                                                     </div>
                                                 </div>
