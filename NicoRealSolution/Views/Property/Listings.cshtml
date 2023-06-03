@@ -359,7 +359,7 @@
                                             {
                                                 var photoNames = prop.PhotoGuids.Split(new[] { ',' }, StringSplitOptions.RemoveEmptyEntries);
                                                 var firstPhoto = photoNames.FirstOrDefault();
-                                                <img class="w-100" src="~/Uploads/@firstPhoto.Trim()" alt="">
+                                                    <img class="w-100" src="@Url.Action("GetImagesDetails", "Property", new { key = firstPhoto })" alt="">
                                             }else{
                                                  <img class="w-100" src="~/images/listings/list-1.jpg" alt="">
                                             }
