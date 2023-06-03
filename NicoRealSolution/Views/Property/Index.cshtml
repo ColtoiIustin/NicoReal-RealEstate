@@ -37,8 +37,8 @@
 <!-- Title -->
 <title>NicoReal</title>
 <!-- Favicon -->
-<link href="~/images/favicon.ico" sizes="128x128" rel="shortcut icon" type="image/x-icon" />
-<link href="~/images/favicon.ico" sizes="128x128" rel="shortcut icon" />
+<link href="~/images/tabbar.svg" sizes="128x128" rel="shortcut icon" type="image/x-icon" />
+<link href="~/images/tabbar.svg" sizes="128x128" rel="shortcut icon" />
 <!-- Apple Touch Icon -->
 <link href="~/images/apple-touch-icon-60x60.png" sizes="60x60" rel="apple-touch-icon">
 <link href="~/images/apple-touch-icon-72x72.png" sizes="72x72" rel="apple-touch-icon">
@@ -79,8 +79,8 @@
           <div class="col-auto">
             <div class="d-flex align-items-center justify-content-between">
               <div class="logos mr35">
-                <a class="header-logo logo1" asp-action="Index"><img src="~/images/MyLogoWhite.png" alt="Header Logo"></a>
-                                    <a class="header-logo logo2" asp-action="Index"><img src="~/images/MyLogoDark.png" alt="Header Logo"></a>
+                <a class="header-logo logo1" asp-action="Index"><img src="~/images/MyLogoWhite.svg" alt="Header Logo"></a>
+                                    <a class="header-logo logo2" asp-action="Index"><img src="~/images/MyLogoDark.svg" alt="Header Logo"></a>
               </div>
               <!-- Responsive Menu Structure-->
               <ul id="respMenu" class="ace-responsive-menu" data-menu-style="horizontal">
@@ -220,7 +220,7 @@
         <div class="menu_and_widgets">
           <div class="mobile_menu_bar d-flex justify-content-between align-items-center">
             <a class="menubar" href="#menu"><img src="~/images/mobile-dark-nav-icon.svg" alt=""></a>
-                        <a class="mobile_logo" href="#"><img src="~/images/header-logo2.png" alt=""></a>
+                        <a class="mobile_logo" style="background-color:white; border-radius:40px" href="#"><img src="~/images/MyLogoDark.svg" alt=""></a>
             <a ></a>
                         </div>
         </div>
@@ -480,7 +480,7 @@
                                                 var photoNames = prop.PhotoGuids.Split(new[] { ',' }, StringSplitOptions.RemoveEmptyEntries);
                                                 var firstPhoto = photoNames.FirstOrDefault();
 
-                                                <img class="w-100" src="~/Uploads/@firstPhoto.Trim()" alt="">
+                                                <img class="w-100" src="@Url.Action("GetImage", "Property", new { key = firstPhoto })" alt="">
                                             }
                                             else
                                             {
@@ -675,7 +675,7 @@
         <div class="row">
           <div class="col-lg-5">
             <div class="footer-widget mb-4 mb-lg-5">
-                            <a class="footer-logo" asp-action="Index" ><img class="mb40" src="~/images/MyLogoWhite.png" alt=""></a>
+                            <a class="footer-logo" asp-action="Index" ><img class="mb40" src="~/images/MyLogoWhite.svg" alt=""></a>
               <div class="row mb-4 mb-lg-5">
                 <div class="col-auto">
                   <div class="contact-info">

@@ -11,6 +11,11 @@ using System.Web;
 using NicoRealSolution.ViewModels;
 using NicoRealSolution.Areas.Identity.Data;
 using Microsoft.AspNetCore.Authorization;
+using Amazon;
+using Amazon.S3;
+using Amazon.S3.Model;
+using Amazon.S3.Transfer;
+using Amazon.Runtime;
 
 namespace NicoRealSolution.Controllers
 {
@@ -80,28 +85,38 @@ namespace NicoRealSolution.Controllers
             {
                 return View("Create", property);
             }
+            var accessKeyID = "AKIAQ6FH3UCG4LCO4RE3";
+            var secretKey = "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";
+            var credentials = new BasicAWSCredentials(accessKeyID, secretKey);
 
-            foreach (var image in images)
+
+            using (var amazons3client = new AmazonS3Client(credentials, RegionEndpoint.USEast1)) 
             {
-                if (image.Length > 0)
+                foreach (var image in images)
                 {
                     var fileExtension = Path.GetExtension(image.FileName);
                     var uniqueFileName = $"{Guid.NewGuid()}{fileExtension}";
-                    var uploadPath = Path.Combine(_webHostEnvironment.WebRootPath, "Uploads");
-                    var filePath = Path.Combine(uploadPath, uniqueFileName);
 
-                    // Save the file to the server
-                    using (var fileStream = new FileStream(filePath, FileMode.Create))
+                    using (var memorystream = new MemoryStream())
                     {
-                        await image.CopyToAsync(fileStream);
+                        image.CopyTo(memorystream);
+
+                        var request = new TransferUtilityUploadRequest
+                        {
+                            InputStream = memorystream,
+                            Key = uniqueFileName,
+                            BucketName = "s3bucketnicoreal",
+                            ContentType = image.ContentType,
+                        };
+                        var transferUtility = new TransferUtility(amazons3client);
+                        await transferUtility.UploadAsync(request);
+                        guidList.Add(uniqueFileName);
                     }
-                    guidList.Add(uniqueFileName);
                 }
             }
-            string guidsString = string.Join(",", guidList);
-            property.PhotoGuids = guidsString;
-            await _propService.AddProperty(property);
-
+                    string guidsString = string.Join(",", guidList);
+                    property.PhotoGuids = guidsString;
+                    await _propService.AddProperty(property);
 
             return RedirectToAction(nameof(Index));
 
@@ -111,7 +126,8 @@ namespace NicoRealSolution.Controllers
         [Authorize]
         public async Task<IActionResult> Delete(int id)
         {
-            var property = await _propService.GetByIdAsync(id);
+
+                var property = await _propService.GetByIdAsync(id);
             if (property == null) return View("NotFound");
 
             await _propService.DeleteAsync(id);
@@ -148,6 +164,49 @@ namespace NicoRealSolution.Controllers
 
         }
 
+        public async Task<ActionResult> GetImage(string key)
+        {
+
+            var accessKeyID = "AKIAQ6FH3UCG4LCO4RE3";
+            var secretKey = "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";
+            var credentials = new BasicAWSCredentials(accessKeyID, secretKey);
+
+            using (var amazons3client = new AmazonS3Client(credentials, RegionEndpoint.USEast1))
+            {
+                var transferUtility = new TransferUtility(amazons3client);
+
+                var response = await transferUtility.S3Client.GetObjectAsync(new GetObjectRequest()
+                {
+                    BucketName = "s3bucketnicoreal",
+                    Key = key
+                });
+
+                  return File(response.ResponseStream, response.Headers.ContentType,key);
+
+            }
+        }
+
+        public async Task<ActionResult> GetImagesDetails(string key)
+        {
+
+            var accessKeyID = "AKIAQ6FH3UCG4LCO4RE3";
+            var secretKey = "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";
+            var credentials = new BasicAWSCredentials(accessKeyID, secretKey);
+
+            using (var amazons3client = new AmazonS3Client(credentials, RegionEndpoint.USEast1))
+            {
+                var transferUtility = new TransferUtility(amazons3client);
+
+                var response = await transferUtility.S3Client.GetObjectAsync(new GetObjectRequest()
+                {
+                    BucketName = "s3bucketnicoreal",
+                    Key = key
+                });
+
+                return File(response.ResponseStream, response.Headers.ContentType, key);
+
+            }
+        }
 
 
 

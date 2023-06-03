@@ -1,4 +1,9 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using Amazon;
+using Amazon.Runtime;
+using Amazon.S3;
+using Amazon.S3.Model;
+using Amazon.S3.Transfer;
+using Microsoft.EntityFrameworkCore;
 using NicoRealSolution.Models;
 using System.Linq.Expressions;
 
@@ -27,14 +32,23 @@ namespace NicoRealSolution.Data.Services
             if(!string.IsNullOrEmpty(result.PhotoGuids))
             { 
                 var photoNames =result.PhotoGuids.Split(new[] { ',' }, StringSplitOptions.RemoveEmptyEntries);
-                foreach (var photoName in photoNames) {
-                    var uploadsPath = Path.Combine(_webHostEnvironment.WebRootPath, "Uploads");
-                    var filePath = Path.Combine(uploadsPath, photoName);
-                    if (File.Exists(filePath))
+
+                var accessKeyID = "AKIAQ6FH3UCG4LCO4RE3";
+                var secretKey = "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";
+                var credentials = new BasicAWSCredentials(accessKeyID, secretKey);
+                using (var amazons3client = new AmazonS3Client(credentials, RegionEndpoint.USEast1))
+                {
+                    foreach (var photoName in photoNames)
                     {
-                        File.Delete(filePath);
+                        var transferUtility = new TransferUtility(amazons3client);
+                        await transferUtility.S3Client.DeleteObjectAsync(new DeleteObjectRequest()
+                        {
+                            BucketName= "s3bucketnicoreal",
+                            Key= photoName,
+                        });
+
                     }
-                }
+                }      
 
             }
             _context.Properties.Remove(result);
