@@ -16,6 +16,9 @@ namespace NicoRealSolution.Models
 
         [Range(int.MinValue, int.MaxValue, ErrorMessage = "Introduceti un numar natural")]
         public int? Surface { get; set; }
+
+        [Range(int.MinValue, int.MaxValue, ErrorMessage = "Introduceti un numar natural")]
+        public int? GardenSurface { get; set; }
         public string? DatePosted { get; set; }
         public string? Country { get; set; }
         public string? City { get; set; }

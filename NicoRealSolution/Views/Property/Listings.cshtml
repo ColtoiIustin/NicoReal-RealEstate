@@ -15,7 +15,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="keywords" content="advanced search, agency, agent, classified, directory, house, listing, property, real estate, real estate agency, real estate agent, realestate, realtor, rental">
-    <meta name="CreativeLayers" content="ATFN">
+
     <!-- css file -->
     <link rel="stylesheet" href="~/css/bootstrap.min.css">
     <link rel="stylesheet" href="~/css/ace-responsive-menu.css">
@@ -32,8 +32,7 @@
     <link rel="stylesheet" href="~/css/responsive.css">
     
     <!-- Favicon -->
-    <link href="~/images/tabbar.svg" sizes="128x128" rel="shortcut icon" type="image/x-icon" />
-    <link href="~/images/tabbar.svg" sizes="128x128" rel="shortcut icon" />
+    
     <!-- Apple Touch Icon -->
     <link href="~/images/apple-touch-icon-60x60.png" sizes="60x60" rel="apple-touch-icon">
     <link href="~/images/apple-touch-icon-72x72.png" sizes="72x72" rel="apple-touch-icon">
@@ -58,7 +57,6 @@
 </style>
 
     <div class="wrapper ovh">
-        <div class="preloader"></div>
 
         <!-- Main Header Nav -->
         <header class="header-nav nav-innerpage-style main-menu">
@@ -72,15 +70,15 @@
                         </div>
                         <ul id="respMenu" class="ace-responsive-menu" data-menu-style="horizontal">
                                     <li class="visible_list">
-                                    <a class="list-item" href="@Url.Action("Index", "Property")"><span class="title">Acasa</span></a>
+                            <a class="list-item" href="@Url.Action("Index", "Property")"><span class="title">Acasă</span></a>
                                         <!-- Level Two-->
                                 <li class="megamenu_style">
-                                    <a class="list-item" href="@Url.Action("Listings", "Property")"><span class="title">Toate anunturile</span></a>
+                            <a class="list-item" href="@Url.Action("Listings", "Property")"><span class="title">Toate anunțurile</span></a>
                                 </li>
                                  @if (User.Identity.IsAuthenticated)
                                     {
                         <li class="megamenu_style">
-                            <a class="list-item" href="@Url.Action("Create", "Property")"><span class="title"><span style="color:red">Adauga anunt</span></span></a>
+                                <a class="list-item" href="@Url.Action("Create", "Property")"><span class="title"><span style="color:red">Adaugă anunț</span></span></a>
                         </li>
                                     }
 
@@ -106,9 +104,9 @@
             </div>
             <div class="hsidebar-content">
                 <div class="widget-wrapper">
-                    <h6 class="list-title">Cautare</h6>
+                    <h6 class="list-title">Filtrare</h6>
                     <div class="search_area">
-                        <input type="text" class="form-control" placeholder="Ce cauti?">
+                    <input type="text" class="form-control" placeholder="Ce cauți?">
                         <label><span class="flaticon-search"></span></label>
                     </div>
                 </div>
@@ -116,7 +114,7 @@
                     <h6 class="list-title">Categorie</h6>
                     <div class="checkbox-style1">
                         <label class="custom_checkbox">
-                            Case
+                            Case/Vile
                             <input type="checkbox">
                             <span class="checkmark"></span>
                         </label>
@@ -136,14 +134,14 @@
                             <span class="checkmark"></span>
                         </label>
                         <label class="custom_checkbox">
-                            Incestitii
+                        Investiții
                             <input type="checkbox">
                             <span class="checkmark"></span>
                         </label>
                     </div>
                 </div>
                 <div class="widget-wrapper">
-                    <h6 class="list-title">Pret</h6>
+                <h6 class="list-title">Preț</h6>
                     <!-- Range Slider Mobile Version -->
                     <div class="range-slider-style2">
                         <div class="range-wrapper">
@@ -156,24 +154,18 @@
                     </div>
                 </div>
                 <div class="widget-wrapper advance-feature-modal">
-                    <h6 class="list-title">Locatie</h6>
+                <h6 class="list-title">Locație</h6>
                     <div class="form-style2 input-group">
                         <select class="selectpicker" data-width="100%">
-                            <option>All Cities</option>
-                            <option data-tokens="California">California</option>
-                            <option data-tokens="Chicago">Chicago</option>
-                            <option data-tokens="LosAngeles">Los Angeles</option>
-                            <option data-tokens="Manhattan">Manhattan</option>
-                            <option data-tokens="NewJersey">New Jersey</option>
-                            <option data-tokens="NewYork">New York</option>
-                            <option data-tokens="SanDiego">San Diego</option>
-                            <option data-tokens="SanFrancisco">San Francisco</option>
-                            <option data-tokens="Texas">Texas</option>
+                            <option>All</option>
+                            <option >Romania</option>
+                            <option >Austria</option>
+
                         </select>
                     </div>
                 </div>
                 <div class="widget-wrapper">
-                    <h6 class="list-title">Suprafata</h6>
+                <h6 class="list-title">Suprafață</h6>
                     <div class="space-area">
                         <div class="d-flex align-items-center justify-content-between">
                             <div class="form-style1">
@@ -225,11 +217,11 @@
                     <div class="row">
                         <div class="col-lg-12">
                             <div class="breadcumb-style1">
-                                <h2 class="title">Cauta o proprietate</h2>
+                            <h2 class="title">Caută o proprietate</h2>
                                 <div class="breadcumb-list">
-                                <a href="@Url.Action("Index", "Property")">Acasa</a>
+                                <a href="@Url.Action("Index", "Property")">Acasă</a>
                                 </div>
-                                <a href="" class="filter-btn-left mobile-filter-btn d-block d-lg-none"><span class="flaticon-settings"></span> Filter</a>
+                                <a href="" class="filter-btn-left mobile-filter-btn d-block d-lg-none"><span class="flaticon-settings"></span> Filtre</a>
                             </div>
                         </div>
                     </div>
@@ -243,9 +235,9 @@
                         <div class="col-lg-4 d-none d-lg-block">
                             <div class="list-sidebar-style1">
                                 <div class="widget-wrapper">
-                                <h6 class="list-title">Cautare<span style="color:red">(ÎN CURÂND)</span></h6>
+                                <h6 class="list-title">Filtrare<span style="color:red">(ÎN CURÂND)</span></h6>
                                     <div class="search_area">
-                                        <input type="text" class="form-control" placeholder="Ce cauti?">
+                                    <input type="text" class="form-control" placeholder="Ce cauți?">
                                         <label><span class="flaticon-search"></span></label>
                                     </div>
                                 </div>
@@ -254,7 +246,7 @@
                                     <h6 class="list-title">Categorie</h6>
                                     <div class="checkbox-style1">
                                         <label class="custom_checkbox">
-                                            Case
+                                            Case/Vile
                                             <input type="checkbox">
                                             <span class="checkmark"></span>
                                         </label>
@@ -274,37 +266,38 @@
                                             <span class="checkmark"></span>
                                         </label>
                                         <label class="custom_checkbox">
-                                            Investitii
+                                        Investiții
                                             <input type="checkbox">
                                             <span class="checkmark"></span>
                                         </label>
                                     </div>
                                 </div>
                                 <div class="widget-wrapper">
-                                    <h6 class="list-title">Pret</h6>
+                                <h6 class="list-title">Preț</h6>
                                     <!-- Range Slider Desktop Version -->
                                     <div class="range-slider-style1">
                                         <div class="range-wrapper">
                                             <div class="slider-range mt30 mb20"></div>
                                             <div class="text-center">
-                                                <input type="text" class="amount" placeholder="$20"><span class="fa-sharp fa-solid fa-minus mx-2 dark-color"></span>
-                                                <input type="text" class="amount2" placeholder="$70987">
+                                                <input type="text" class="amount" placeholder="€20"><span class="fa-sharp fa-solid fa-minus mx-2 dark-color"></span>
+                                                <input type="text" class="amount2" placeholder="€70987">
                                             </div>
                                         </div>
                                     </div>
                                 </div>
                                 <div class="widget-wrapper advance-feature-modal">
-                                    <h6 class="list-title">Locatie</h6>
+                                <h6 class="list-title">Locație</h6>
                                     <div class="form-style2 input-group">
                                         <select class="selectpicker" data-width="100%">
-                                            <option>All Cities</option>
-                                            <option data-tokens="Bucuresti">California</option>
+                                            <option>All</option>
+                                            <option >Romania</option>
+                                        <option>Austria</option>
 
                                         </select>
                                     </div>
                                 </div>
                                 <div class="widget-wrapper">
-                                    <h6 class="list-title">Suprafata</h6>
+                                <h6 class="list-title">Suprafață</h6>
                                     <div class="space-area">
                                         <div class="d-flex align-items-center justify-content-between">
                                             <div class="form-style1">
@@ -338,11 +331,11 @@
                                 <div class="col-sm-6">
                                     <div class="page_control_shorting d-flex align-items-center justify-content-center justify-content-sm-end">
                                         <div class="pcs_dropdown pr10">
-                                            <span>Sorteaza</span>
+                                        <span>Sortează</span>
                                             <select class="selectpicker show-tick">
                                                 <option>Nou postate</option>
-                                                <option>Pret crescator</option>
-                                                <option>Pret descrescator</option>
+                                                <option>Preț crescator</option>
+                                            <option>Preț descrescator</option>
                                             </select>
                                         </div>
                                         

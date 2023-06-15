@@ -18,7 +18,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="keywords" content="advanced search, agency, agent, classified, directory, house, listing, property, real estate, real estate agency, real estate agent, realestate, realtor, rental">
 <meta name="description" content="NicoReal">
-<meta name="CreativeLayers" content="ATFN">
+
 <!-- css file -->
 <link rel="stylesheet" href="~/css/bootstrap.min.css">
 <link rel="stylesheet" href="~/css/jquery-ui.min.css">
@@ -37,8 +37,7 @@
 <!-- Title -->
 <title>NicoReal</title>
 <!-- Favicon -->
-<link href="~/images/tabbar.svg" sizes="128x128" rel="shortcut icon" type="image/x-icon" />
-<link href="~/images/tabbar.svg" sizes="128x128" rel="shortcut icon" />
+
 <!-- Apple Touch Icon -->
 <link href="~/images/apple-touch-icon-60x60.png" sizes="60x60" rel="apple-touch-icon">
 <link href="~/images/apple-touch-icon-72x72.png" sizes="72x72" rel="apple-touch-icon">
@@ -68,7 +67,7 @@
 <body>
     
 <div class="wrapper ovh">
-  <div class="preloader"></div>
+  
 
   <!-- Main Header Nav -->
   <header class="header-nav nav-homepage-style at-home2 stricky main-menu">
@@ -87,7 +86,7 @@
                 <li class="visible_list"> <a class="list-item" href="#"><span class="title">Categorii</span></a>
                   <!-- Level Two-->
                   <ul>
-                    <li><a asp-action="Listings">Case</a></li>
+                    <li><a asp-action="Listings">Case/Vile</a></li>
                                             <li><a asp-action="Listings">Apartamente</a></li>
                     <li><a asp-action="Listings">Terenuri</a></li>
                                             <li><a asp-action="Listings">Hoteluri</a></li>
@@ -103,10 +102,10 @@
                     @if (User.Identity.IsAuthenticated)
                                     {
                                         <li class="megamenu_style">
-                                            <a class="list-item" href="@Url.Action("Create", "Property")"><span class="title"><span style="color:red">Adauga anunt</span></span></a>
+                                                <a class="list-item" href="@Url.Action("Create", "Property")"><span class="title"><span style="color:red">Adaugă anunț</span></span></a>
                                         </li>
                                     }
-
+                                   
               </ul>
             </div>
           </div>
@@ -159,7 +158,7 @@
                     <select class="selectpicker" data-live-search="true" data-width="100%">
                       <option>Categorie</option>
                                                 <option data-tokens="Apartamente">Apartamente</option>
-                                                <option data-tokens="Case">Case</option>
+                                                <option data-tokens="Case">Case/Vile</option>
                                                 <option data-tokens="Terenuri">Terenuri</option>
                                                 <option data-tokens="Investitii">Investitii</option>
                                                 <option data-tokens="Hoteluri">Hoteluri</option>
@@ -231,7 +230,7 @@
       <ul>
         <li><span>Categorii</span>
           <ul>
-                            <li><a asp-action="Listings">Case</a></li>
+                            <li><a asp-action="Listings">Case/Vile</a></li>
                             <li><a asp-action="Listings">Apartamente</a></li>
                             <li><a asp-action="Listings">Terenuri</a></li>
                             <li><a asp-action="Listings">Hoteluri</a></li>
@@ -242,7 +241,7 @@
         <li><a href="#ourServicesSection">Serviciile Noastre</a></li>
 
         <li class="px-3 mobile-menu-btn">
-                            <a href="@Url.Action("Listings", "Property")" class="ud-btn btn-thm text-white m30">Vezi toate proprietatile<i class="fal fa-arrow-right-long"></i></a>
+                            <a href="@Url.Action("Listings", "Property")" class="ud-btn btn-thm text-white m30">Vezi toate proprietățile<i class="fal fa-arrow-right-long"></i></a>
         </li>
         <!-- Only for Mobile View -->
       </ul>
@@ -282,7 +281,7 @@
                               <div class="bootselect-multiselect">
                                 <select class="selectpicker" data-width="100%">
                                   <option data-tokens="Apartamente">Apartamente</option>
-                                  <option data-tokens="Case">Case</option>
+                                  <option data-tokens="Case">Case/Vile</option>
                                   <option data-tokens="Terenuri">Terenuri</option>
                                   <option data-tokens="Investitii">Investitii</option>
                                   <option data-tokens="Hoteluri">Hoteluri</option>
@@ -318,7 +317,7 @@
                               <div class="bootselect-multiselect">
                                 <select class="selectpicker" data-width="100%">
                                   <option data-tokens="Apartamente">Apartamente</option>
-                                  <option data-tokens="Case">Case</option>
+                                  <option data-tokens="Case">Case/Vile</option>
                                   <option data-tokens="Terenuri">Terenuri</option>
                                   <option data-tokens="Investitii">Investitii</option>
                                   <option data-tokens="Hoteluri">Hoteluri</option>
@@ -354,7 +353,7 @@
                               <div class="bootselect-multiselect">
                                 <select class="selectpicker" data-width="100%">
                                                                         <option data-tokens="Apartamente">Apartamente</option>
-                                                                        <option data-tokens="Case">Case</option>
+                                                                        <option data-tokens="Case">Case/Vile</option>
                                                                         <option data-tokens="Terenuri">Terenuri</option>
                                                                         <option data-tokens="Investitii">Investitii</option>
                                                                         <option data-tokens="Hoteluri">Hoteluri</option>
@@ -373,8 +372,8 @@
                     </div>
                   </div>
                 </div>
-                                    <h2 class="hero-title animate-up-2">Explorează cu Nico Real</h2>
-                                    <p class="hero-text fz15 animate-up-3">Hai să căutam ceva perfect pentru tine</p>
+                                    <h2 class="hero-title animate-up-2">Explorează cu NicoReal!</h2>
+                                    <p class="hero-text fz15 animate-up-3">Hai să căutam ceva perfect pentru tine!</p>
               </div>
             </div>
           </div>
@@ -393,7 +392,7 @@
                   <div class="iconbox-style4">
                     <span class="icon flaticon-home"></span>
                     <div class="iconbox-content">
-                      <h6 class="title">Case</h6>
+                      <h6 class="title">Case/Vile</h6>
                      
                       <p class="text mb-0">@ViewBag.Houses Proprietăți</p>
                     </div>
@@ -463,7 +462,7 @@
           </div>
           <div class="col-lg-3">
             <div class="text-start text-lg-end mb-3">
-                                <a class="ud-btn2" asp-action="Listings">Vezi toate proprietatile<i class="fal fa-arrow-right-long"></i></a>
+                                    <a class="ud-btn2" asp-action="Listings">Vezi toate proprietățile<i class="fal fa-arrow-right-long"></i></a>
             </div>
           </div>
         </div>
@@ -534,7 +533,7 @@
           <div class="row">
             <div class="col-lg-6 m-auto wow fadeInUp" data-wow-delay="300ms">
               <div class="main-title text-center">
-                                    <h2 class="title">De ce NicoReal ?</h2>
+                                    <h2 class="title">De ce NicoReal?</h2>
               </div>
             </div>
           </div>
@@ -647,13 +646,13 @@
     <section class="our-cta2 p0 px20">
       <div class="cta-banner2 bgc-thm maxw1600 mx-auto pt100 pt50-md pb85 pb50-md px30-md bdrs12 position-relative">
         <div class="img-box-5">
-          <img class="img-1 spin-right" src="~/images/about/element-1.png" alt="">
+          <img class="img-1 spin-right" src="~/images/about/element-1.png" alt="">a
         </div>
         <div class="img-box-6">
                     <img class="img-1 spin-left" src="~/images/about/element-2.png" alt="">
         </div>
         <div class="cta-style2 d-none d-lg-block wow fadeInRight" data-wow-delay="300ms">
-                    <img height="385px" width="600px" src="~/images/cityabove1.png" alt="">
+                            <img style="border-radius:15px" height="385px" width="600px" src="~/images/familyrelated.png" alt="">
         </div>
         <div class="container">
           <div class="row">
@@ -661,7 +660,7 @@
               <div class="cta-style2">
                 <h2 class="cta-title">Bine ai venit în lumea NicoReal, hai să-ți găsim căminul ideal!</h2>
                 <p class="cta-text"></p>
-                                    <a asp-action="Listings" class="ud-btn btn-dark mt10">Vezi toate proprietatile<i class="fal fa-arrow-right-long"></i></a>
+                                        <a asp-action="Listings" class="ud-btn btn-dark mt10">Vezi toate proprietățile<i class="fal fa-arrow-right-long"></i></a>
               </div>
             </div>
           </div>

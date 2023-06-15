@@ -28,8 +28,7 @@
 <!-- Title -->
 <title>NicoReal</title>
 
-<link href="~/images/tabbar.svgsizes="128x128" rel="shortcut icon" type="image/x-icon" />
-<link href="~/images/tabbar.svg" sizes="128x128" rel="shortcut icon" />
+
 <!-- Apple Touch Icon -->
 <link href="~/images/apple-touch-icon-60x60.png" sizes="60x60" rel="apple-touch-icon">
 <link href="~/images/apple-touch-icon-72x72.png" sizes="72x72" rel="apple-touch-icon">
@@ -65,7 +64,7 @@
 
 
     <div class="wrapper ovh">
-        <div class="preloader"></div>
+ 
 
         <!-- Main Header Nav -->
         <header class="header-nav nav-innerpage-style bdrb1 main-menu">
@@ -81,22 +80,22 @@
                                 <!-- Responsive Menu Structure-->
                                 <ul id="respMenu" class="ace-responsive-menu" data-menu-style="horizontal">
                                 <li class="megamenu_style">
-                                    <a class="list-item" href="@Url.Action("Index", "Property")"><span class="title">Acasa</span></a>
+                                    <a class="list-item" href="@Url.Action("Index", "Property")"><span class="title">Acasă</span></a>
                                         <!-- Level Two-->
                                 <li class="megamenu_style">
-                                    <a class="list-item" href="@Url.Action("Listings", "Property")"><span class="title">Toate anunturile</span></a>
+                                    <a class="list-item" href="@Url.Action("Listings", "Property")"><span class="title">Toate anunțurile</span></a>
                                 </li>
 
                                     @if (User.Identity.IsAuthenticated)
                                     {
                                         <li class="megamenu_style">
-                                            <a class="list-item" href="@Url.Action("EditPage", "Property", new { id = Model.SingleProp.Id })"><span class="title"><span style="color:red">Modifica anunt</span></span></a>
+                                        <a class="list-item" href="@Url.Action("EditPage", "Property", new { id = Model.SingleProp.Id })"><span class="title"><span style="color:red">Modifică anunț</span></span></a>
                                         </li>
                                         <li class="megamenu_style">
-                                            <a class="list-item" href="@Url.Action("Delete", "Property", new { id = Model.SingleProp.Id })"><span class="title"><span style="color:red">Sterge anunt</span></span></a>
+                                        <a class="list-item" href="@Url.Action("Delete", "Property", new { id = Model.SingleProp.Id })"><span class="title"><span style="color:red">Șterge anunț</span></span></a>
                                         </li>
                                     <li class="megamenu_style">
-                                        <a class="list-item" href="@Url.Action("Create", "Property")"><span class="title"><span style="color:red">Adauga anunt</span></span></a>
+                                        <a class="list-item" href="@Url.Action("Create", "Property")"><span class="title"><span style="color:red">Adaugă anunț</span></span></a>
                                     </li>
                                     }
                             </ul>
@@ -132,10 +131,10 @@
             <nav id="menu" class="">
                 <ul>
                 <li class="megamenu_style">
-                    <a class="list-item" href="@Url.Action("Index", "Property")"><span class="title">Acasa</span></a>
+                    <a class="list-item" href="@Url.Action("Index", "Property")"><span class="title">Acasă</span></a>
                     <!-- Level Two-->
                 <li class="megamenu_style">
-                    <a class="list-item" href="@Url.Action("Listings", "Property")"><span class="title">Toate anunturile</span></a>
+                    <a class="list-item" href="@Url.Action("Listings", "Property")"><span class="title">Toate anunțurile</span></a>
                 </li>
                     <!-- Only for Mobile View -->
                 </ul>
@@ -203,7 +202,7 @@
                                 <p class="text space fz15">@ViewBag.priceMp €/mp</p>
                                 @if (Model.SingleProp.IsInvestment == "Da")
                                 {
-                                    <p class="text space fz15"><span style="color:green">Oportunitate Investitie</span></p>
+                                    <p class="text space fz15"><span style="color:green">Oportunitate Investiție</span></p>
                                 }
                                 @if (Model.SingleProp.IsSold == "Da")
                                 {
@@ -233,7 +232,7 @@
                                         <div class="overview-element mb25-xs d-flex align-items-center">
                                             <span class="icon flaticon-expand"></span>
                                             <div class="ml15">
-                                                <h6 class="mb-0">Suprafata</h6>
+                                                <h6 class="mb-0">Suprafață</h6>
                                                 <p class="text mb-0 fz15">@Model.SingleProp.Surface mp</p>
                                             </div>
                                         </div>
@@ -257,7 +256,7 @@
                                         <div class="overview-element mb25 d-flex align-items-center">
                                             <span class="icon flaticon-shower"></span>
                                             <div class="ml15">
-                                                <h6 class="mb-0">Bai</h6>
+                                                <h6 class="mb-0">Băi</h6>
                                                 <p class="text mb-0 fz15">@Model.SingleProp.Bathrooms</p>
                                             </div>
                                         </div>
@@ -281,7 +280,7 @@
                                         <div class="overview-element mb25 d-flex align-items-center">
                                             <span class="icon flaticon-event"></span>
                                             <div class="ml15">
-                                                <h6 class="mb-0">Anul Constructiei</h6>
+                                                <h6 class="mb-0">Anul Construcției</h6>
                                                 <p class="text mb-0 fz15">@Model.SingleProp.ConstructionYear</p>
                                             </div>
                                         </div>
@@ -297,10 +296,13 @@
                                     <div class="col-md-6 col-xl-4">
                                         <div class="d-flex justify-content-between">
                                             <div class="pd-list">
+                                                @if (Model.SingleProp.Category != null)
+                                            {
                                                 <p class="fw600 mb10 ff-heading dark-color">Categorie</p>
+                                            }
                                                 @if (Model.SingleProp.Surface != null)
                                             {
-                                                <p class="fw600 mb10 ff-heading dark-color">Suprafata</p>
+                                                <p class="fw600 mb10 ff-heading dark-color">Suprafață</p>
                                             }
                                             @if (Model.SingleProp.Floors != null)
                                             {
@@ -312,12 +314,15 @@
                                             }
                                             @if (Model.SingleProp.Bathrooms != null)
                                             {
-                                                <p class="fw600 mb-0 ff-heading dark-color">Bai</p>
+                                                <p class="fw600 mb-0 ff-heading dark-color">Băi</p>
                                             }
                                            
                                             </div>
                                             <div class="pd-list">
+                                                @if (Model.SingleProp.Category != null)
+                                            {
                                                 <p class="text mb10">@Model.SingleProp.Category</p>
+                                            }
                                                 
                                             @if (Model.SingleProp.Surface != null)
                                             {
@@ -341,15 +346,23 @@
                                     <div class="col-md-6 col-xl-4 offset-xl-2">
                                         <div class="d-flex justify-content-between">
                                             <div class="pd-list">
+                                            @if (Model.SingleProp.GardenSurface != null)
+                                            {
+                                                <p class="fw600 mb10 ff-heading dark-color">Suprafața grădinii</p>
+                                            }
                                                 @if (Model.SingleProp.ConstructionYear != null)
                                             {
-                                                <p class="fw600 mb10 ff-heading dark-color">Anul constructiei</p>  
+                                                <p class="fw600 mb10 ff-heading dark-color">Anul construcției</p>  
                                             }
-                                                <p class="fw600 mb10 ff-heading dark-color">Pret</p>
-                                                <p class="fw600 mb10 ff-heading dark-color">Oportunitate investitie</p>
+                                            <p class="fw600 mb10 ff-heading dark-color">Preț</p>
+                                                <p class="fw600 mb10 ff-heading dark-color">Oportunitate investiție</p>
                                             </div>
                                             <div class="pd-list">
-                                                @if (Model.SingleProp.ConstructionYear != null)
+                                                @if (Model.SingleProp.GardenSurface != null)
+                                            {
+                                                <p class="text mb10">@Model.SingleProp.GardenSurface</p>
+                                            }
+                                            @if (Model.SingleProp.ConstructionYear != null)
                                             {
                                                 <p class="text mb10">@Model.SingleProp.ConstructionYear</p>
                                             }
@@ -458,7 +471,7 @@
                             <div class="column">
                                 <div class="agen-personal-info position-relative bgc-white default-box-shadow1 bdrs12 p30 mt30">
                                     <div class="widget-wrapper mb-0">
-                                        <h6 class="title fz17 mb30">Afla mai multe</h6>
+                                    <h6 class="title fz17 mb30">Află mai multe</h6>
                                         <div class="agent-single d-sm-flex align-items-center pb25">
                                             <div class="single-img mb30-sm">
                                             <img class="w90" src="~/images/team/neuro.png" alt="">
@@ -472,7 +485,7 @@
                                             </div>
                                         </div>
                                         <div class="d-grid">
-                                            <button class="ud-btn btn-white2">Contacteaza<i class="fal fa-arrow-right-long"></i></button>
+                                        <button class="ud-btn btn-white2">Contactează<i class="fal fa-arrow-right-long"></i></button>
                                         </div>
                                     </div>
                                 </div>
@@ -527,7 +540,7 @@
 
                                                 @if (prop.Bathrooms != null)
                                                 {
-                                                    <a href="@Url.Action("Details", "Property", new { id = prop.Id })"><span class="flaticon-shower"></span>@prop.Bathrooms bai</a>
+                                                    <a href="@Url.Action("Details", "Property", new { id = prop.Id })"><span class="flaticon-shower"></span>@prop.Bathrooms băi</a>
                                                 }
                                             </div>
 

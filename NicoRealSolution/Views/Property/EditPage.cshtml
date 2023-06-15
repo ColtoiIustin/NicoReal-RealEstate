@@ -17,10 +17,9 @@
     <link rel="stylesheet" href="~/css/dashbord_navitaion.css">
     <!-- Responsive stylesheet -->
     <link rel="stylesheet" href="~/css/responsive.css">
-    <link href="~/images/tabbar.svg" sizes="128x128" rel="shortcut icon" type="image/x-icon" />
-    <link href="~/images/tabbar.svg" sizes="128x128" rel="shortcut icon" />
+
     <div class="wrapper">
-        <div class="preloader"></div>
+
 
  
 
@@ -124,21 +123,16 @@
             <div class="dashboard dashboard_wrapper pr30 pr0-md">
                 <div class="dashboard__sidebar d-none d-lg-block">
                     <div class="dashboard_sidebar_list">
-                        <div class="sidebar_list_item">
-                            <a href="page-dashboard.html" class="items-center"><i class="flaticon-discovery mr15"></i>Dashboard</a>
-                        </div>
-                        <div class="sidebar_list_item ">
-                            <a href="" class="items-center"><i class="flaticon-chat-1 mr15"></i>NicoReal</a>
-                        </div>
+                        
                         <p class="fz15 fw400 ff-heading mt30">NICO REAL</p>
                         <div class="sidebar_list_item ">
-                            <a href="" class="items-center -is-active"><i class="flaticon-new-tab mr15"></i>Modifica proprietate</a>
+                        <a href="@Url.Action("EditPage", "Property", new { id = Model.Id })" class="items-center -is-active"><i class="flaticon-new-tab mr15"></i>Modifică proprietate</a>
                         </div>
                         <div class="sidebar_list_item ">
-                            <a href="" class="items-center"><i class="flaticon-home mr15"></i>NicoReal</a>
+                        <a href="@Url.Action("Index", "Property")" class="items-center"><i class="flaticon-home mr15"></i>Acasă</a>
                         </div>
                         <div class="sidebar_list_item ">
-                            <a href="" class="items-center"><i class="flaticon-like mr15"></i>NicoReal</a>
+                        <a href="@Url.Action("Listings", "Property")" class="items-center"><i class="flaticon-like mr15"></i>Toate Proprietățile</a>
                         </div>
                     </div>
                 </div>
@@ -152,18 +146,17 @@
                                             <i class="fa fa-bars pr10"></i> Menu Navigation
                                         </button>
                                         <ul id="myDropdown" class="dropdown-content">
-                                            <li><a href="page-dashboard.html"><i class="flaticon-discovery mr10"></i>Dashboard</a></li>
-                                            <li><a href="page-dashboard-message.html"><i class="flaticon-chat-1 mr10"></i>NicoReal</a></li>
+                                            
                                             <li>
                                                 <p class="fz15 fw400 ff-heading mt30 pl30">NICO REAL</p>
                                             </li>
                                             <li class="active">
-                                                <a href="page-dashboard-add-property.html">
-                                                    <i class="flaticon-new-tab mr10"></i>Modifica proprietate
+                                            <a href="@Url.Action("EditPage", "Property", new { id = Model.Id })">
+                                                <i class="flaticon-new-tab mr10"></i>Modifică proprietate
                                                 </a>
                                             </li>
-                                            <li><a href="page-dashboard-properties.html"><i class="flaticon-home mr10"></i>NicoReal</a></li>
-                                            <li><a href="page-dashboard-favorites.html"><i class="flaticon-like mr10"></i>NicoReal</a></li>
+                                        <li><a href="@Url.Action("Index", "Property")"><i class="flaticon-home mr10"></i>Acasă</a></li>
+                                        <li><a href="@Url.Action("Listings", "Property")"><i class="flaticon-like mr10"></i>Toate Proprietățile</a></li>
                                         </ul>
                                     </div>
                                 </div>
@@ -172,7 +165,7 @@
                         <div class="row align-items-center pb40">
                             <div class="col-lg-12">
                                 <div class="dashboard_title_area">
-                                    <h2>Modifica proprietate</h2>
+                                <h2>Modifică proprietate</h2>
                                 </div>
                             </div>
                         </div>
@@ -207,7 +200,7 @@
                                                                 <select asp-for="Category" class="selectpicker">
                                                                     <option value="">-- Selecteaza Categoria --</option>
                                                                     <option>Apartment</option>
-                                                                    <option>Casa</option>
+                                                                    <option>Casa/Vila</option>
                                                                     <option>Teren</option>
                                                                     <option>Hotel</option>
                                                                 </select>
@@ -319,7 +312,7 @@
                                                     <div class="col-sm-6 col-xl-4">
                                                         <div class="mb20">
                                                         <span asp-validation-for="Surface" class="text-danger"></span>
-                                                        <label class="heading-color ff-heading fw600 mb10">Suprafata in mp<span style="color: red"> (numar)</span></label>
+                                                        <label class="heading-color ff-heading fw600 mb10">Suprafata in mp<span style="color: red"> (număr)</span></label>
                                                             <input asp-for=Surface type="text" class="form-control" placeholder="Suprafata in mp">
                                                         </div>
                                                     </div>
@@ -327,14 +320,14 @@
                                                     <div class="col-sm-6 col-xl-4">
                                                         <div class="mb20">
                                                         <span asp-validation-for="Rooms" class="text-danger"></span>
-                                                        <label class="heading-color ff-heading fw600 mb10">Camere<span style="color: red"> (numar)</span></label>
+                                                        <label class="heading-color ff-heading fw600 mb10">Camere<span style="color: red"> (număr)</span></label>
                                                             <input asp-for=Rooms type="text" class="form-control" placeholder="Camere">
                                                         </div>
                                                     </div>
                                                     <div class="col-sm-6 col-xl-4">
                                                         <div class="mb20">
                                                         <span asp-validation-for="Bathrooms" class="text-danger"></span>
-                                                        <label class="heading-color ff-heading fw600 mb10">Băi<span style="color: red"> (numar)</span></label>
+                                                        <label class="heading-color ff-heading fw600 mb10">Băi<span style="color: red"> (număr)</span></label>
                                                             <input asp-for=Bathrooms type="text" class="form-control" placeholder="Băi">
                                                         </div>
                                                     </div>
@@ -349,11 +342,20 @@
                                                     <div class="col-sm-6 col-xl-4">
                                                         <div class="mb20">
                                                         <span asp-validation-for="Floors" class="text-danger"></span>
-                                                        <label class="heading-color ff-heading fw600 mb10">Etaje<span style="color: red"> (numar)</span></label>
+                                                        <label class="heading-color ff-heading fw600 mb10">Etaje<span style="color: red"> (număr)</span></label>
                                                             <input asp-for=Floors type="text" class="form-control" placeholder="Etaje">
                                                         </div>
                                                     </div>
 
+                                                    <div class="col-sm-6 col-xl-4">
+                                                        <div class="mb20">
+                                                        <span asp-validation-for="Floors" class="text-danger"></span>
+                                                        <label class="heading-color ff-heading fw600 mb10">Suprafață Grădină<span style="color: red"> (număr)</span></label>
+                                                        <input asp-for=GardenSurface type="text" class="form-control" placeholder="Suprafață Grădină">
+                                                        </div>
+                                                    </div>
+
+                                                
 
                                                 </div>
 
