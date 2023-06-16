@@ -156,11 +156,25 @@ namespace NicoRealSolution.Controllers
 
 
         [HttpGet]
-        public async Task<IActionResult> Listings()
+        public async Task<IActionResult> Listings(int pg=1)
         {
             var properties = await _propService.GetProperties();
             ViewBag.Results = properties.Count();
-            return View(properties);
+
+            const int pageSize = 1;
+            if (pg < 1) pg = 1;
+
+            int propCount =properties.Count();
+            var pager = new Pager(propCount, pg, pageSize);
+
+            int propSkip = (pg-1) * pageSize;
+
+            var data = properties.Skip(propSkip).Take(pager.PageSize).ToList();
+
+            
+            this.ViewBag.Pager = pager;
+
+            return View(data);
 
         }
 

@@ -8,6 +8,16 @@
 @model IEnumerable<Property>
 @{
     ViewData["Title"] = "Proprietăți";
+
+    Pager pager = new Pager();
+
+    int pageNo = 0;
+
+    if(ViewBag.Pager != null)
+    {
+        pager = ViewBag.Pager;
+        pageNo = pager.CurrentPage;
+    }
 }
 
 
@@ -181,7 +191,7 @@
 
                 <div class="widget-wrapper">
                     <div class="btn-area d-grid align-items-center">
-                        <button class="ud-btn btn-thm"><span class="flaticon-search align-text-top pr10"></span>Search</button>
+                    <button class="ud-btn btn-thm"><span class="flaticon-search align-text-top pr10"></span>Caută</button>
                     </div>
                 </div>
                 <div class="reset-area d-flex align-items-center justify-content-between">
@@ -312,7 +322,7 @@
                                 </div>
                                 <div class="widget-wrapper">
                                     <div class="btn-area d-grid align-items-center">
-                                        <button class="ud-btn btn-thm"><span class="flaticon-search align-text-top pr10"></span>Search</button>
+                                    <button class="ud-btn btn-thm"><span class="flaticon-search align-text-top pr10"></span>Caută</button>
                                     </div>
                                 </div>
                                 <div class="reset-area d-flex align-items-center justify-content-between">
@@ -397,26 +407,37 @@
                                     </div>
                                 </div>
                                 }
+                            
                                 
                             </div>
                             <div class="row">
                                 <div class="mbp_pagination text-center">
                                     <ul class="page_navigation">
+                                    <li class="page-item">
+                                        <a class="page-link" asp-controller="Property" asp-action="Listings" asp-route-pg="1"> <span class="fas fa-angle-double-left"></span></a>
+                                    </li>
+                                    @if (pager.CurrentPage > 1)
+                                    {
                                         <li class="page-item">
-                                            <a class="page-link" href="#"> <span class="fas fa-angle-left"></span></a>
+                                            <a class="page-link" asp-controller="Property" asp-action="Listings" asp-route-pg=@(pager.CurrentPage - 1)> <span class="fas fa-angle-left"></span></a>
                                         </li>
-                                        <li class="page-item"><a class="page-link" href="#">1</a></li>
-                                        <li class="page-item active" aria-current="page">
-                                            <a class="page-link" href="#">2 <span class="sr-only">(current)</span></a>
-                                        </li>
-                                        <li class="page-item"><a class="page-link" href="#">3</a></li>
-                                        <li class="page-item"><a class="page-link" href="#">4</a></li>
-                                        <li class="page-item"><a class="page-link" href="#">5</a></li>
-                                        <li class="page-item"><a class="page-link" href="#">...</a></li>
-                                        <li class="page-item"><a class="page-link" href="#">20</a></li>
+                                    }
+                                    @for (var pge = pager.StartPage; pge <= pager.EndPage; pge++)
+                                          {
+                                        <li class="page-item @(pge == pager.CurrentPage ? "active" : "")" aria-current="@(pge == pager.CurrentPage ? "page" : "")" >
+                                            <a class="page-link" asp-controller="Property" asp-action="Listings" asp-route-pg="@pge">@pge</a>
+                                             </li>
+
+                                          }
+                                          @if(pager.CurrentPage < pager.TotalPages){
                                         <li class="page-item">
-                                            <a class="page-link" href="#"><span class="fas fa-angle-right"></span></a>
+                                        <a class="page-link" asp-controller="Property" asp-action="Listings" asp-route-pg=@(pager.CurrentPage + 1)><span class="fas fa-angle-right"></span></a>
                                         </li>
+                                          }
+                                         <li class="page-item">
+                                        <a class="page-link" asp-controller="Property" asp-action="Listings" asp-route-pg=@(pager.TotalPages)><span class="fas fa-angle-double-right"></span></a>
+                                         </li>
+                                    
                                     </ul>
                                     <p class="mt10 pagination_page_count text-center"></p>
                                 </div>

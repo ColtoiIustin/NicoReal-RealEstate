@@ -199,7 +199,9 @@
                                     <div class="d-flex mb20 mb10-md align-items-center justify-content-lg-end">
                                     </div>
                                 <h3 class="price mb-0">@Model.SingleProp.Price €</h3>
+                                @if(ViewBag.priceMp != null){
                                 <p class="text space fz15">@ViewBag.priceMp €/mp</p>
+                                }
                                 @if (Model.SingleProp.IsInvestment == "Da")
                                 {
                                     <p class="text space fz15"><span style="color:green">Oportunitate Investiție</span></p>
