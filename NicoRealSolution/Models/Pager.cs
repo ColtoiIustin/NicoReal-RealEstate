@@ -9,6 +9,7 @@
         public int TotalPages { get; set; }
         public int StartPage { get; set; }
         public int EndPage { get; set; }
+        
 
         public Pager()
         {
@@ -41,6 +42,7 @@
             TotalPages = totalPages;
             StartPage = startPage;
             EndPage = endPage;
+            
         }
     }
 }

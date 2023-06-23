@@ -156,9 +156,23 @@ namespace NicoRealSolution.Controllers
 
 
         [HttpGet]
-        public async Task<IActionResult> Listings(int pg=1)
+        public async Task<IActionResult> Listings(int pg=1, string sortOrder = "New")
         {
             var properties = await _propService.GetProperties();
+
+            switch (sortOrder)
+            {
+                case "New":
+                    properties = properties.Reverse();
+                    break;
+                case "Price":
+                    properties = properties.OrderBy(p => p.Price);
+                    break;
+                case "PriceDesc":
+                    properties = properties.OrderByDescending(p => p.Price);
+                    break;
+            }
+
             ViewBag.Results = properties.Count();
 
             const int pageSize = 1;
@@ -173,6 +187,7 @@ namespace NicoRealSolution.Controllers
 
             
             this.ViewBag.Pager = pager;
+            ViewData["Sort"] = sortOrder;
 
             return View(data);
 

@@ -342,12 +342,31 @@
                                     <div class="page_control_shorting d-flex align-items-center justify-content-center justify-content-sm-end">
                                         <div class="pcs_dropdown pr10">
                                         <span>Sortează</span>
-                                            <select class="selectpicker show-tick">
-                                                <option>Nou postate</option>
-                                                <option>Preț crescator</option>
-                                            <option>Preț descrescator</option>
+                                        @if ((string)ViewData["Sort"] == "New")
+                                        {
+                                            <select class="selectpicker show-tick" onchange="location = this.value;">
+                                                <option value="@Url.Action("Listings", new { sortOrder = "New" })" selected>Noi</option>
+                                                <option value="@Url.Action("Listings", new { sortOrder = "Price" })">Preț crescator</option>
+                                                <option value="@Url.Action("Listings", new { sortOrder = "PriceDesc" })">Preț descrescator</option>
                                             </select>
-                                        </div>
+                                        }
+                                        else if ((string)ViewData["Sort"] == "Price")
+                                        {
+                                            <select class="selectpicker show-tick" onchange="location = this.value;">
+                                                <option value="@Url.Action("Listings", new { sortOrder = "New" })" >Noi</option>
+                                                <option value="@Url.Action("Listings", new { sortOrder = "Price" })" selected>Preț crescator</option>
+                                                <option value="@Url.Action("Listings", new { sortOrder = "PriceDesc" })">Preț descrescator</option>
+                                            </select>
+                                        }
+                                        else
+                                        {
+                                            <select class="selectpicker show-tick" onchange="location = this.value;">
+                                                <option value="@Url.Action("Listings", new { sortOrder = "New" })">Noi</option>
+                                                <option value="@Url.Action("Listings", new { sortOrder = "Price" })" >Preț crescator</option>
+                                                <option value="@Url.Action("Listings", new { sortOrder = "PriceDesc" })" selected>Preț descrescator</option>
+                                            </select>
+                                        }
+                                    </div>
                                         
                                     </div>
                                 </div>
@@ -413,29 +432,29 @@
                             <div class="row">
                                 <div class="mbp_pagination text-center">
                                     <ul class="page_navigation">
-                                    <li class="page-item">
-                                        <a class="page-link" asp-controller="Property" asp-action="Listings" asp-route-pg="1"> <span class="fas fa-angle-double-left"></span></a>
-                                    </li>
-                                    @if (pager.CurrentPage > 1)
-                                    {
                                         <li class="page-item">
-                                            <a class="page-link" asp-controller="Property" asp-action="Listings" asp-route-pg=@(pager.CurrentPage - 1)> <span class="fas fa-angle-left"></span></a>
+                                        <a class="page-link" asp-controller="Property" asp-action="Listings" asp-route-pg="1" asp-route-sortOrder="@ViewData["Sort"]"> <span class="fas fa-angle-double-left"></span></a>
                                         </li>
-                                    }
-                                    @for (var pge = pager.StartPage; pge <= pager.EndPage; pge++)
-                                          {
-                                        <li class="page-item @(pge == pager.CurrentPage ? "active" : "")" aria-current="@(pge == pager.CurrentPage ? "page" : "")" >
-                                            <a class="page-link" asp-controller="Property" asp-action="Listings" asp-route-pg="@pge">@pge</a>
-                                             </li>
+                                        @if (pager.CurrentPage > 1)
+                                        {
+                                            <li class="page-item">
+                                            <a class="page-link" asp-controller="Property" asp-action="Listings" asp-route-pg=@(pager.CurrentPage - 1) asp-route-sortOrder="@ViewData["Sort"]"> <span class="fas fa-angle-left"></span></a>
+                                            </li>
+                                        }
+                                        @for (var pge = pager.StartPage; pge <= pager.EndPage; pge++)
+                                              {
+                                            <li class="page-item @(pge == pager.CurrentPage ? "active" : "")" aria-current="@(pge == pager.CurrentPage ? "page" : "")" >
+                                            <a class="page-link" asp-controller="Property" asp-action="Listings" asp-route-pg="@pge" asp-route-sortOrder="@ViewData["Sort"]">@pge</a>
+                                                 </li>
 
-                                          }
-                                          @if(pager.CurrentPage < pager.TotalPages){
-                                        <li class="page-item">
-                                        <a class="page-link" asp-controller="Property" asp-action="Listings" asp-route-pg=@(pager.CurrentPage + 1)><span class="fas fa-angle-right"></span></a>
-                                        </li>
+                                              }
+                                        @if(pager.CurrentPage < pager.TotalPages){
+                                                <li class="page-item">
+                                            <a class="page-link" asp-controller="Property" asp-action="Listings" asp-route-pg=@(pager.CurrentPage + 1) asp-route-sortOrder="@ViewData["Sort"]"><span class="fas fa-angle-right"></span></a>
+                                                </li>
                                           }
                                          <li class="page-item">
-                                        <a class="page-link" asp-controller="Property" asp-action="Listings" asp-route-pg=@(pager.TotalPages)><span class="fas fa-angle-double-right"></span></a>
+                                        <a class="page-link" asp-controller="Property" asp-action="Listings" asp-route-pg=@(pager.TotalPages) asp-route-sortOrder="@ViewData["Sort"]"><span class="fas fa-angle-double-right"></span></a>
                                          </li>
                                     
                                     </ul>
