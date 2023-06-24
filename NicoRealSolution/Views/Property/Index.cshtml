@@ -55,6 +55,7 @@
 }
 .wrapper ovh{
     scroll-behavior: smooth !important;
+    background: #EDFFEB;
 }
 
 #firstWrap{
@@ -451,7 +452,7 @@
     </section>
 
     <!-- Explore Apartment -->
-    <section class="pt0 pb60 pb30-md bgc-white">
+                <section class="pt0 pb60 pb30-md bgc-white" style="background: #F4FFF2">
       <div class="container">
         <div class="row align-items-center wow fadeInUp" data-wow-delay="00ms">
           <div class="col-lg-9">
@@ -472,7 +473,7 @@
                 @foreach(var prop in Model) {
               <div class="item">
               <a asp-action="Details" asp-controller="Property" asp-route-id="@prop.Id" >
-                <div class="listing-style1 style4">
+                                                <div class="listing-style1 style4" style="background: #F4FFF2">
                   <div class="list-thumb">
                                             @if (!string.IsNullOrEmpty(prop.PhotoGuids))
                                             {
