@@ -170,9 +170,9 @@
     $(document).on('ready', function() {
         $(".slider-range").slider({
             range: true,
-            min: 0,
-            max: 100000,
-            values: [ 20, 70987 ],
+            min: 100,
+            max: 5000000,
+            values: [ 100, 5000000 ],
             slide: function( event, ui ) {
                 $( ".amount"  ).val( ui.values[ 0 ] );
                 $( ".amount2"  ).val( ui.values[ 1 ] );

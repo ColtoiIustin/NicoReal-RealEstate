@@ -16,6 +16,8 @@ using Amazon.S3;
 using Amazon.S3.Model;
 using Amazon.S3.Transfer;
 using Amazon.Runtime;
+using Newtonsoft.Json.Linq;
+using Amazon.Auth.AccessControlPolicy.ActionIdentifiers;
 
 namespace NicoRealSolution.Controllers
 {
@@ -156,10 +158,11 @@ namespace NicoRealSolution.Controllers
 
 
         [HttpGet]
-        public async Task<IActionResult> Listings(int pg=1, string sortOrder = "New")
+        public async Task<IActionResult> Listings(int pg=1, string sortOrder = "New", string searchString="", 
+            string category="", decimal minPrice=100, decimal maxPrice=5000000, string location="", decimal minSurface=0, decimal maxSurface=999999999)
         {
             var properties = await _propService.GetProperties();
-
+            
             switch (sortOrder)
             {
                 case "New":
@@ -173,6 +176,28 @@ namespace NicoRealSolution.Controllers
                     break;
             }
 
+            if (!string.IsNullOrEmpty(searchString))
+            {
+                properties = properties.Where(p => p.Title.Contains(searchString));
+            }
+            if (!string.IsNullOrEmpty(category))
+            {       if (category != "Toate")
+                {
+                    properties = properties.Where(p => p.Category == category);
+                }
+            }
+            properties = properties.Where(p => p.Price >= minPrice && p.Price <= maxPrice && p.Surface >= minSurface && p.Surface <= maxSurface);
+            if (!string.IsNullOrEmpty(location) && location != "Toate")
+            {
+                if (location == "Romania") {
+                    properties = properties.Where(p => p.Country == "Romania" || p.Country == "România");
+                }
+                else  properties = properties.Where(p => p.Country == location); 
+
+
+            }
+
+
             ViewBag.Results = properties.Count();
 
             const int pageSize = 5;
@@ -185,11 +210,23 @@ namespace NicoRealSolution.Controllers
 
             var data = properties.Skip(propSkip).Take(pager.PageSize).ToList();
 
-            
+            var viewModel = new ViewModelListings
+            {
+                PropList = data,
+                SelectCateg = category,
+                SelectLocation= location,   
+
+            };
+
             this.ViewBag.Pager = pager;
             ViewData["Sort"] = sortOrder;
+            ViewData["searchString"] = searchString;
+            ViewData["minPrice"] = minPrice;
+            ViewData["maxPrice"] = maxPrice;
+            ViewData["minSurface"] = minSurface;
+            ViewData["maxSurface"] = maxSurface;
 
-            return View(data);
+            return View(viewModel);
 
         }
 

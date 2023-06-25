@@ -200,7 +200,7 @@
                                     </div>
                                 <h3 class="price mb-0">@Model.SingleProp.Price €</h3>
                                 @if(ViewBag.priceMp != null){
-                                <p class="text space fz15">@ViewBag.priceMp €/mp</p>
+                                    <p class="text space fz15">@ViewBag.priceMp €/m²</p>
                                 }
                                 @if (Model.SingleProp.IsInvestment == "Da")
                                 {
@@ -235,7 +235,7 @@
                                             <span class="icon flaticon-expand"></span>
                                             <div class="ml15">
                                                 <h6 class="mb-0">Suprafață</h6>
-                                                <p class="text mb-0 fz15">@Model.SingleProp.Surface mp</p>
+                                                <p class="text mb-0 fz15">@Model.SingleProp.Surface m²</p>
                                             </div>
                                         </div>
                                     </div>
@@ -328,7 +328,7 @@
                                                 
                                             @if (Model.SingleProp.Surface != null)
                                             {
-                                                <p class="text mb10">@Model.SingleProp.Surface mp</p>
+                                                <p class="text mb10">@Model.SingleProp.Surface m²</p>
                                             }
                                             @if (Model.SingleProp.Floors != null)
                                             {
@@ -533,7 +533,7 @@
                                                 <a href="@Url.Action("Details", "Property", new { id = prop.Id })"><span class="flaticon-home"></span>@prop.Category</a>
                                                 @if (prop.Rooms != null)
                                                 {
-                                                    <a href="@Url.Action("Details", "Property", new { id = prop.Id })"><span class="flaticon-expand"></span>@prop.Surface mp</a>
+                                                    <a href="@Url.Action("Details", "Property", new { id = prop.Id })"><span class="flaticon-expand"></span>@prop.Surface m²</a>
                                                 }
                                                 @if (prop.Rooms != null)
                                                 {

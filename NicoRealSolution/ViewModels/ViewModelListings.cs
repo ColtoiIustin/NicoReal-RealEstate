@@ -2,10 +2,10 @@
 
 namespace NicoRealSolution.ViewModels
 {
-    public class ViewModelDetails
+    public class ViewModelListings
     {
-        public Property SingleProp { get; set; }
         public IEnumerable<Property> PropList { get; set; }
-        
+        public string SelectCateg { get; set; }
+        public string SelectLocation { get; set; }
     }
 }

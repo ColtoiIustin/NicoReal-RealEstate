@@ -1,11 +1,12 @@
 ﻿@using Microsoft.AspNetCore.Identity;
 @using Microsoft.Extensions.Options;
 @using NicoRealSolution.Areas.Identity.Data;
+@using NicoRealSolution.ViewModels;
 
 @inject UserManager<ApplicationUser> UserManager
 @inject SignInManager<ApplicationUser> SignInManager
 
-@model IEnumerable<Property>
+@model ViewModelListings
 @{
     ViewData["Title"] = "Proprietăți";
 
@@ -236,48 +237,33 @@
 
             <!-- Property All Lists -->
         <section class="pt0 pb90 bgc-f7" style="background:#F4FFF2">
-            <div class="container" >
+            <div class="container">
                 <div class="row gx-xl-5">
                         <div class="col-lg-4 d-none d-lg-block">
+                <form id="formSort" asp-controller="Property" asp-action="Listings" method="get">
                         <div class="list-sidebar-style1" style="box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;">
                                 <div class="widget-wrapper">
                                 <h6 class="list-title">Filtrare</h6>
                                     <div class="search_area">
-                                    <input  type="text" class="form-control" placeholder="Ce cauți?">
+                                        <input name="searchString" type="text" class="form-control" placeholder="Ce cauți?" value="@ViewData["searchString"]">
                                         <label><span class="flaticon-search"></span></label>
                                     </div>
                                 </div>
 
-                                <div class="widget-wrapper">
-                                    <h6 class="list-title">Categorie</h6>
-                                    <div class="checkbox-style1">
-                                        <label class="custom_checkbox">
-                                            Case/Vile
-                                            <input type="checkbox">
-                                            <span class="checkmark"></span>
-                                        </label>
-                                        <label class="custom_checkbox">
-                                            Apartamente
-                                            <input type="checkbox" checked="checked">
-                                            <span class="checkmark"></span>
-                                        </label>
-                                        <label class="custom_checkbox">
-                                            Terenuri
-                                            <input type="checkbox">
-                                            <span class="checkmark"></span>
-                                        </label>
-                                        <label class="custom_checkbox">
-                                            Hoteluri
-                                            <input type="checkbox">
-                                            <span class="checkmark"></span>
-                                        </label>
-                                        <label class="custom_checkbox">
-                                        Investiții
-                                            <input type="checkbox">
-                                            <span class="checkmark"></span>
-                                        </label>
-                                    </div>
+                            <div class="widget-wrapper advance-feature-modal">
+                                <h6 class="list-title">Categorie</h6>
+                                <div class="form-style2 input-group">
+                                        <select asp-for="@Model.SelectCateg" name="category" class="selectpicker" data-width="100%" >
+                                            <option>Toate</option>
+                                            <option>Apartament</option>
+                                            <option>Casa/Vila</option>
+                                            <option>Teren</option>
+                                            <option>Investiție</option>
+                                            <option>Hotel</option>
+
+                                        </select>
                                 </div>
+                            </div>
                                 <div class="widget-wrapper">
                                 <h6 class="list-title">Preț</h6>
                                     <!-- Range Slider Desktop Version -->
@@ -285,8 +271,8 @@
                                         <div class="range-wrapper">
                                             <div class="slider-range mt30 mb20"></div>
                                             <div class="text-center">
-                                            <input  type="text" class="amount" placeholder="€20"><span class="fa-sharp fa-solid fa-minus mx-2 dark-color"></span>
-                                            <input  type="text" class="amount2" placeholder="€70987">
+                                                <input name="minPrice" type="text" class="amount" placeholder="€100" value="€@ViewData["minPrice"]"><span class="fa-sharp fa-solid fa-minus mx-2 dark-color"></span>
+                                                <input name="maxPrice" type="text" class="amount2" placeholder="€5000000" value="€@ViewData["maxPrice"]">
                                             </div>
                                         </div>
                                     </div>
@@ -294,38 +280,38 @@
                                 <div class="widget-wrapper advance-feature-modal">
                                 <h6 class="list-title">Locație</h6>
                                     <div class="form-style2 input-group">
-                                        <select class="selectpicker" data-width="100%">
-                                            <option>All</option>
+                                        <select asp-for="@Model.SelectLocation" name="location" class="selectpicker" data-width="100%">
+                                            <option>Toate</option>
                                             <option >Romania</option>
-                                        <option>Austria</option>
-
+                                            <option>Austria</option>
                                         </select>
                                     </div>
                                 </div>
                                 <div class="widget-wrapper">
-                                <h6 class="list-title">Suprafață</h6>
+                                <h6 class="list-title">Suprafață (m²)</h6>
                                     <div class="space-area">
                                         <div class="d-flex align-items-center justify-content-between">
                                             <div class="form-style1">
-                                                <input  type="text" class="form-control" placeholder="Min.">
+                                            <input name="minSurface" type="text" class="form-control" placeholder="Min." value="@ViewData["minSurface"]">
                                             </div>
                                             <span class="dark-color">-</span>
                                             <div class="form-style1">
-                                                <input   type="text" class="form-control" placeholder="Max">
+                                            <input name="maxSurface" type="text" class="form-control" placeholder="Max" value="@ViewData["maxSurface"]">
                                             </div>
                                         </div>
                                     </div>
                                 </div>
                                 <div class="widget-wrapper">
                                     <div class="btn-area d-grid align-items-center">
-                                    <button class="ud-btn btn-thm"><span class="flaticon-search align-text-top pr10"></span>Caută</button>
+                                    <button class="ud-btn btn-thm" type="submit" ><span class="flaticon-search align-text-top pr10"></span>Caută</button>
                                     </div>
                                 </div>
                                 <div class="reset-area d-flex align-items-center justify-content-between">
-                                <a class="reset-button" href="#"><span class="flaticon-turn-back"></span><u>Reseteaza filtrele</u></a>
+                                <a class="reset-button" asp-controller="Property" asp-action="Listings"><span class="flaticon-turn-back"></span><u>Reseteaza filtrele</u></a>
                                     
                                 </div>
                             </div>
+                        </form>
                         </div>
                         <div class="col-lg-8">
                             <div class="row align-items-center mb20">
@@ -368,7 +354,7 @@
                                 </div>
                             </div>
                             <div class="row mt15">
-                                @foreach(var prop in Model) {
+                                @foreach(var prop in Model.PropList) {
                                 <div class="col-lg-12">
                                     <div class="listing-style1 listing-type" style="background:white; box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;">
                                         <a asp-action="Details" asp-controller="Property" asp-route-id="@prop.Id" >
