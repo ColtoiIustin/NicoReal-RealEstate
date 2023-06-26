@@ -38,11 +38,11 @@ namespace NicoRealSolution.Controllers
             Dictionary<string, int> map = new Dictionary<string, int>();
             map = await _propService.CategCountMap();
 
-            ViewBag.Houses = map["Casa"];
-            ViewBag.Apartments = map["Apartament"];
-            ViewBag.Lands = map["Teren"];
-            ViewBag.Investments = map["Investitie"];
-            ViewBag.Hotels = map["Hotel"];
+            ViewData["Houses"] = map["Casa"];
+            ViewData["Apartments"] = map["Apartament"];
+            ViewData["Lands"] = map["Teren"];
+            ViewData["Investments"] = map["Investitie"];
+            ViewData["Hotels"] = map["Hotel"];
 
 
             var properties = await _propService.GetProperties();
@@ -159,7 +159,7 @@ namespace NicoRealSolution.Controllers
 
         [HttpGet]
         public async Task<IActionResult> Listings(int pg=1, string sortOrder = "New", string searchString="", 
-            string category="", decimal minPrice=100, decimal maxPrice=5000000, string location="", decimal minSurface=0, decimal maxSurface=999999999)
+            string category="", decimal minPrice=0, decimal maxPrice=5000000, string location="", decimal minSurface=0, decimal maxSurface=999999999)
         {
             var properties = await _propService.GetProperties();
             
@@ -178,10 +178,14 @@ namespace NicoRealSolution.Controllers
 
             if (!string.IsNullOrEmpty(searchString))
             {
-                properties = properties.Where(p => p.Title.Contains(searchString));
+                properties = properties.Where(p => p.Title.Contains(searchString.Trim()));
             }
             if (!string.IsNullOrEmpty(category))
-            {       if (category != "Toate")
+            {      if(category == "Investiție")
+                {
+                    properties = properties.Where(p => p.IsInvestment == "Da");
+                }
+                if (category != "Toate")
                 {
                     properties = properties.Where(p => p.Category == category);
                 }
@@ -196,7 +200,6 @@ namespace NicoRealSolution.Controllers
 
 
             }
-
 
             ViewBag.Results = properties.Count();
 
@@ -217,6 +220,9 @@ namespace NicoRealSolution.Controllers
                 SelectLocation= location,   
 
             };
+
+            if(maxPrice < minPrice) minPrice=maxPrice;
+            if (maxSurface < minSurface) minSurface = maxSurface;
 
             this.ViewBag.Pager = pager;
             ViewData["Sort"] = sortOrder;

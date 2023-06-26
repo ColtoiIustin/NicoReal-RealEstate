@@ -87,11 +87,12 @@
                 <li class="visible_list"> <a class="list-item" href="#"><span class="title">Categorii</span></a>
                   <!-- Level Two-->
                   <ul>
-                    <li><a asp-action="Listings">Case/Vile</a></li>
-                                            <li><a asp-action="Listings">Apartamente</a></li>
-                    <li><a asp-action="Listings">Terenuri</a></li>
-                                            <li><a asp-action="Listings">Hoteluri</a></li>
-                                            <li><a asp-action="Listings">Investitii</a></li>
+                    <li><a asp-action="Listings" >Toate</a></li>
+                    <li><a asp-action="Listings" asp-route-category="Casa/Vila">Case/Vile</a></li>
+                    <li><a asp-action="Listings" asp-route-category="Apartament">Apartamente</a></li>
+                    <li><a asp-action="Listings" asp-route-category="Teren">Terenuri</a></li>
+                    <li><a asp-action="Listings" asp-route-category="Hotel">Hoteluri</a></li>
+                    <li><a asp-action="Listings" asp-route-category="Investiție">Investiții</a></li>
 
 
                   </ul>
@@ -156,11 +157,11 @@
                   <div class="form-style2 input-group">
                     <select class="selectpicker" data-live-search="true" data-width="100%">
                       <option>Categorie</option>
-                                                <option data-tokens="Apartamente">Apartamente</option>
-                                                <option data-tokens="Case">Case/Vile</option>
-                                                <option data-tokens="Terenuri">Terenuri</option>
-                                                <option data-tokens="Investitii">Investitii</option>
-                                                <option data-tokens="Hoteluri">Hoteluri</option>
+                      <option data-tokens="Apartamente">Apartamente</option>
+                      <option data-tokens="Case">Case/Vile</option>
+                      <option data-tokens="Terenuri">Terenuri</option>
+                      <option data-tokens="Investitii">Investitii</option>
+                      <option data-tokens="Hoteluri">Hoteluri</option>
                     </select>
                   </div>
                 </div>
@@ -229,11 +230,12 @@
       <ul>
         <li><span>Categorii</span>
           <ul>
-                            <li><a asp-action="Listings">Case/Vile</a></li>
-                            <li><a asp-action="Listings">Apartamente</a></li>
-                            <li><a asp-action="Listings">Terenuri</a></li>
-                            <li><a asp-action="Listings">Hoteluri</a></li>
-                            <li><a asp-action="Listings">Investitii</a></li>
+                            <li><a asp-action="Listings" >Toate</a></li>
+                            <li><a asp-action="Listings" asp-route-category="Casa/Vila">Case/Vile</a></li>
+                            <li><a asp-action="Listings" asp-route-category="Apartament">Apartamente</a></li>
+                            <li><a asp-action="Listings" asp-route-category="Teren">Terenuri</a></li>
+                            <li><a asp-action="Listings" asp-route-category="Hotel">Hoteluri</a></li>
+                            <li><a asp-action="Listings" asp-route-category="Investiție">Investiții</a></li>
           </ul>
         </li>
         <li><a href="#featuredSection">Recomandate</a></li>
@@ -270,7 +272,7 @@
                               <form action="#" method="get" class="form-search position-relative" accept-charset="utf-8">
                                 <div class="box-search">
                                   <span class="icon flaticon-home-1"></span>
-                                  <input class="form-control" type="text" name="search" placeholder="Enter Keyword">
+                                  <input class="form-control" type="text" name="search" placeholder="Cuvânt cheie">
                                 </div>
                               </form>
                             </div>
@@ -306,7 +308,7 @@
                               <form action="#" method="get" class="form-search position-relative" accept-charset="utf-8">
                                 <div class="box-search">
                                   <span class="icon flaticon-home-1"></span>
-                                  <input class="form-control" type="text" name="search" placeholder="Enter Keyword">
+                                  <input class="form-control" type="text" name="search" placeholder="Cuvânt cheie">
                                 </div>
                               </form>
                             </div>
@@ -342,7 +344,7 @@
                               <form action="#" method="get" class="form-search position-relative" accept-charset="utf-8">
                                 <div class="box-search">
                                   <span class="icon flaticon-home-1"></span>
-                                  <input class="form-control" type="text" name="search" placeholder="Enter Keyword">
+                                  <input class="form-control" type="text" name="search" placeholder="Cuvânt cheie">
                                 </div>
                               </form>
                             </div>
@@ -387,57 +389,89 @@
           <div class="col-lg-12">
                             <div class="dots_none slider-dib-sm slider-5-grid vam_nav_style owl-theme owl-carousel">
               <div class="item landingCarousel">
-                 <a asp-controller="Property" asp-action="Listings">
+                 <a asp-controller="Property" asp-action="Listings" asp-route-category="Casa/Vila">
                   <div class="iconbox-style4">
                     <span class="icon flaticon-home"></span>
                     <div class="iconbox-content">
                       <h6 class="title">Case/Vile</h6>
-                     
-                      <p class="text mb-0">@ViewBag.Houses Proprietăți</p>
-                    </div>
+                      @if(Convert.ToInt32(ViewData["Houses"]) == 1){
+                                                        <p class="text mb-0">1 Anunț</p>
+                                                    } else
+                                                    {
+                                                        <p class="text mb-0">@ViewData["Houses"] Anunțuri</p>
+                                                    }
+                                                </div>
                   </div>
                 </a>
               </div>
               <div class="item landingCarousel">
-                <a asp-controller="Property" asp-action="Listings" >
+                                        <a asp-controller="Property" asp-action="Listings" asp-route-category="Apartament">
                   <div class="iconbox-style4">
                     <span class="icon flaticon-corporation"></span>
                     <div class="iconbox-content">
                       <h6 class="title">Apartamente</h6>
-                                                <p class="text mb-0">@ViewBag.Apartments Proprietăți</p>
+                                                    @if (Convert.ToInt32(ViewData["Apartments"]) == 1)
+                                                    {
+                                                        <p class="text mb-0">1 Anunț</p>
+                                                    }
+                                                    else
+                                                    {
+                                                        <p class="text mb-0">@ViewData["Apartments"] Anunțuri</p>
+                                                    }
                     </div>
                   </div>
                 </a>
               </div>
               <div class="item landingCarousel">
-                                    <a asp-controller="Property" asp-action="Listings">
+                                        <a asp-controller="Property" asp-action="Listings" asp-route-category="Teren">
                   <div class="iconbox-style4">
                     <span class="icon flaticon-network"></span>
                     <div class="iconbox-content">
                       <h6 class="title">Terenuri</h6>
-                                                <p class="text mb-0">@ViewBag.Lands Proprietăți</p>
+                                                    @if (Convert.ToInt32(ViewData["Lands"]) == 1)
+                                                    {
+                                                        <p class="text mb-0">1 Anunț</p>
+                                                    }
+                                                    else
+                                                    {
+                                                        <p class="text mb-0">@ViewData["Lands"] Anunțuri</p>
+                                                    }
                     </div>
                   </div>
                 </a>
               </div>
               <div class="item landingCarousel">
-                                    <a asp-controller="Property" asp-action="Listings">
+                                    <a asp-controller="Property" asp-action="Listings" asp-route-category="Investiție">
                   <div class="iconbox-style4">
                     <span class="icon flaticon-garden"></span>
                     <div class="iconbox-content">
                                                 <h6 class="title">Investiții</h6>
-                      <p class="text mb-0">@ViewBag.Investments Proprietăți</p>
+                      @if (Convert.ToInt32(ViewData["Investments"]) == 1)
+                                                    {
+                                                        <p class="text mb-0">1 Anunț</p>
+                                                    }
+                                                    else
+                                                    {
+                                                        <p class="text mb-0">@ViewData["Investments"] Anunțuri</p>
+                                                    }
                     </div>
                   </div>
                 </a>
                                 </div>
               <div class="item landingCarousel">
-                                    <a asp-controller="Property" asp-action="Listings">
+                                    <a asp-controller="Property" asp-action="Listings" asp-route-category="Hotel">
                   <div class="iconbox-style4">
                     <span class="icon flaticon-chat"></span>
                     <div class="iconbox-content">
                       <h6 class="title">Hoteluri</h6>
-                                                <p class="text mb-0">@ViewBag.Hotels Proprietăți</p>
+                                                    @if (Convert.ToInt32(ViewData["Hotels"]) == 1)
+                                                    {
+                                                        <p class="text mb-0">1 Anunț</p>
+                                                    }
+                                                    else
+                                                    {
+                                                        <p class="text mb-0">@ViewData["Hotels"] Anunțuri</p>
+                                                    }
                     </div>
                   </div>
                 </a>
@@ -450,7 +484,7 @@
     </section>
 
     <!-- Explore Apartment -->
-                <section class="pt0 pb60 pb30-md bgc-white" style="background: #F4FFF2">
+                <section class="pt0 pb60 pb30-md bgc-white" style="background: #FDFFEB">
       <div class="container">
         <div class="row align-items-center wow fadeInUp" data-wow-delay="00ms">
           <div class="col-lg-9">
@@ -471,7 +505,7 @@
                 @foreach(var prop in Model) {
               <div class="item">
               <a asp-action="Details" asp-controller="Property" asp-route-id="@prop.Id" >
-                                                <div class="listing-style1 style4" style="background: #F4FFF2">
+                                                <div class="listing-style1 style4" style="background: #FDFFEB">
                   <div class="list-thumb">
                                             @if (!string.IsNullOrEmpty(prop.PhotoGuids))
                                             {
