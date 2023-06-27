@@ -198,7 +198,6 @@ namespace NicoRealSolution.Controllers
                 }
                 else  properties = properties.Where(p => p.Country == location); 
 
-
             }
 
             ViewBag.Results = properties.Count();
