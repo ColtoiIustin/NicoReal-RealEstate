@@ -184,8 +184,7 @@ namespace NicoRealSolution.Controllers
             {      if(category == "Investiție")
                 {
                     properties = properties.Where(p => p.IsInvestment == "Da");
-                }
-                if (category != "Toate")
+                } else if (category != "Toate")
                 {
                     properties = properties.Where(p => p.Category == category);
                 }
