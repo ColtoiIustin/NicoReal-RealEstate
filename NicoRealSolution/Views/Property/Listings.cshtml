@@ -110,7 +110,7 @@
                 <div class="sidebar-close-icon"><span class="far fa-times"></span></div>
             </div>
         <div class="hsidebar-content" >
-            <form asp-controller="Property" asp-action="Listings" method="get">
+            <form id="formSortMob" asp-controller="Property" asp-action="Listings" method="get">
                 <div class="widget-wrapper">
                     <h6 class="list-title">Filtrare</h6>
                     <div class="search_area">
@@ -121,7 +121,7 @@
                 <div class="widget-wrapper advance-feature-modal">
                     <h6 class="list-title">Categorie</h6>
                     <div class="form-style2 input-group">
-                        <select asp-for="@Model.SelectCateg" name="category" class="selectpicker" data-width="100%">
+                        <select asp-for="@Model.SelectCateg" name="category" class="selectpicker" data-width="100%" onchange="document.getElementById('formSortMob').submit();">
                             <option>Toate</option>
                             <option>Apartament</option>
                             <option>Casa/Vila</option>
@@ -148,7 +148,7 @@
                 <div class="widget-wrapper advance-feature-modal">
                 <h6 class="list-title">Locație</h6>
                     <div class="form-style2 input-group">
-                        <select asp-for="@Model.SelectLocation" name="location" class="selectpicker" data-width="100%">
+                        <select asp-for="@Model.SelectLocation" name="location" class="selectpicker" data-width="100%" onchange="document.getElementById('formSortMob').submit();">
                             <option>Toate</option>
                             <option >Romania</option>
                             <option >Austria</option>
@@ -180,6 +180,7 @@
                     <a class="reset-button" asp-controller="Property" asp-action="Listings"><span class="flaticon-turn-back"></span><u>Resetează filtrele</u></a>
                     
                 </div>
+                <input type="hidden" name="sortOrder" id="sortOrderHiddenMob" value="@((string)ViewData["sortOrder"])">
             </form>
             </div>
         </div>
@@ -226,7 +227,7 @@
             <div class="container">
                 <div class="row gx-xl-5">
                         <div class="col-lg-4 d-none d-lg-block">
-                <form id="formSort" asp-controller="Property" asp-action="Listings" method="get">
+                        <form id="formSort" asp-controller="Property" asp-action="Listings" method="get" >
                         <div class="list-sidebar-style1" style="box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;">
                                 <div class="widget-wrapper">
                                 <h6 class="list-title">Filtrare</h6>
@@ -239,7 +240,7 @@
                             <div class="widget-wrapper advance-feature-modal">
                                 <h6 class="list-title">Categorie</h6>
                                 <div class="form-style2 input-group">
-                                        <select asp-for="@Model.SelectCateg" name="category" class="selectpicker" data-width="100%" >
+                                        <select asp-for="@Model.SelectCateg" name="category" class="selectpicker" data-width="100%" onchange="document.getElementById('formSort').submit();">
                                             <option>Toate</option>
                                             <option>Apartament</option>
                                             <option>Casa/Vila</option>
@@ -267,7 +268,7 @@
                                 <div class="widget-wrapper advance-feature-modal">
                                 <h6 class="list-title">Locație</h6>
                                     <div class="form-style2 input-group">
-                                        <select asp-for="@Model.SelectLocation" name="location" class="selectpicker" data-width="100%">
+                                        <select asp-for="@Model.SelectLocation" name="location" class="selectpicker" data-width="100%" onchange="document.getElementById('formSort').submit();">
                                             <option>Toate</option>
                                             <option >Romania</option>
                                             <option>Austria</option>
@@ -298,6 +299,8 @@
                                     
                                 </div>
                             </div>
+
+                            <input type="hidden" name="sortOrder" id="sortOrderHidden" value="@((string)ViewData["sortOrder"])">
                         </form>
                         </div>
                         <div class="col-lg-8">
@@ -311,28 +314,28 @@
                                     <div class="page_control_shorting d-flex align-items-center justify-content-center justify-content-sm-end">
                                         <div class="pcs_dropdown pr10">
                                         <span>Sortează</span>
-                                        @if ((string)ViewData["Sort"] == "New")
+                                        @if ((string)ViewData["sortOrder"] == "New")
                                         {
-                                            <select class="selectpicker show-tick" onchange="location = this.value;">
-                                                <option value="@Url.Action("Listings", new { sortOrder = "New" })" selected>Noi</option>
-                                                <option value="@Url.Action("Listings", new { sortOrder = "Price" })">Preț crescator</option>
-                                                <option value="@Url.Action("Listings", new { sortOrder = "PriceDesc" })">Preț descrescator</option>
+                                            <select class="selectpicker show-tick" onchange="updateSortOrder(this.value)">
+                                                <option value="New" selected>Noi</option>
+                                                <option value="Price">Preț crescător</option>
+                                                <option value="PriceDesc">Preț descrescător</option>
                                             </select>
                                         }
-                                        else if ((string)ViewData["Sort"] == "Price")
+                                        else if ((string)ViewData["sortOrder"] == "Price")
                                         {
-                                            <select class="selectpicker show-tick" onchange="location = this.value;">
-                                                <option value="@Url.Action("Listings", new { sortOrder = "New" })" >Noi</option>
-                                                <option value="@Url.Action("Listings", new { sortOrder = "Price" })" selected>Preț crescator</option>
-                                                <option value="@Url.Action("Listings", new { sortOrder = "PriceDesc" })">Preț descrescator</option>
+                                            <select class="selectpicker show-tick" onchange="updateSortOrder(this.value)">
+                                                <option value="New">Noi</option>
+                                                <option value="Price" selected>Preț crescător</option>
+                                                <option value="PriceDesc">Preț descrescător</option>
                                             </select>
                                         }
                                         else
                                         {
-                                            <select class="selectpicker show-tick" onchange="location = this.value;">
-                                                <option value="@Url.Action("Listings", new { sortOrder = "New" })">Noi</option>
-                                                <option value="@Url.Action("Listings", new { sortOrder = "Price" })" >Preț crescator</option>
-                                                <option value="@Url.Action("Listings", new { sortOrder = "PriceDesc" })" selected>Preț descrescator</option>
+                                            <select class="selectpicker show-tick" onchange="updateSortOrder(this.value)">
+                                                <option value="New" >Noi</option>
+                                                <option value="Price">Preț crescător</option>
+                                                <option value="PriceDesc" selected>Preț descrescător</option>
                                             </select>
                                         }
                                     </div>
@@ -402,28 +405,68 @@
                                 <div class="mbp_pagination text-center">
                                     <ul class="page_navigation">
                                         <li class="page-item">
-                                        <a class="page-link" asp-controller="Property" asp-action="Listings" asp-route-pg="1" asp-route-sortOrder="@ViewData["Sort"]"> <span class="fas fa-angle-double-left"></span></a>
+                                        <a class="page-link" asp-controller="Property" asp-action="Listings" asp-route-pg="1"
+                                           asp-route-sortOrder="@ViewData["sortOrder"]"
+                                           asp-route-searchString="@ViewData["searchString"]"
+                                           asp-route-category="@Model.SelectCateg"
+                                           asp-route-minPrice="@ViewData["minPrice"]"
+                                           asp-route-maxPrice="@ViewData["maxPrice"]"
+                                           asp-route-location="@Model.SelectLocation"
+                                           asp-route-minSurface="@ViewData["minSurface"]"
+                                           asp-route-maxSurface="@ViewData["maxSurface"]"> <span class="fas fa-angle-double-left"></span></a>
                                         </li>
                                         @if (pager.CurrentPage > 1)
                                         {
                                             <li class="page-item">
-                                            <a class="page-link" asp-controller="Property" asp-action="Listings" asp-route-pg=@(pager.CurrentPage - 1) asp-route-sortOrder="@ViewData["Sort"]"> <span class="fas fa-angle-left"></span></a>
+                                            <a class="page-link" asp-controller="Property" asp-action="Listings" asp-route-pg=@(pager.CurrentPage - 1)
+                                           asp-route-sortOrder="@ViewData["sortOrder"]"
+                                           asp-route-searchString="@ViewData["searchString"]"
+                                           asp-route-category="@Model.SelectCateg"
+                                           asp-route-minPrice="@ViewData["minPrice"]"
+                                           asp-route-maxPrice="@ViewData["maxPrice"]"
+                                           asp-route-location="@Model.SelectLocation"
+                                           asp-route-minSurface="@ViewData["minSurface"]"
+                                           asp-route-maxSurface="@ViewData["maxSurface"]"> <span class="fas fa-angle-left"></span></a>
                                             </li>
                                         }
                                         @for (var pge = pager.StartPage; pge <= pager.EndPage; pge++)
                                               {
                                             <li class="page-item @(pge == pager.CurrentPage ? "active" : "")" aria-current="@(pge == pager.CurrentPage ? "page" : "")" >
-                                            <a class="page-link" asp-controller="Property" asp-action="Listings" asp-route-pg="@pge" asp-route-sortOrder="@ViewData["Sort"]">@pge</a>
+                                            <a class="page-link" asp-controller="Property" asp-action="Listings" asp-route-pg="@pge"
+                                           asp-route-sortOrder="@ViewData["sortOrder"]"
+                                           asp-route-searchString="@ViewData["searchString"]"
+                                           asp-route-category="@Model.SelectCateg"
+                                           asp-route-minPrice="@ViewData["minPrice"]"
+                                           asp-route-maxPrice="@ViewData["maxPrice"]"
+                                           asp-route-location="@Model.SelectLocation"
+                                           asp-route-minSurface="@ViewData["minSurface"]"
+                                           asp-route-maxSurface="@ViewData["maxSurface"]">@pge</a>
                                                  </li>
 
                                               }
                                         @if(pager.CurrentPage < pager.TotalPages){
                                                 <li class="page-item">
-                                            <a class="page-link" asp-controller="Property" asp-action="Listings" asp-route-pg=@(pager.CurrentPage + 1) asp-route-sortOrder="@ViewData["Sort"]"><span class="fas fa-angle-right"></span></a>
+                                            <a class="page-link" asp-controller="Property" asp-action="Listings" asp-route-pg=@(pager.CurrentPage + 1)
+                                           asp-route-sortOrder="@ViewData["sortOrder"]"
+                                           asp-route-searchString="@ViewData["searchString"]"
+                                           asp-route-category="@Model.SelectCateg"
+                                           asp-route-minPrice="@ViewData["minPrice"]"
+                                           asp-route-maxPrice="@ViewData["maxPrice"]"
+                                           asp-route-location="@Model.SelectLocation"
+                                           asp-route-minSurface="@ViewData["minSurface"]"
+                                           asp-route-maxSurface="@ViewData["maxSurface"]"><span class="fas fa-angle-right"></span></a>
                                                 </li>
                                           }
                                          <li class="page-item">
-                                        <a class="page-link" asp-controller="Property" asp-action="Listings" asp-route-pg=@(pager.TotalPages) asp-route-sortOrder="@ViewData["Sort"]"><span class="fas fa-angle-double-right"></span></a>
+                                        <a class="page-link" asp-controller="Property" asp-action="Listings" asp-route-pg=@(pager.TotalPages)
+                                           asp-route-sortOrder="@ViewData["sortOrder"]"
+                                           asp-route-searchString="@ViewData["searchString"]"
+                                           asp-route-category="@Model.SelectCateg"
+                                           asp-route-minPrice="@ViewData["minPrice"]"
+                                           asp-route-maxPrice="@ViewData["maxPrice"]"
+                                           asp-route-location="@Model.SelectLocation"
+                                           asp-route-minSurface="@ViewData["minSurface"]"
+                                           asp-route-maxSurface="@ViewData["maxSurface"]"><span class="fas fa-angle-double-right"></span></a>
                                          </li>
                                     
                                     </ul>
@@ -493,4 +536,17 @@
     <script src="~/js/pricing-slider.js"></script>
     <!-- Custom script for all pages -->
     <script src="~/js/script.js"></script>
+
+<script>
+    function updateSortOrder(value) {
+        var hiddenInput = document.getElementById('sortOrderHidden');
+        hiddenInput.value = value;
+
+        var hiddenInputMob = document.getElementById('sortOrderHiddenMob');
+        hiddenInputMob.value = value;
+
+        var form = document.getElementById('formSort');
+        form.submit();
+    }
+</script>
 

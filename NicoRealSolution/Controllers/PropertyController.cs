@@ -203,7 +203,7 @@ namespace NicoRealSolution.Controllers
 
             ViewBag.Results = properties.Count();
 
-            const int pageSize = 5;
+            const int pageSize = 1;
             if (pg < 1) pg = 1;
 
             int propCount =properties.Count();
@@ -225,7 +225,7 @@ namespace NicoRealSolution.Controllers
             if (maxSurface < minSurface) minSurface = maxSurface;
 
             this.ViewBag.Pager = pager;
-            ViewData["Sort"] = sortOrder;
+            ViewData["sortOrder"] = sortOrder;
             ViewData["searchString"] = searchString;
             ViewData["minPrice"] = minPrice;
             ViewData["maxPrice"] = maxPrice;
