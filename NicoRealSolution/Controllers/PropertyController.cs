@@ -203,7 +203,7 @@ namespace NicoRealSolution.Controllers
 
             ViewBag.Results = properties.Count();
 
-            const int pageSize = 1;
+            const int pageSize = 5;
             if (pg < 1) pg = 1;
 
             int propCount =properties.Count();
