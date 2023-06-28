@@ -9,6 +9,7 @@
 
 @{
     ViewData["Title"] = "Acasă";
+    bool isMobileDevice = Context.Request.Headers["User-Agent"].ToString().Contains("Mobi", StringComparison.OrdinalIgnoreCase);
 }
 
 
@@ -37,7 +38,6 @@
 <!-- Title -->
 <title>NicoReal</title>
 <!-- Favicon -->
-
 <!-- Apple Touch Icon -->
 <link href="~/images/apple-touch-icon-60x60.png" sizes="60x60" rel="apple-touch-icon">
 <link href="~/images/apple-touch-icon-72x72.png" sizes="72x72" rel="apple-touch-icon">
@@ -45,317 +45,322 @@
 <link href="~/images/apple-touch-icon-180x180.png" sizes="180x180" rel="apple-touch-icon">
 
 <style>
-    .list-thumb{
-    height: 240px;
-    width: 370px;
-}
+    .list-thumb {
+        height: 240px;
+        width: 370px;
+    }
 
-.list-thumb img{
-    min-height:100%;
-}
-.wrapper ovh{
-    scroll-behavior: smooth !important;
-    background: #EDFFEB;
-}
+        .list-thumb img {
+            min-height: 100%;
+        }
 
-#firstWrap{
-    
-}
+    .wrapper ovh {
+        scroll-behavior: smooth !important;
+        background: #EDFFEB;
+    }
+
+    #firstWrap {
+    }
 
 </style>
 
 <div id="firstWrap">
-<body>
-    
-<div class="wrapper ovh">
-  
+    <body>
 
-  <!-- Main Header Nav -->
-  <header class="header-nav nav-homepage-style at-home2 stricky main-menu">
-    <!-- Ace Responsive Menu -->
-    <nav class="posr"> 
-      <div class="container maxw1600 posr">
-        <div class="row align-items-center justify-content-between">
-          <div class="col-auto">
-            <div class="d-flex align-items-center justify-content-between">
-              <div class="logos mr35">
-                <a class="header-logo logo1" asp-action="Index"><img src="~/images/MyLogoWhite.svg" alt="Header Logo"></a>
-                                    <a class="header-logo logo2" asp-action="Index"><img src="~/images/MyLogoDark.svg" alt="Header Logo"></a>
-              </div>
-              <!-- Responsive Menu Structure-->
-              <ul id="respMenu" class="ace-responsive-menu" data-menu-style="horizontal">
-                <li class="visible_list"> <a class="list-item" href="#"><span class="title">Categorii</span></a>
-                  <!-- Level Two-->
-                  <ul>
-                    <li><a asp-action="Listings" >Toate</a></li>
-                    <li><a asp-action="Listings" asp-route-category="Casa/Vila">Case/Vile</a></li>
-                    <li><a asp-action="Listings" asp-route-category="Apartament">Apartamente</a></li>
-                    <li><a asp-action="Listings" asp-route-category="Teren">Terenuri</a></li>
-                    <li><a asp-action="Listings" asp-route-category="Hotel">Hoteluri</a></li>
-                    <li><a asp-action="Listings" asp-route-category="Investiție">Investiții</a></li>
+        <div class="wrapper ovh">
 
 
-                  </ul>
-                </li>
-                <li class="megamenu_style"> <a  class="list-item" href="#featuredSection"><span class="title">Recomandate</span></a> 
-                </li>
-                <li class="visible_list"> <a class="list-item" href="#ourServicesSection"><span class="title">Serviciile Noastre</span></a>
-                </li>
-                    @if (User.Identity.IsAuthenticated)
-                                    {
-                                        <li class="megamenu_style">
-                                                <a class="list-item" href="@Url.Action("Create", "Property")"><span class="title"><span style="color:red">Adaugă anunț</span></span></a>
+            <!-- Main Header Nav -->
+            <header class="header-nav nav-homepage-style at-home2 stricky main-menu">
+                <!-- Ace Responsive Menu -->
+                <nav class="posr">
+                    <div class="container maxw1600 posr">
+                        <div class="row align-items-center justify-content-between">
+                            <div class="col-auto">
+                                <div class="d-flex align-items-center justify-content-between">
+                                    <div class="logos mr35">
+                                        <a class="header-logo logo1" asp-action="Index"><img src="~/images/MyLogoWhite.svg" alt="Header Logo"></a>
+                                        <a class="header-logo logo2" asp-action="Index"><img src="~/images/MyLogoDark.svg" alt="Header Logo"></a>
+                                    </div>
+                                    <!-- Responsive Menu Structure-->
+                                    <ul id="respMenu" class="ace-responsive-menu" data-menu-style="horizontal">
+                                        <li class="visible_list">
+                                            <a class="list-item" href="#"><span class="title">Categorii</span></a>
+                                            <!-- Level Two-->
+                                            <ul>
+                                                <li><a asp-action="Listings">Toate</a></li>
+                                                <li><a asp-action="Listings" asp-route-category="Casa/Vila">Case/Vile</a></li>
+                                                <li><a asp-action="Listings" asp-route-category="Apartament">Apartamente</a></li>
+                                                <li><a asp-action="Listings" asp-route-category="Teren">Terenuri</a></li>
+                                                <li><a asp-action="Listings" asp-route-category="Hotel">Hoteluri</a></li>
+                                                <li><a asp-action="Listings" asp-route-category="Investiție">Investiții</a></li>
+
+
+                                            </ul>
                                         </li>
-                                    }
-                                   
-              </ul>
-            </div>
-          </div>
-          <div class="col-auto">
-            <div class="d-flex align-items-center">
-                                <a class="login-info d-flex align-items-center me-3" href=""><i class="far fa-phone fz16 me-2"></i> <span class="d-none d-xl-block d-md-block d-lg-block">+43 665 65 66 7000</span></a>
-            </div>
-          </div>
-        </div>
-      </div>
-    </nav>
-  </header>
-  <!-- Signup Modal -->
+                                        <li class="megamenu_style">
+                                            <a class="list-item" href="#featuredSection"><span class="title">Recomandate</span></a>
+                                        </li>
+                                        <li class="visible_list">
+                                            <a class="list-item" href="#ourServicesSection"><span class="title">Serviciile Noastre</span></a>
+                                        </li>
+                                        @if (User.Identity.IsAuthenticated)
+                                        {
+                                            <li class="megamenu_style">
+                                                <a class="list-item" href="@Url.Action("Create", "Property")"><span class="title"><span style="color:red">Adaugă anunț</span></span></a>
+                                            </li>
+                                        }
 
-  <!-- Advance Feature Modal Start -->
-  <div class="advance-feature-modal">
-      <form asp-controller="Property" asp-action="Listings" method="get" >
-    <!-- Modal -->
-    <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-      <div class="modal-dialog modal-dialog-centered modal-lg">
-        <div class="modal-content">
-          <div class="modal-header pl30 pr30">
-            <h5 class="modal-title" id="exampleModalLabel">Filtre</h5>
-            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-          </div>
-          <div class="modal-body pb-0">
-            <div class="row">
-              
-              <div class="col-sm-6">
-                <div class="widget-wrapper">
-                  <h6 class="list-title">Categorie</h6>
-                  <div class="form-style2 input-group">
-                    <select  name="category" class="selectpicker" data-live-search="true" data-width="100%">
-                      <option >Toate</option>
-                      <option >Apartament</option>
-                      <option >Casa/Vila</option>
-                      <option >Teren</option>
-                      <option >Investiție</option>
-                      <option >Hotel</option>
-                    </select>
-                  </div>
-                </div>
-              </div>
-              <div class="col-sm-6">
-                <div class="widget-wrapper">
-                   <h6 class="list-title">Preț (€)</h6>
-                  <div class="space-area">
-                    <div class="d-flex align-items-center justify-content-between">
-                      <div class="form-style1">
-                        <input name="minPrice" type="text" class="form-control" placeholder="€">
-                      </div>
-                      <span class="dark-color">-</span>
-                      <div class="form-style1">
-                        <input name="maxPrice" type="text" class="form-control" placeholder="€">
-                      </div>
-                    </div>
-                  </div>
-                  <div class="range-slider-style modal-version" hidden>
-                    <div class="range-wrapper">
-                      <div class="mb30 mt35" id="slider" hidden></div>
-                      <div class="d-flex align-items-center">
-                        <span id="slider-range-value1"></span><i class="fa-sharp fa-solid fa-minus mx-2 dark-color icon"></i>
-                        <span id="slider-range-value2"></span>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div class="row">
-              <div class="col-sm-6">
-                <div class="widget-wrapper">
-                  <h6 class="list-title">Suprafață (m²)</h6>
-                  <div class="space-area">
-                    <div class="d-flex align-items-center justify-content-between">
-                      <div class="form-style1">
-                        <input name="minSurface" type="text" class="form-control" placeholder="Min.">
-                      </div>
-                      <span class="dark-color">-</span>
-                      <div class="form-style1">
-                        <input name="maxSurface" type="text" class="form-control" placeholder="Max">
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-              <div class="col-sm-6">
-                <div class="widget-wrapper">
-                    <h6 class="list-title">Locatie</h6>
-                  <div class="form-style2 input-group">
-                    <select  name="location" class="selectpicker" data-live-search="true" data-width="100%">
-                      <option >Toate</option>
-                      <option >Romania</option>
-                      <option>Austria</option>
-
-                    </select>
-                  </div>
-                  
-                </div>
-              </div>
-            </div>
-            <div class="row">
-            </div>
-          </div>
-          <div class="modal-footer">
-            
-            <div class="btn-area">
-                <button class="ud-btn btn-thm" type="submit"><span class="flaticon-search align-text-top pr10"></span>Caută</button>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-    </form>
-  </div>
-  <!-- Advance Feature Modal End -->
-
-  <div class="hiddenbar-body-ovelay"></div>
-
-  <!-- Mobile Nav  -->
-  <div id="page" class="mobilie_header_nav stylehome1">
-    <div class="mobile-menu">
-      <div class="header innerpage-style">
-        <div class="menu_and_widgets">
-          <div class="mobile_menu_bar d-flex justify-content-between align-items-center">
-            <a class="menubar" href="#menu"><img src="~/images/mobile-dark-nav-icon.svg" alt=""></a>
-                        <a class="mobile_logo" style="background-color:white; border-radius:40px" href="#"><img src="~/images/MyLogoDark.svg" alt=""></a>
-            <a ></a>
-                        </div>
-        </div>
-      </div>
-            </div>
-    <!-- /.mobile-menu -->
-    <nav id="menu" class="">
-      <ul>
-        <li><span>Categorii</span>
-          <ul>
-                            <li><a asp-action="Listings" >Toate</a></li>
-                            <li><a asp-action="Listings" asp-route-category="Casa/Vila">Case/Vile</a></li>
-                            <li><a asp-action="Listings" asp-route-category="Apartament">Apartamente</a></li>
-                            <li><a asp-action="Listings" asp-route-category="Teren">Terenuri</a></li>
-                            <li><a asp-action="Listings" asp-route-category="Hotel">Hoteluri</a></li>
-                            <li><a asp-action="Listings" asp-route-category="Investiție">Investiții</a></li>
-          </ul>
-        </li>
-        <li><a href="#featuredSection">Recomandate</a></li>
-        <li><a href="#ourServicesSection">Serviciile Noastre</a></li>
-
-        <li class="px-3 mobile-menu-btn">
-           <a href="@Url.Action("Listings", "Property")" class="ud-btn btn-thm text-white m30">Vezi toate proprietățile<i class="fal fa-arrow-right-long"></i></a>
-        </li>
-        <!-- Only for Mobile View -->
-      </ul>
-    </nav>
-  </div>
-
-  <div class="body_content">
-    <!-- Home Banner Style V1 -->
-    <section class="home-banner-style2 p0">
-      <div class="home-style2">
-        <div class="container maxw1600 " >
-          <div class="home2-hero-banner bdrs12" ></div>
-          <div class="row">
-            <div class="col-xl-10 mx-auto">
-              <div class="inner-banner-style2 text-center">
-                <div class="advance-style2 mt80 mt0-md mb60 mx-auto animate-up-1">
-                  <ul class="nav nav-tabs p-0" id="myTab" role="tablist">
-                    <li class="nav-item customList" role="presentation">
-                    </li> 
-                  </ul>
-                  <div class="tab-content" id="myTabContent">
-                    <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
-                      <div class="advance-content-style2">
-                          <form asp-controller="Property" asp-action="Listings" method="get" class="form-search position-relative">
-                        <div class="row align-items-center justify-content-start justify-content-md-center">
-                          <div class="col-md-5 col-lg-6">
-                            <div class="advance-search-field position-relative text-start bdrr1 bdrrn-sm bb1-sm">
-                                <div class="box-search">
-                                  <span class="icon flaticon-home-1"></span>
-                                  <input name="searchString" class="form-control" type="text" placeholder="Cuvânt cheie">
+                                    </ul>
                                 </div>
-                              
                             </div>
-                          </div>
-                          <div class="col-md-3 col-lg-3 ps-md-0">
-                            <div class="bdrr1 bdrrn-sm pe-0 pe-lg-3 bb1-sm">
-                              <div class="bootselect-multiselect">
-                                <select name="category" class="selectpicker" data-width="100%">
-                                  <option >Toate</option>
-                                  <option >Apartament</option>
-                                  <option >Casa/Vila</option>
-                                  <option >Teren</option>
-                                  <option >Investiție</option>
-                                  <option >Hotel</option>
-                                </select>
-                              </div>
+                            <div class="col-auto">
+                                <div class="d-flex align-items-center">
+                                    <a class="login-info d-flex align-items-center me-3" href=""><i class="far fa-phone fz16 me-2"></i> <span class="d-none d-xl-block d-md-block d-lg-block">+43 665 65 66 7000</span></a>
+                                </div>
                             </div>
-                          </div>
-                          <div class="col-md-4 col-lg-3">
-                            <div class="d-flex align-items-center justify-content-start justify-content-md-center mt-2 mt-md-0">
-                              <button class="advance-search-btn" type="button" data-bs-toggle="modal" data-bs-target="#exampleModal"><span class="flaticon-settings"></span> Filtre</button>
-                              <button  class="advance-search-icon ud-btn btn-thm ms-4" type="submit"><span class="flaticon-search"></span></button>
-                            </div>
-                          </div>
                         </div>
-                          </form>
-                      </div>
                     </div>
-                    
-                  </div>
-                </div>
-                                    <h2 class="hero-title animate-up-2">Explorează cu NicoReal!</h2>
-                                    <p class="hero-text fz15 animate-up-3">Hai să căutam ceva perfect pentru tine!</p>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
+                </nav>
+            </header>
+            <!-- Signup Modal -->
+            <!-- Advance Feature Modal Start -->
+            <div class="advance-feature-modal">
+                <form asp-controller="Property" asp-action="Listings" method="get">
+                    <!-- Modal -->
+                    <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                        <div class="modal-dialog modal-dialog-centered modal-lg">
+                            <div class="modal-content">
+                                <div class="modal-header pl30 pr30">
+                                    <h5 class="modal-title" id="exampleModalLabel">Filtre</h5>
+                                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                </div>
+                                <div class="modal-body pb-0">
+                                    <div class="row">
 
-    <!-- Explore Apartment -->
-    <section class="pb90 pb30-md customSection">
-      <div class="container">
-        <div class="row justify-content-center wow fadeInUp" data-wow-delay="300ms">
-          <div class="col-lg-12">
-                            <div class="dots_none slider-dib-sm slider-5-grid vam_nav_style owl-theme owl-carousel">
-              <div class="item landingCarousel">
-                 <a asp-controller="Property" asp-action="Listings" asp-route-category="Casa/Vila">
-                  <div class="iconbox-style4">
-                    <span class="icon flaticon-home"></span>
-                    <div class="iconbox-content">
-                      <h6 class="title">Case/Vile</h6>
-                      @if(Convert.ToInt32(ViewData["Houses"]) == 1){
+                                        <div class="col-sm-6">
+                                            <div class="widget-wrapper">
+                                                <h6 class="list-title">Categorie</h6>
+                                                <div class="form-style2 input-group">
+                                                    <select name="category" class="selectpicker" data-live-search="true" data-width="100%">
+                                                        <option>Toate</option>
+                                                        <option>Apartament</option>
+                                                        <option>Casa/Vila</option>
+                                                        <option>Teren</option>
+                                                        <option>Investiție</option>
+                                                        <option>Hotel</option>
+                                                    </select>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-sm-6">
+                                            <div class="widget-wrapper">
+                                                <h6 class="list-title">Preț (€)</h6>
+                                                <div class="space-area">
+                                                    <div class="d-flex align-items-center justify-content-between">
+                                                        <div class="form-style1">
+                                                            <input name="minPrice" type="text" class="form-control" placeholder="€">
+                                                        </div>
+                                                        <span class="dark-color">-</span>
+                                                        <div class="form-style1">
+                                                            <input name="maxPrice" type="text" class="form-control" placeholder="€">
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="range-slider-style modal-version" hidden>
+                                                    <div class="range-wrapper">
+                                                        <div class="mb30 mt35" id="slider" hidden></div>
+                                                        <div class="d-flex align-items-center">
+                                                            <span id="slider-range-value1"></span><i class="fa-sharp fa-solid fa-minus mx-2 dark-color icon"></i>
+                                                            <span id="slider-range-value2"></span>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-sm-6">
+                                            <div class="widget-wrapper">
+                                                <h6 class="list-title">Suprafață (m²)</h6>
+                                                <div class="space-area">
+                                                    <div class="d-flex align-items-center justify-content-between">
+                                                        <div class="form-style1">
+                                                            <input name="minSurface" type="text" class="form-control" placeholder="Min.">
+                                                        </div>
+                                                        <span class="dark-color">-</span>
+                                                        <div class="form-style1">
+                                                            <input name="maxSurface" type="text" class="form-control" placeholder="Max">
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-sm-6">
+                                            <div class="widget-wrapper">
+                                                <h6 class="list-title">Locatie</h6>
+                                                <div class="form-style2 input-group">
+                                                    <select name="location" class="selectpicker" data-live-search="true" data-width="100%">
+                                                        <option>Toate</option>
+                                                        <option>Romania</option>
+                                                        <option>Austria</option>
+
+                                                    </select>
+                                                </div>
+
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                    </div>
+                                </div>
+                                <div class="modal-footer">
+
+                                    <div class="btn-area">
+                                        <button class="ud-btn btn-thm" type="submit"><span class="flaticon-search align-text-top pr10"></span>Caută</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+            </div>
+            <!-- Advance Feature Modal End -->
+
+            <div class="hiddenbar-body-ovelay"></div>
+
+            <!-- Mobile Nav  -->
+            <div id="page" class="mobilie_header_nav stylehome1">
+                <div class="mobile-menu">
+                    <div class="header innerpage-style">
+                        <div class="menu_and_widgets">
+                            <div class="mobile_menu_bar d-flex justify-content-between align-items-center">
+                                <a class="menubar" href="#menu"><img src="~/images/mobile-dark-nav-icon.svg" alt=""></a>
+                                <a class="mobile_logo" style="background-color:white; border-radius:40px" href="#"><img src="~/images/MyLogoDark.svg" alt=""></a>
+                                <a></a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- /.mobile-menu -->
+                <nav id="menu" class="">
+                    <ul>
+                        <li>
+                            <span>Categorii</span>
+                            <ul>
+                                <li><a asp-action="Listings">Toate</a></li>
+                                <li><a asp-action="Listings" asp-route-category="Casa/Vila">Case/Vile</a></li>
+                                <li><a asp-action="Listings" asp-route-category="Apartament">Apartamente</a></li>
+                                <li><a asp-action="Listings" asp-route-category="Teren">Terenuri</a></li>
+                                <li><a asp-action="Listings" asp-route-category="Hotel">Hoteluri</a></li>
+                                <li><a asp-action="Listings" asp-route-category="Investiție">Investiții</a></li>
+                            </ul>
+                        </li>
+                        <li><a href="#featuredSection">Recomandate</a></li>
+                        <li><a href="#ourServicesSection">Serviciile Noastre</a></li>
+
+                        <li class="px-3 mobile-menu-btn">
+                            <a href="@Url.Action("Listings", "Property")" class="ud-btn btn-thm text-white m30">Vezi toate proprietățile<i class="fal fa-arrow-right-long"></i></a>
+                        </li>
+                        <!-- Only for Mobile View -->
+                    </ul>
+                </nav>
+            </div>
+
+            <div class="body_content">
+                <!-- Home Banner Style V1 -->
+                <section class="home-banner-style2 p0">
+                    <div class="home-style2">
+                        <div class="container maxw1600 ">
+                            <div class="home2-hero-banner bdrs12"></div>
+                            <div class="row">
+                                <div class="col-xl-10 mx-auto">
+                                    <div class="inner-banner-style2 text-center">
+                                        <div class="advance-style2 mt80 mt0-md mb60 mx-auto animate-up-1">
+                                            <ul class="nav nav-tabs p-0" id="myTab" role="tablist">
+                                                <li class="nav-item customList" role="presentation">
+                                                </li>
+                                            </ul>
+                                            <div class="tab-content" id="myTabContent">
+                                                <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
+                                                    <div class="advance-content-style2">
+                                                        <form asp-controller="Property" asp-action="Listings" method="get" class="form-search position-relative">
+                                                            <div class="row align-items-center justify-content-start justify-content-md-center">
+                                                                <div class="col-md-5 col-lg-6">
+                                                                    <div class="advance-search-field position-relative text-start bdrr1 bdrrn-sm bb1-sm">
+                                                                        <div class="box-search">
+                                                                            <span class="icon flaticon-home-1"></span>
+                                                                            <input name="searchString" class="form-control" type="text" placeholder="Cuvânt cheie">
+                                                                        </div>
+
+                                                                    </div>
+                                                                </div>
+                                                                <div class="col-md-3 col-lg-3 ps-md-0">
+                                                                    <div class="bdrr1 bdrrn-sm pe-0 pe-lg-3 bb1-sm">
+                                                                        <div class="bootselect-multiselect">
+                                                                            <select name="category" class="selectpicker" data-width="100%">
+                                                                                <option>Toate</option>
+                                                                                <option>Apartament</option>
+                                                                                <option>Casa/Vila</option>
+                                                                                <option>Teren</option>
+                                                                                <option>Investiție</option>
+                                                                                <option>Hotel</option>
+                                                                            </select>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                                <div class="col-md-4 col-lg-3">
+                                                                    <div class="d-flex align-items-center justify-content-start justify-content-md-center mt-2 mt-md-0">
+                                                                        <button class="advance-search-btn" type="button" data-bs-toggle="modal" data-bs-target="#exampleModal"><span class="flaticon-settings"></span> Filtre</button>
+                                                                        <button class="advance-search-icon ud-btn btn-thm ms-4" type="submit"><span class="flaticon-search"></span></button>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </form>
+                                                    </div>
+                                                </div>
+
+                                            </div>
+                                        </div>
+                                        <h2 class="hero-title animate-up-2">Explorează cu NicoReal!</h2>
+                                        <p class="hero-text fz15 animate-up-3">Hai să căutam ceva perfect pentru tine!</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Explore Apartment -->
+                <section class="pb90 pb30-md customSection">
+                    <div class="container">
+                        <div class="row justify-content-center wow fadeInUp" data-wow-delay="300ms">
+                            <div class="col-lg-12">
+                                <div class="dots_none slider-dib-sm slider-5-grid vam_nav_style owl-theme owl-carousel">
+                                    <div class="item landingCarousel">
+                                        <a asp-controller="Property" asp-action="Listings" asp-route-category="Casa/Vila">
+                                            <div class="iconbox-style4">
+                                                <span class="icon flaticon-home"></span>
+                                                <div class="iconbox-content">
+                                                    <h6 class="title">Case/Vile</h6>
+                                                    @if (Convert.ToInt32(ViewData["Houses"]) == 1)
+                                                    {
                                                         <p class="text mb-0">1 Anunț</p>
-                                                    } else
+                                                    }
+                                                    else
                                                     {
                                                         <p class="text mb-0">@ViewData["Houses"] Anunțuri</p>
                                                     }
                                                 </div>
-                  </div>
-                </a>
-              </div>
-              <div class="item landingCarousel">
+                                            </div>
+                                        </a>
+                                    </div>
+                                    <div class="item landingCarousel">
                                         <a asp-controller="Property" asp-action="Listings" asp-route-category="Apartament">
-                  <div class="iconbox-style4">
-                    <span class="icon flaticon-corporation"></span>
-                    <div class="iconbox-content">
-                      <h6 class="title">Apartamente</h6>
+                                            <div class="iconbox-style4">
+                                                <span class="icon flaticon-corporation"></span>
+                                                <div class="iconbox-content">
+                                                    <h6 class="title">Apartamente</h6>
                                                     @if (Convert.ToInt32(ViewData["Apartments"]) == 1)
                                                     {
                                                         <p class="text mb-0">1 Anunț</p>
@@ -364,16 +369,16 @@
                                                     {
                                                         <p class="text mb-0">@ViewData["Apartments"] Anunțuri</p>
                                                     }
-                    </div>
-                  </div>
-                </a>
-              </div>
-              <div class="item landingCarousel">
+                                                </div>
+                                            </div>
+                                        </a>
+                                    </div>
+                                    <div class="item landingCarousel">
                                         <a asp-controller="Property" asp-action="Listings" asp-route-category="Teren">
-                  <div class="iconbox-style4">
-                    <span class="icon flaticon-garden"></span>
-                    <div class="iconbox-content">
-                      <h6 class="title">Terenuri</h6>
+                                            <div class="iconbox-style4">
+                                                <span class="icon flaticon-garden"></span>
+                                                <div class="iconbox-content">
+                                                    <h6 class="title">Terenuri</h6>
                                                     @if (Convert.ToInt32(ViewData["Lands"]) == 1)
                                                     {
                                                         <p class="text mb-0">1 Anunț</p>
@@ -382,17 +387,17 @@
                                                     {
                                                         <p class="text mb-0">@ViewData["Lands"] Anunțuri</p>
                                                     }
-                    </div>
-                  </div>
-                </a>
-              </div>
-              <div class="item landingCarousel">
-                                    <a asp-controller="Property" asp-action="Listings" asp-route-category="Investiție">
-                  <div class="iconbox-style4">
-                    <span class="icon flaticon-chat"></span>
-                    <div class="iconbox-content">
-                                                <h6 class="title">Investiții</h6>
-                      @if (Convert.ToInt32(ViewData["Investments"]) == 1)
+                                                </div>
+                                            </div>
+                                        </a>
+                                    </div>
+                                    <div class="item landingCarousel">
+                                        <a asp-controller="Property" asp-action="Listings" asp-route-category="Investiție">
+                                            <div class="iconbox-style4">
+                                                <span class="icon flaticon-chat"></span>
+                                                <div class="iconbox-content">
+                                                    <h6 class="title">Investiții</h6>
+                                                    @if (Convert.ToInt32(ViewData["Investments"]) == 1)
                                                     {
                                                         <p class="text mb-0">1 Anunț</p>
                                                     }
@@ -400,16 +405,16 @@
                                                     {
                                                         <p class="text mb-0">@ViewData["Investments"] Anunțuri</p>
                                                     }
-                    </div>
-                  </div>
-                </a>
-                                </div>
-              <div class="item landingCarousel">
-                                    <a asp-controller="Property" asp-action="Listings" asp-route-category="Hotel">
-                  <div class="iconbox-style4">
-                    <span class="icon flaticon-network"></span>
-                    <div class="iconbox-content">
-                      <h6 class="title">Hoteluri</h6>
+                                                </div>
+                                            </div>
+                                        </a>
+                                    </div>
+                                    <div class="item landingCarousel">
+                                        <a asp-controller="Property" asp-action="Listings" asp-route-category="Hotel">
+                                            <div class="iconbox-style4">
+                                                <span class="icon flaticon-network"></span>
+                                                <div class="iconbox-content">
+                                                    <h6 class="title">Hoteluri</h6>
                                                     @if (Convert.ToInt32(ViewData["Hotels"]) == 1)
                                                     {
                                                         <p class="text mb-0">1 Anunț</p>
@@ -418,296 +423,318 @@
                                                     {
                                                         <p class="text mb-0">@ViewData["Hotels"] Anunțuri</p>
                                                     }
-                    </div>
-                  </div>
-                </a>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-      <div id="featuredSection"></div>
-    </section>
-
-    <!-- Explore Apartment -->
-                <section class="pt0 pb60 pb30-md bgc-white" style="background: #FDFFEB">
-      <div class="container">
-        <div class="row align-items-center wow fadeInUp" data-wow-delay="00ms">
-          <div class="col-lg-9">
-            <div class="main-title2">
-              <h2 class="title">Descopera Proprietatile Recomandate</h2>
-              <!-- <p class="paragraph">Aliquam lacinia diam quis lacus euismod</p> -->
-            </div>
-          </div>
-          <div class="col-lg-3">
-            <div class="text-start text-lg-end mb-3">
-                                    <a class="ud-btn2" asp-action="Listings">Vezi toate proprietățile<i class="fal fa-arrow-right-long"></i></a>
-            </div>
-          </div>
-        </div>
-        <div class="row">
-          <div class="col-lg-12 wow fadeInUp" data-wow-delay="300ms">
-            <div class="feature-listing-slider2 vam_nav_style dots_none slider-dib-sm slider-3-grid owl-carousel owl-theme">
-                @foreach(var prop in Model) {
-              <div class="item">
-              <a asp-action="Details" asp-controller="Property" asp-route-id="@prop.Id" >
-                                                <div class="listing-style1 style4" style="background: #FDFFEB">
-                  <div class="list-thumb">
-                                            @if (!string.IsNullOrEmpty(prop.PhotoGuids))
-                                            {
-                                                var photoNames = prop.PhotoGuids.Split(new[] { ',' }, StringSplitOptions.RemoveEmptyEntries);
-                                                var firstPhoto = photoNames.FirstOrDefault();
-
-                                                <img class="w-100" src="@Url.Action("GetImage", "Property", new { key = firstPhoto })" alt="">
-                                            }
-                                            else
-                                            {
-                                                <img class="w-100" src="~/images/listings/g1-1.jpg" alt="">
-
-                                            }
-                                            <div class="list-tag fz12"><span class="flaticon-electricity me-2"></span>RECOMANDAT</div>
-
-                                            <div class="list-price">@prop.Price €</div>
-                  </div>
-                  <div class="list-content">
-                                                    <h6 class="list-title"><a href="@Url.Action("Details", "Property", new { id = prop.Id })">@prop.Title</a></h6>
-                                                <p class="list-text">@prop.City , @prop.Country</p>
-                                                <div class="list-meta d-flex align-items-center">
-                                                    <a href="@Url.Action("Details", "Property", new { id = prop.Id })"><span class="flaticon-home"></span>@prop.Category</a>
-                                                    @if (prop.Surface != null)
-                                                        {
-                                                            <a href="@Url.Action("Details", "Property", new { id = prop.Id })"><span class="flaticon-expand"></span>@prop.Surface mp</a>
-                                                        }
-                                                        @if (prop.Bathrooms != null)
-                                                    {
-                                                        <a href="@Url.Action("Details", "Property", new { id = prop.Id })"><span class="flaticon-bed"></span>@prop.Rooms camere</a>
-                                                    }
-
-                                                    @if (prop.Bathrooms != null)
-                                                    {
-                                                            <a href="@Url.Action("Details", "Property", new { id = prop.Id })"><span class="flaticon-shower"></span>@prop.Bathrooms bai</a>
-                                                    }
                                                 </div>
-                    <hr class="mt-2 mb-2">
-                  </div>
-                </div>
-              </a>
-              </div>
-              }
-              
-            </div>
-          </div>
-        </div>
-      </div>
-      <div id="ourServicesSection"></div>
-    </section>
-
-    <!-- Property Cities -->
-
-
-    <!-- Explore Apartment -->
-    <section class="p-0">
-      <div class="how-we-help position-relative mx-auto bgc-thm-light maxw1600 pt120 pt60-md pb90 pb30-md bdrs12 mx20-lg">
-        <div class="container">
-          <div class="row">
-            <div class="col-lg-6 m-auto wow fadeInUp" data-wow-delay="300ms">
-              <div class="main-title text-center">
-                                    <h2 class="title">De ce NicoReal?</h2>
-              </div>
-            </div>
-          </div>
-          <div class="row">
-            <div class="col-sm-6 col-lg-4 wow fadeInLeft" data-wow-delay="00ms">
-              <div class="iconbox-style3 text-center">
-                                <div class="icon"><img class="w-100" src="~/images/icon/property-buy-2.svg" alt=""></div>
-                <div class="iconbox-content">
-                  <h4 class="title">Găsește-ți caminul mult visat</h4>
-                                        <p class="text">Experimentează bucuria de a locui într-un mediu care rezonează cu sufletul tău.</p>
-                                        <a asp-action="Listings" class="ud-btn btn-thm3">Descoperă case<i class="fal fa-arrow-right-long"></i></a>
-                </div>
-              </div>
-            </div>
-            <div class="col-sm-6 col-lg-4 wow fadeInUp" data-wow-delay="300ms">
-              <div class="iconbox-style3 active text-center">
-                                <div class="icon"><img class="w-100" src="~/images/icon/property-sell-2.svg" alt=""></div>
-                <div class="iconbox-content">
-                                        <h4 class="title">Descoperă oportunități de investiții</h4>
-                                        <p class="text">Explorează noi oportunități de investiții pentru a-ți spori creșterea financiară.</p>
-                                        <a asp-action="Listings" class="ud-btn btn-thm3">Investește înţelept<i class="fal fa-arrow-right-long"></i></a>
-                </div>
-              </div>
-            </div>
-            <div class="col-sm-6 col-lg-4 wow fadeInRight" data-wow-delay="300ms">
-              <div class="iconbox-style3 text-center">
-                                <div class="icon"><img class="w-100" src="~/images/icon/property-rent-2.svg" alt=""></div>
-                <div class="iconbox-content">
-                                        <h4 class="title">Sfaturi de la experți în imobiliare</h4>
-                                        <p class="text">Îndrumări de specialitate în alegerea proprietăților.</p>
-                                        <a  class="ud-btn btn-thm3">Contactează-ne<i class="fal fa-arrow-right-long"></i></a>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- About Us -->
-    <section class="about-us">
-      <div class="container">
-        <div class="row mt80 mt0-md">
-          <div class="col-md-6 col-xl-6">
-            <div class="position-relative wow fadeInRight" data-wow-delay="300ms">
-              <div class="img-box-7">
-                <img class="w-100 img-1" src="~/images/houseGrass.png" alt="">
-              </div>
-              <div class="img-box-8 position-relative">
-                <img class="img-1 spin-right" src="~/images/about/element-1.png" alt="">
-              </div>
-              
-              <div class="img-box-10 position-relative">
-                <div class="listing-style1 mini-style bounce-y">
-                  <div class="list-content">
-                                            <h6><a>Explorează posibilități infinite și construiește-ți o lume nouă.</a></h6>
-                    <p class="list-text"></p>
-                    <div class="list-meta d-flex align-items-center">
-                      
-
+                                            </div>
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
                     </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-          <div class="col-md-6 col-xl-4 offset-xl-2">
-            <div class="about-box-1 wow fadeInLeft" data-wow-delay="300ms">
-              <h2 class="title mb30">Rezultatele noastre</h2>
-                                <p class="text mb20 fz15">Deși suntem la început de drum, uite câteva din numerele cu care ne mândrim:</p>
-              <div class="funfact_one">
-                <div class="details mb25">
-                  <ul class="ps-0 d-flex mb-0">
-                    <li><div class="timer">20</div></li>
-                    <li><span>+</span></li>
-                  </ul>
-                                        <p class="text mb-0">Proprietăți de vânzare</p>
-                </div>
-                <div class="details mb25">
-                  <ul class="ps-0 d-flex mb-0">
-                    <li><div class="timer">10</div></li>
-                    <li><span>+</span></li>
-                  </ul>
-                                        <p class="text mb-0">Investiții reușite</p>
-                </div>
-                <div class="details mb25">
-                  <ul class="ps-0 d-flex mb-0">
-                                            <li><div class="timer">100</div></li>
-                    <li><span>+</span></li>
-                  </ul>
-                                        <p class="text mb-0">Proprietăți vândute în 3 țări</p>
-                </div>
+                    <div id="featuredSection"></div>
+                </section>
 
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
+                <!-- Explore Apartment -->
+                <section class="pt0 pb60 pb30-md bgc-white" style="background: #FDFFEB">
+                    <div class="container">
+                        <div class="row align-items-center wow fadeInUp" data-wow-delay="00ms">
+                            <div class="col-lg-9">
+                                <div class="main-title2">
+                                    <h2 class="title">Descopera Proprietatile Recomandate</h2>
+                                    <!-- <p class="paragraph">Aliquam lacinia diam quis lacus euismod</p> -->
+                                </div>
+                            </div>
+                            <div class="col-lg-3">
+                                <div class="text-start text-lg-end mb-3">
+                                    <a class="ud-btn2" asp-action="Listings">Vezi toate proprietățile<i class="fal fa-arrow-right-long"></i></a>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-lg-12 wow fadeInUp" data-wow-delay="300ms">
+                                <div class="feature-listing-slider2 vam_nav_style dots_none slider-dib-sm slider-3-grid owl-carousel owl-theme">
+                                    @foreach (var prop in Model)
+                                    {
+                                        <div class="item">
+                                            <a asp-action="Details" asp-controller="Property" asp-route-id="@prop.Id">
+                                                <div class="listing-style1 style4" style="background: #FDFFEB">
+                                                    <div class="list-thumb">
+                                                        @if (!string.IsNullOrEmpty(prop.PhotoGuids))
+                                                        {
+                                                            var photoNames = prop.PhotoGuids.Split(new[] { ',' }, StringSplitOptions.RemoveEmptyEntries);
+                                                            var firstPhoto = photoNames.FirstOrDefault();
 
-    <!-- Our Testimonials -->
+                                                            <img class="w-100" src="@Url.Action("GetImage", "Property", new { key = firstPhoto })" alt="">
+                                                        }
+                                                        else
+                                                        {
+                                                            <img class="w-100" src="~/images/listings/g1-1.jpg" alt="">
+
+                                                        }
+                                                        <div class="list-tag fz12"><span class="flaticon-electricity me-2"></span>RECOMANDAT</div>
+
+                                                        <div class="list-price">@prop.Price €</div>
+                                                    </div>
+                                                    <div class="list-content">
+                                                        <h6 class="list-title"><a href="@Url.Action("Details", "Property", new { id = prop.Id })">@prop.Title</a></h6>
+                                                        <p class="list-text">@prop.City , @prop.Country</p>
+                                                        <div class="list-meta d-flex align-items-center">
+                                                            @if (isMobileDevice)
+                                                            {
+                                                                <a href="@Url.Action("Details", "Property", new { id = prop.Id })"><span class="flaticon-home"></span>@prop.Category</a>
+                                                                @if (prop.Surface != null)
+                                                                {
+                                                                    <a href="@Url.Action("Details", "Property", new { id = prop.Id })"><span class="flaticon-expand"></span>@prop.Surface m²</a>
+                                                                }
+                                                                @if (prop.Bathrooms != null)
+                                                                {
+                                                                    <a href="@Url.Action("Details", "Property", new { id = prop.Id })"><span class="flaticon-bed"></span>@prop.Rooms </a>
+                                                                }
+
+                                                                @if (prop.Bathrooms != null)
+                                                                {
+
+                                                                    <a href="@Url.Action("Details", "Property", new { id = prop.Id })"><span class="flaticon-shower"></span>@prop.Bathrooms </a>
 
 
-    <!-- Property Cities deleted-->
+                                                                }
+                                                            }
+                                                            else
+                                                            {
+                                                                <a href="@Url.Action("Details", "Property", new { id = prop.Id })"><span class="flaticon-home"></span>@prop.Category</a>
+                                                                @if (prop.Surface != null)
+                                                                {
+                                                                    <a href="@Url.Action("Details", "Property", new { id = prop.Id })"><span class="flaticon-expand"></span>@prop.Surface m²</a>
+                                                                }
+                                                                @if (prop.Bathrooms != null)
+                                                                {
+                                                                    <a href="@Url.Action("Details", "Property", new { id = prop.Id })"><span class="flaticon-bed"></span>@prop.Rooms camere</a>
+                                                                }
 
-    <!-- Our Partners deleted--> 
-
-
-    <!-- Our CTA --> 
-    <section class="our-cta2 p0 px20">
-      <div class="cta-banner2 bgc-thm maxw1600 mx-auto pt100 pt50-md pb85 pb50-md px30-md bdrs12 position-relative">
-        <div class="img-box-5">
-          <img class="img-1 spin-right" src="~/images/about/element-1.png" alt="">a
-        </div>
-        <div class="img-box-6">
-                    <img class="img-1 spin-left" src="~/images/about/element-2.png" alt="">
-        </div>
-        <div class="cta-style2 d-none d-lg-block wow fadeInRight" data-wow-delay="300ms">
-                            <img style="border-radius:15px" height="385px" width="600px" src="~/images/familyrelated.png" alt="">
-        </div>
-        <div class="container">
-          <div class="row">
-            <div class="col-lg-7 col-xl-5 wow fadeInUp" data-wow-delay="500ms">
-              <div class="cta-style2">
-                <h2 class="cta-title">Bine ai venit în lumea NicoReal, hai să-ți găsim căminul ideal!</h2>
-                <p class="cta-text"></p>
-                                        <a asp-action="Listings" class="ud-btn btn-dark mt10">Vezi toate proprietățile<i class="fal fa-arrow-right-long"></i></a>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- Our Footer --> 
-    <section class="footer-style1 at-home2 pb-0">
-      <div class="container">
-        <div class="row">
-          <div class="col-lg-5">
-            <div class="footer-widget mb-4 mb-lg-5">
-                            <a class="footer-logo" asp-action="Index" ><img class="mb40" src="~/images/MyLogoWhite.svg" alt=""></a>
-              <div class="row mb-4 mb-lg-5">
-                <div class="col-auto">
-                  <div class="contact-info">
-                    <p class="info-title">Contact us</p>
-                                            <h6 class="info-phone"><a href="">+43 665 65 66 7000</a></h6>
+                                                                @if (prop.Bathrooms != null)
+                                                                {
+                                                                    if (prop.Bathrooms == 1)
+                                                                    {
+                                                                        <a href="@Url.Action("Details", "Property", new { id = prop.Id })"><span class="flaticon-shower"></span>@prop.Bathrooms baie</a>
+                                                                    }
+                                                                    else
+                                                                    {
+                                                                        <a href="@Url.Action("Details", "Property", new { id = prop.Id })"><span class="flaticon-shower"></span>@prop.Bathrooms băi</a>
+                                                                    }
+                                                                }
+                                                            }
+                                                        </div>
+                                                        <hr class="mt-2 mb-2">
+                                                    </div>
+                                                </div>
+                                            </a>
                                         </div>
-                </div>
-              </div>
-              <div class="social-widget">
-                <h6 class="text-white mb20">Follow us on social media</h6>
-                <div class="social-style1">
-                  <a href=""><i class="fab fa-facebook-f list-inline-item"></i></a>
-                  <a href=""><i class="fab fa-twitter list-inline-item"></i></a>
-                  <a href=""><i class="fab fa-instagram list-inline-item"></i></a>
-                  <a href=""><i class="fab fa-linkedin-in list-inline-item"></i></a>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-      <div class="container white-bdrt1 py-4">
-        <div class="row">
-          <div class="col-sm-6">
-            <div class="text-center text-lg-start">
-              <p class="copyright-text text-gray ff-heading">© NicoReal - All rights reserved</p>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
-    <a class="scrollToHome" href="#"><i class="fas fa-angle-up"></i></a>
-  </div>
-</div>
-<!-- Wrapper End -->
-<script src="~/js/jquery-3.6.4.min.js"></script>
-<script src="~/js/jquery-migrate-3.0.0.min.js"></script>
-<script src="~/js/popper.min.js"></script>
-<script src="~/js/bootstrap.min.js"></script>
-<script src="~/js/bootstrap-select.min.js"></script>
-<script src="~/js/jquery.mmenu.all.js"></script>
-<script src="~/js/ace-responsive-menu.js"></script> 
-<script src="~/js/jquery-scrolltofixed-min.js"></script>
-<script src="~/js/jquery.counterup.js"></script>
-<script src="~/js/isotop.js"></script>
-<script src="~/js/wow.min.js"></script>
-<script src="~/js/owl.js"></script>
-<script src="~/js/parallax.js"></script>
-<script src="~/js/pricing-slider.js"></script>
-<script src="~/js/swiper.js"></script>
-<!-- Custom script for all pages -->
-<script src="~/js/script.js"></script>
+                                    }
 
-</body>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div id="ourServicesSection"></div>
+                </section>
+
+                <!-- Property Cities -->
+                <!-- Explore Apartment -->
+                <section class="p-0">
+                    <div class="how-we-help position-relative mx-auto bgc-thm-light maxw1600 pt120 pt60-md pb90 pb30-md bdrs12 mx20-lg">
+                        <div class="container">
+                            <div class="row">
+                                <div class="col-lg-6 m-auto wow fadeInUp" data-wow-delay="300ms">
+                                    <div class="main-title text-center">
+                                        <h2 class="title">De ce NicoReal?</h2>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-sm-6 col-lg-4 wow fadeInLeft" data-wow-delay="00ms">
+                                    <div class="iconbox-style3 text-center">
+                                        <div class="icon"><img class="w-100" src="~/images/icon/property-buy-2.svg" alt=""></div>
+                                        <div class="iconbox-content">
+                                            <h4 class="title">Găsește-ți caminul mult visat</h4>
+                                            <p class="text">Experimentează bucuria de a locui într-un mediu care rezonează cu sufletul tău.</p>
+                                            <a asp-action="Listings" class="ud-btn btn-thm3">Descoperă case<i class="fal fa-arrow-right-long"></i></a>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-sm-6 col-lg-4 wow fadeInUp" data-wow-delay="300ms">
+                                    <div class="iconbox-style3 active text-center">
+                                        <div class="icon"><img class="w-100" src="~/images/icon/property-sell-2.svg" alt=""></div>
+                                        <div class="iconbox-content">
+                                            <h4 class="title">Descoperă oportunități de investiții</h4>
+                                            <p class="text">Explorează noi oportunități de investiții pentru a-ți spori creșterea financiară.</p>
+                                            <a asp-action="Listings" class="ud-btn btn-thm3">Investește înţelept<i class="fal fa-arrow-right-long"></i></a>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-sm-6 col-lg-4 wow fadeInRight" data-wow-delay="300ms">
+                                    <div class="iconbox-style3 text-center">
+                                        <div class="icon"><img class="w-100" src="~/images/icon/property-rent-2.svg" alt=""></div>
+                                        <div class="iconbox-content">
+                                            <h4 class="title">Sfaturi de la experți în imobiliare</h4>
+                                            <p class="text">Îndrumări de specialitate în alegerea proprietăților.</p>
+                                            <a class="ud-btn btn-thm3">Contactează-ne<i class="fal fa-arrow-right-long"></i></a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- About Us -->
+                <section class="about-us">
+                    <div class="container">
+                        <div class="row mt80 mt0-md">
+                            <div class="col-md-6 col-xl-6">
+                                <div class="position-relative wow fadeInRight" data-wow-delay="300ms">
+                                    <div class="img-box-7">
+                                        <img class="w-100 img-1" src="~/images/houseGrass.png" alt="">
+                                    </div>
+                                    <div class="img-box-8 position-relative">
+                                        <img class="img-1 spin-right" src="~/images/about/element-1.png" alt="">
+                                    </div>
+
+                                    <div class="img-box-10 position-relative">
+                                        <div class="listing-style1 mini-style bounce-y">
+                                            <div class="list-content">
+                                                <h6><a>Explorează posibilități infinite și construiește-ți o lume nouă.</a></h6>
+                                                <p class="list-text"></p>
+                                                <div class="list-meta d-flex align-items-center">
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-6 col-xl-4 offset-xl-2">
+                                <div class="about-box-1 wow fadeInLeft" data-wow-delay="300ms">
+                                    <h2 class="title mb30">Rezultatele noastre</h2>
+                                    <p class="text mb20 fz15">Deși suntem la început de drum, uite câteva din numerele cu care ne mândrim:</p>
+                                    <div class="funfact_one">
+                                        <div class="details mb25">
+                                            <ul class="ps-0 d-flex mb-0">
+                                                <li><div class="timer">20</div></li>
+                                                <li><span>+</span></li>
+                                            </ul>
+                                            <p class="text mb-0">Proprietăți de vânzare</p>
+                                        </div>
+                                        <div class="details mb25">
+                                            <ul class="ps-0 d-flex mb-0">
+                                                <li><div class="timer">10</div></li>
+                                                <li><span>+</span></li>
+                                            </ul>
+                                            <p class="text mb-0">Investiții reușite</p>
+                                        </div>
+                                        <div class="details mb25">
+                                            <ul class="ps-0 d-flex mb-0">
+                                                <li><div class="timer">100</div></li>
+                                                <li><span>+</span></li>
+                                            </ul>
+                                            <p class="text mb-0">Proprietăți vândute în 3 țări</p>
+                                        </div>
+
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Our Testimonials -->
+                <!-- Property Cities deleted-->
+                <!-- Our Partners deleted-->
+                <!-- Our CTA -->
+                <section class="our-cta2 p0 px20">
+                    <div class="cta-banner2 bgc-thm maxw1600 mx-auto pt100 pt50-md pb85 pb50-md px30-md bdrs12 position-relative">
+                        <div class="img-box-5">
+                            <img class="img-1 spin-right" src="~/images/about/element-1.png" alt="">a
+                        </div>
+                        <div class="img-box-6">
+                            <img class="img-1 spin-left" src="~/images/about/element-2.png" alt="">
+                        </div>
+                        <div class="cta-style2 d-none d-lg-block wow fadeInRight" data-wow-delay="300ms">
+                            <img style="border-radius:15px" height="385px" width="600px" src="~/images/familyrelated.png" alt="">
+                        </div>
+                        <div class="container">
+                            <div class="row">
+                                <div class="col-lg-7 col-xl-5 wow fadeInUp" data-wow-delay="500ms">
+                                    <div class="cta-style2">
+                                        <h2 class="cta-title">Bine ai venit în lumea NicoReal, hai să-ți găsim căminul ideal!</h2>
+                                        <p class="cta-text"></p>
+                                        <a asp-action="Listings" class="ud-btn btn-dark mt10">Vezi toate proprietățile<i class="fal fa-arrow-right-long"></i></a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Our Footer -->
+                <section class="footer-style1 at-home2 pb-0">
+                    <div class="container">
+                        <div class="row">
+                            <div class="col-lg-5">
+                                <div class="footer-widget mb-4 mb-lg-5">
+                                    <a class="footer-logo" asp-action="Index"><img class="mb40" src="~/images/MyLogoWhite.svg" alt=""></a>
+                                    <div class="row mb-4 mb-lg-5">
+                                        <div class="col-auto">
+                                            <div class="contact-info">
+                                                <p class="info-title">Contact us</p>
+                                                <h6 class="info-phone"><a href="">+43 665 65 66 7000</a></h6>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="social-widget">
+                                        <h6 class="text-white mb20">Follow us on social media</h6>
+                                        <div class="social-style1">
+                                            <a href=""><i class="fab fa-facebook-f list-inline-item"></i></a>
+                                            <a href=""><i class="fab fa-twitter list-inline-item"></i></a>
+                                            <a href=""><i class="fab fa-instagram list-inline-item"></i></a>
+                                            <a href=""><i class="fab fa-linkedin-in list-inline-item"></i></a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="container white-bdrt1 py-4">
+                        <div class="row">
+                            <div class="col-sm-6">
+                                <div class="text-center text-lg-start">
+                                    <p class="copyright-text text-gray ff-heading">© NicoReal - All rights reserved</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+                <a class="scrollToHome" href="#"><i class="fas fa-angle-up"></i></a>
+            </div>
+        </div>
+        <!-- Wrapper End -->
+        <script src="~/js/jquery-3.6.4.min.js"></script>
+        <script src="~/js/jquery-migrate-3.0.0.min.js"></script>
+        <script src="~/js/popper.min.js"></script>
+        <script src="~/js/bootstrap.min.js"></script>
+        <script src="~/js/bootstrap-select.min.js"></script>
+        <script src="~/js/jquery.mmenu.all.js"></script>
+        <script src="~/js/ace-responsive-menu.js"></script>
+        <script src="~/js/jquery-scrolltofixed-min.js"></script>
+        <script src="~/js/jquery.counterup.js"></script>
+        <script src="~/js/isotop.js"></script>
+        <script src="~/js/wow.min.js"></script>
+        <script src="~/js/owl.js"></script>
+        <script src="~/js/parallax.js"></script>
+        <script src="~/js/pricing-slider.js"></script>
+        <script src="~/js/swiper.js"></script>
+        <!-- Custom script for all pages -->
+        <script src="~/js/script.js"></script>
+
+    </body>
 
 </div>
 

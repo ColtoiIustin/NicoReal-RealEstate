@@ -92,7 +92,7 @@ namespace NicoRealSolution.Controllers
             var credentials = new BasicAWSCredentials(accessKeyID, secretKey);
 
 
-            using (var amazons3client = new AmazonS3Client(credentials, RegionEndpoint.USEast1)) 
+            using (var amazons3client = new AmazonS3Client(credentials, RegionEndpoint.USEast1))
             {
                 foreach (var image in images)
                 {
@@ -116,9 +116,9 @@ namespace NicoRealSolution.Controllers
                     }
                 }
             }
-                    string guidsString = string.Join(",", guidList);
-                    property.PhotoGuids = guidsString;
-                    await _propService.AddProperty(property);
+            string guidsString = string.Join(",", guidList);
+            property.PhotoGuids = guidsString;
+            await _propService.AddProperty(property);
 
             return RedirectToAction(nameof(Index));
 
@@ -129,7 +129,7 @@ namespace NicoRealSolution.Controllers
         public async Task<IActionResult> Delete(int id)
         {
 
-                var property = await _propService.GetByIdAsync(id);
+            var property = await _propService.GetByIdAsync(id);
             if (property == null) return View("NotFound");
 
             await _propService.DeleteAsync(id);
@@ -158,11 +158,11 @@ namespace NicoRealSolution.Controllers
 
 
         [HttpGet]
-        public async Task<IActionResult> Listings(int pg=1, string sortOrder = "New", string searchString="", 
-            string category="", decimal minPrice=0, decimal maxPrice=5000000, string location="", decimal minSurface=0, decimal maxSurface=999999999)
+        public async Task<IActionResult> Listings(int pg = 1, string sortOrder = "New", string searchString = "",
+            string category = "", decimal minPrice = 0, decimal maxPrice = 5000000, string location = "", decimal minSurface = 0, decimal maxSurface = 999999999)
         {
             var properties = await _propService.GetProperties();
-            
+
             switch (sortOrder)
             {
                 case "New":
@@ -181,10 +181,12 @@ namespace NicoRealSolution.Controllers
                 properties = properties.Where(p => p.Title.Contains(searchString.Trim()));
             }
             if (!string.IsNullOrEmpty(category))
-            {      if(category == "Investiție")
+            {
+                if (category == "Investiție")
                 {
                     properties = properties.Where(p => p.IsInvestment == "Da");
-                } else if (category != "Toate")
+                }
+                else if (category != "Toate")
                 {
                     properties = properties.Where(p => p.Category == category);
                 }
@@ -192,10 +194,11 @@ namespace NicoRealSolution.Controllers
             properties = properties.Where(p => p.Price >= minPrice && p.Price <= maxPrice && p.Surface >= minSurface && p.Surface <= maxSurface);
             if (!string.IsNullOrEmpty(location) && location != "Toate")
             {
-                if (location == "Romania") {
+                if (location == "Romania")
+                {
                     properties = properties.Where(p => p.Country == "Romania" || p.Country == "România");
                 }
-                else  properties = properties.Where(p => p.Country == location); 
+                else properties = properties.Where(p => p.Country == location);
 
             }
 
@@ -204,10 +207,10 @@ namespace NicoRealSolution.Controllers
             const int pageSize = 5;
             if (pg < 1) pg = 1;
 
-            int propCount =properties.Count();
+            int propCount = properties.Count();
             var pager = new Pager(propCount, pg, pageSize);
 
-            int propSkip = (pg-1) * pageSize;
+            int propSkip = (pg - 1) * pageSize;
 
             var data = properties.Skip(propSkip).Take(pager.PageSize).ToList();
 
@@ -215,11 +218,11 @@ namespace NicoRealSolution.Controllers
             {
                 PropList = data,
                 SelectCateg = category,
-                SelectLocation= location,   
+                SelectLocation = location,
 
             };
 
-            if(maxPrice < minPrice) minPrice=maxPrice;
+            if (maxPrice < minPrice) minPrice = maxPrice;
             if (maxSurface < minSurface) minSurface = maxSurface;
 
             this.ViewBag.Pager = pager;
@@ -251,7 +254,7 @@ namespace NicoRealSolution.Controllers
                     Key = key
                 });
 
-                  return File(response.ResponseStream, response.Headers.ContentType,key);
+                return File(response.ResponseStream, response.Headers.ContentType, key);
 
             }
         }

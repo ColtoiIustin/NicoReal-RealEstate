@@ -36,129 +36,129 @@
 <link href="~/images/apple-touch-icon-180x180.png" sizes="180x180" rel="apple-touch-icon">
 
 <style>
-#imageContainer {
+    #imageContainer {
         <!-- width: 1200px;
         height: 600px; -->
-  overflow: hidden;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
+        overflow: hidden;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
 
-#imageContainer img {
-  max-width: 100%;
-  max-height: 100%;
-  object-fit: contain;
-}
+        #imageContainer img {
+            max-width: 100%;
+            max-height: 100%;
+            object-fit: contain;
+        }
 
-.list-thumb{
-    height: 240px;
-    width: 370px;
-}
+    .list-thumb {
+        height: 240px;
+        width: 370px;
+    }
 
-.list-thumb img{
-    min-height:100%;
-}
+        .list-thumb img {
+            min-height: 100%;
+        }
 </style>
 
 
 
 <div class="wrapper ovh">
- 
 
-        <!-- Main Header Nav -->
-        <header class="header-nav nav-innerpage-style bdrb1 main-menu" >
-            <!-- Ace Responsive Menu -->
-            <nav class="posr">
-                <div class="container posr menu_bdrt1">
-                    <div class="row align-items-center justify-content-between">
-                        <div class="col-auto">
-                            <div class="d-flex align-items-center justify-content-between">
-                                <div class="logos mr40 mr10-lg">
+
+    <!-- Main Header Nav -->
+    <header class="header-nav nav-innerpage-style bdrb1 main-menu">
+        <!-- Ace Responsive Menu -->
+        <nav class="posr">
+            <div class="container posr menu_bdrt1">
+                <div class="row align-items-center justify-content-between">
+                    <div class="col-auto">
+                        <div class="d-flex align-items-center justify-content-between">
+                            <div class="logos mr40 mr10-lg">
                                 <a class="header-logo logo2" href="@Url.Action("Index", "Property")"><img src="~/images/MyLogoDark.svg" alt=""></a>
-                                </div>
-                                <!-- Responsive Menu Structure-->
-                                <ul id="respMenu" class="ace-responsive-menu" data-menu-style="horizontal">
+                            </div>
+                            <!-- Responsive Menu Structure-->
+                            <ul id="respMenu" class="ace-responsive-menu" data-menu-style="horizontal">
                                 <li class="megamenu_style">
                                     <a class="list-item" href="@Url.Action("Index", "Property")"><span class="title">Acasă</span></a>
-                                        <!-- Level Two-->
+                                    <!-- Level Two-->
                                 <li class="megamenu_style">
                                     <a class="list-item" href="@Url.Action("Listings", "Property")"><span class="title">Toate anunțurile</span></a>
                                 </li>
 
                                     @if (User.Identity.IsAuthenticated)
                                     {
-                                        <li class="megamenu_style">
+                                    <li class="megamenu_style">
                                         <a class="list-item" href="@Url.Action("EditPage", "Property", new { id = Model.SingleProp.Id })"><span class="title"><span style="color:red">Modifică anunț</span></span></a>
-                                        </li>
-                                        <li class="megamenu_style">
+                                    </li>
+                                    <li class="megamenu_style">
                                         <a class="list-item" href="@Url.Action("Delete", "Property", new { id = Model.SingleProp.Id })"><span class="title"><span style="color:red">Șterge anunț</span></span></a>
-                                        </li>
+                                    </li>
                                     <li class="megamenu_style">
                                         <a class="list-item" href="@Url.Action("Create", "Property")"><span class="title"><span style="color:red">Adaugă anunț</span></span></a>
                                     </li>
                                     }
                             </ul>
-                            </div>
                         </div>
-                        <div class="col-auto">
-                            <div class="d-flex align-items-center">
-                            <a class="login-info d-flex align-items-center me-3" href="2-911-098-7654"><i class="far fa-phone fz16 me-2"></i> <span class="d-none d-xl-block d-md-block d-lg-block">+43 665 65 66 7000</span></a>
-                            </div>
-                        </div>
-
                     </div>
-                </div>
-            </nav>
-        </header>
-        
-        <div class="hiddenbar-body-ovelay"></div>
-
-        <!-- Mobile Nav  -->
-    <div id="page" class="mobilie_header_nav stylehome1" >
-            <div class="mobile-menu">
-                <div class="header innerpage-style">
-                    <div class="menu_and_widgets">
-                        <div class="mobile_menu_bar d-flex justify-content-between align-items-center">
-                            <a class="menubar" href="#menu"><img src="~/images/mobile-dark-nav-icon.svg" alt=""></a>
-                        <a class="mobile_logo" href="@Url.Action("Index", "Property")"><img src="~/images/MyLogoDark.svg" alt=""></a>
-                            <a></a>
+                    <div class="col-auto">
+                        <div class="d-flex align-items-center">
+                            <a class="login-info d-flex align-items-center me-3" href="2-911-098-7654"><i class="far fa-phone fz16 me-2"></i> <span class="d-none d-xl-block d-md-block d-lg-block">+43 665 65 66 7000</span></a>
                         </div>
+                    </div>
+
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <div class="hiddenbar-body-ovelay"></div>
+
+    <!-- Mobile Nav  -->
+    <div id="page" class="mobilie_header_nav stylehome1">
+        <div class="mobile-menu">
+            <div class="header innerpage-style">
+                <div class="menu_and_widgets">
+                    <div class="mobile_menu_bar d-flex justify-content-between align-items-center">
+                        <a class="menubar" href="#menu"><img src="~/images/mobile-dark-nav-icon.svg" alt=""></a>
+                        <a class="mobile_logo" href="@Url.Action("Index", "Property")"><img src="~/images/MyLogoDark.svg" alt=""></a>
+                        <a></a>
                     </div>
                 </div>
             </div>
-            <!-- /.mobile-menu -->
-            <nav id="menu" class="">
-                <ul>
+        </div>
+        <!-- /.mobile-menu -->
+        <nav id="menu" class="">
+            <ul>
                 <li class="megamenu_style">
                     <a class="list-item" href="@Url.Action("Index", "Property")"><span class="title">Acasă</span></a>
                     <!-- Level Two-->
                 <li class="megamenu_style">
                     <a class="list-item" href="@Url.Action("Listings", "Property")"><span class="title">Toate anunțurile</span></a>
                 </li>
-                    <!-- Only for Mobile View -->
-                </ul>
-            </nav>
-        </div>
+                <!-- Only for Mobile View -->
+            </ul>
+        </nav>
+    </div>
 
-        <div class="body_content">
-            <!-- Property All Lists -->
+    <div class="body_content">
+        <!-- Property All Lists -->
         <section class="pt60 pb60 bgc-white" style="background:#F4FFF2">
-                <div class="container">
-                    <div class="row wow fadeInUp" data-wow-delay="300ms">
-                        <div class="col-lg-12">
-                            <div class="ps-v4-hero-tab position-relative">
-                            </div>
+            <div class="container">
+                <div class="row wow fadeInUp" data-wow-delay="300ms">
+                    <div class="col-lg-12">
+                        <div class="ps-v4-hero-tab position-relative">
                         </div>
                     </div>
                 </div>
-                <div class="ps-v4-hero-tab">
-                    <div class="tab-content overflow-visible" id="pills-tabContent2">
-                        <div class="tab-pane fade show active" id="pills-home" role="tabpanel" aria-labelledby="pills-home-tab">
-                            <div class="container">
-                                <div class="row wow fadeInUp" data-wow-delay="300ms">
-                                    <div class="col-lg-12">
-                                        <div id="imageContainerParent" class="ps-v4-hero-slider dots_none slider-dib-sm slider-1-grid vam_nav_style owl-theme owl-carousel">
+            </div>
+            <div class="ps-v4-hero-tab">
+                <div class="tab-content overflow-visible" id="pills-tabContent2">
+                    <div class="tab-pane fade show active" id="pills-home" role="tabpanel" aria-labelledby="pills-home-tab">
+                        <div class="container">
+                            <div class="row wow fadeInUp" data-wow-delay="300ms">
+                                <div class="col-lg-12">
+                                    <div id="imageContainerParent" class="ps-v4-hero-slider dots_none slider-dib-sm slider-1-grid vam_nav_style owl-theme owl-carousel">
 
                                         @if (!string.IsNullOrEmpty(Model.SingleProp.PhotoGuids))
                                         {
@@ -170,36 +170,37 @@
                                                 </div>
                                             }
                                         }
-                                        </div>
                                     </div>
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
-            </section>
-            <!-- Property All Lists -->
+            </div>
+        </section>
+        <!-- Property All Lists -->
         <section class="pt0 pb90 bgc-white" style="background:#F4FFF2">
-                <div class="container">
-                    <div class="row wow fadeInUp" data-wow-delay="100ms">
-                        <div class="col-lg-8">
-                            <div class="single-property-content mb30-md">
+            <div class="container">
+                <div class="row wow fadeInUp" data-wow-delay="100ms">
+                    <div class="col-lg-8">
+                        <div class="single-property-content mb30-md">
                             <h2 class="sp-lg-title">@Model.SingleProp.Title</h2>
-                                <div class="pd-meta mb15 d-md-flex align-items-center">
-                                    <p class="text fz15 mb-0 pr10 bdrrn-sm">@Model.SingleProp.City , @Model.SingleProp.Country</p>
-                                </div>
-                                <div class="property-meta d-flex align-items-center">
+                            <div class="pd-meta mb15 d-md-flex align-items-center">
+                                <p class="text fz15 mb-0 pr10 bdrrn-sm">@Model.SingleProp.City , @Model.SingleProp.Country</p>
+                            </div>
+                            <div class="property-meta d-flex align-items-center">
                                 <span style="color: green;"><i class="far fa-clock pe-2"></i>@Model.SingleProp.DatePosted</span>
-                                </div>
                             </div>
                         </div>
-                        <div class="col-lg-4">
-                            <div class="single-property-content">
-                                <div class="property-action text-lg-end">
-                                    <div class="d-flex mb20 mb10-md align-items-center justify-content-lg-end">
-                                    </div>
+                    </div>
+                    <div class="col-lg-4">
+                        <div class="single-property-content">
+                            <div class="property-action text-lg-end">
+                                <div class="d-flex mb20 mb10-md align-items-center justify-content-lg-end">
+                                </div>
                                 <h3 class="price mb-0">@Model.SingleProp.Price €</h3>
-                                @if(ViewBag.priceMp != null){
+                                @if (ViewBag.priceMp != null)
+                                {
                                     <p class="text space fz15">@ViewBag.priceMp €/m²</p>
                                 }
                                 @if (Model.SingleProp.IsInvestment == "Da")
@@ -211,23 +212,23 @@
                                     <h3 class="price mb-0"><span style="color: red">Vândut!</span></h3>
                                 }
                             </div>
-                            </div>
                         </div>
                     </div>
-                    <div class="row wrap mt50 wow fadeInUp" data-wow-delay="500ms">
-                        <div class="col-lg-8">
-                            <div class="ps-widget mb30 overflow-hidden position-relative">
-                                <h4 class="title fz17 mb30">General</h4>
-                                <div class="row">
-                                    <div class="col-sm-6 col-lg-4">
+                </div>
+                <div class="row wrap mt50 wow fadeInUp" data-wow-delay="500ms">
+                    <div class="col-lg-8">
+                        <div class="ps-widget mb30 overflow-hidden position-relative">
+                            <h4 class="title fz17 mb30">General</h4>
+                            <div class="row">
+                                <div class="col-sm-6 col-lg-4">
                                     <div class="overview-element mb25 d-flex align-items-center">
-                                            <span class="icon flaticon-home-1"></span>
-                                            <div class="ml15">
-                                                <h6 class="mb-0">Categorie</h6>
-                                                <p class="text mb-0 fz15">@Model.SingleProp.Category</p>
-                                            </div>
+                                        <span class="icon flaticon-home-1"></span>
+                                        <div class="ml15">
+                                            <h6 class="mb-0">Categorie</h6>
+                                            <p class="text mb-0 fz15">@Model.SingleProp.Category</p>
                                         </div>
                                     </div>
+                                </div>
                                 @if (Model.SingleProp.Surface != null)
                                 {
                                     <div class="col-sm-6 col-lg-4">
@@ -289,20 +290,20 @@
                                     </div>
                                 }
                             </div>
-                            </div>
-                            <div class="ps-widget mb30 overflow-hidden position-relative">
-                                <h4 class="title fz17 mb30">Descriere</h4>
+                        </div>
+                        <div class="ps-widget mb30 overflow-hidden position-relative">
+                            <h4 class="title fz17 mb30">Descriere</h4>
                             <p class="text mb10" style="white-space: pre-line;">@Model.SingleProp.Description</p>
                             <h4 class="title fz17 mb30 mt50">Detalii</h4>
-                                <div class="row">
-                                    <div class="col-md-6 col-xl-4">
-                                        <div class="d-flex justify-content-between">
-                                            <div class="pd-list">
-                                                @if (Model.SingleProp.Category != null)
+                            <div class="row">
+                                <div class="col-md-6 col-xl-4">
+                                    <div class="d-flex justify-content-between">
+                                        <div class="pd-list">
+                                            @if (Model.SingleProp.Category != null)
                                             {
                                                 <p class="fw600 mb10 ff-heading dark-color">Categorie</p>
                                             }
-                                                @if (Model.SingleProp.Surface != null)
+                                            @if (Model.SingleProp.Surface != null)
                                             {
                                                 <p class="fw600 mb10 ff-heading dark-color">Suprafață</p>
                                             }
@@ -318,14 +319,14 @@
                                             {
                                                 <p class="fw600 mb-0 ff-heading dark-color">Băi</p>
                                             }
-                                           
-                                            </div>
-                                            <div class="pd-list">
-                                                @if (Model.SingleProp.Category != null)
+
+                                        </div>
+                                        <div class="pd-list">
+                                            @if (Model.SingleProp.Category != null)
                                             {
                                                 <p class="text mb10">@Model.SingleProp.Category</p>
                                             }
-                                                
+
                                             @if (Model.SingleProp.Surface != null)
                                             {
                                                 <p class="text mb10">@Model.SingleProp.Surface m²</p>
@@ -342,25 +343,25 @@
                                             {
                                                 <p class="text mb-0">@Model.SingleProp.Bathrooms</p>
                                             }
-                                            </div>
                                         </div>
                                     </div>
-                                    <div class="col-md-6 col-xl-4 offset-xl-2">
-                                        <div class="d-flex justify-content-between">
-                                            <div class="pd-list">
+                                </div>
+                                <div class="col-md-6 col-xl-4 offset-xl-2">
+                                    <div class="d-flex justify-content-between">
+                                        <div class="pd-list">
                                             @if (Model.SingleProp.GardenSurface != null)
                                             {
                                                 <p class="fw600 mb10 ff-heading dark-color">Suprafața grădinii</p>
                                             }
-                                                @if (Model.SingleProp.ConstructionYear != null)
+                                            @if (Model.SingleProp.ConstructionYear != null)
                                             {
-                                                <p class="fw600 mb10 ff-heading dark-color">Anul construcției</p>  
+                                                <p class="fw600 mb10 ff-heading dark-color">Anul construcției</p>
                                             }
                                             <p class="fw600 mb10 ff-heading dark-color">Preț</p>
-                                                <p class="fw600 mb10 ff-heading dark-color">Oportunitate investiție</p>
-                                            </div>
-                                            <div class="pd-list">
-                                                @if (Model.SingleProp.GardenSurface != null)
+                                            <p class="fw600 mb10 ff-heading dark-color">Oportunitate investiție</p>
+                                        </div>
+                                        <div class="pd-list">
+                                            @if (Model.SingleProp.GardenSurface != null)
                                             {
                                                 <p class="text mb10">@Model.SingleProp.GardenSurface</p>
                                             }
@@ -368,49 +369,49 @@
                                             {
                                                 <p class="text mb10">@Model.SingleProp.ConstructionYear</p>
                                             }
-                                                <p class="text mb10">@Model.SingleProp.Price €</p>
-                                                <p class="text mb10">@Model.SingleProp.IsInvestment</p>
-                                            </div>
+                                            <p class="text mb10">@Model.SingleProp.Price €</p>
+                                            <p class="text mb10">@Model.SingleProp.IsInvestment</p>
                                         </div>
                                     </div>
                                 </div>
                             </div>
-                            <div class="ps-widget mb30 overflow-hidden position-relative">
-                                <h4 class="title fz17 mb30 mt30">Addresa</h4>
-                                <div class="row">
-                                    <div class="col-md-6 col-xl-4">
-                                        <div class="d-flex justify-content-between">
-                                            <div class="pd-list">
-                                                <p class="fw600 mb10 ff-heading dark-color">Address</p>
-                                                <p class="fw600 mb10 ff-heading dark-color">City</p>
-                                            </div>
-                                            <div class="pd-list">
-                                                <p class="text mb10">@Model.SingleProp.Address</p>
-                                                <p class="text mb10">@Model.SingleProp.City</p>
-                                            </div>
+                        </div>
+                        <div class="ps-widget mb30 overflow-hidden position-relative">
+                            <h4 class="title fz17 mb30 mt30">Addresa</h4>
+                            <div class="row">
+                                <div class="col-md-6 col-xl-4">
+                                    <div class="d-flex justify-content-between">
+                                        <div class="pd-list">
+                                            <p class="fw600 mb10 ff-heading dark-color">Address</p>
+                                            <p class="fw600 mb10 ff-heading dark-color">City</p>
+                                        </div>
+                                        <div class="pd-list">
+                                            <p class="text mb10">@Model.SingleProp.Address</p>
+                                            <p class="text mb10">@Model.SingleProp.City</p>
                                         </div>
                                     </div>
-                                    <div class="col-md-6 col-xl-4 offset-xl-2">
-                                        <div class="d-flex justify-content-between">
-                                            <div class="pd-list">
-                                                <p class="fw600 mb10 ff-heading dark-color">Zip/Cod Postal</p>
-                                                <p class="fw600 mb-0 ff-heading dark-color">Country</p>
-                                            </div>
-                                            <div class="pd-list">
-                                                <p class="text mb10">@Model.SingleProp.Zip</p>
-                                                <p class="text mb-0">@Model.SingleProp.Country</p>
-                                            </div>
+                                </div>
+                                <div class="col-md-6 col-xl-4 offset-xl-2">
+                                    <div class="d-flex justify-content-between">
+                                        <div class="pd-list">
+                                            <p class="fw600 mb10 ff-heading dark-color">Zip/Cod Postal</p>
+                                            <p class="fw600 mb-0 ff-heading dark-color">Country</p>
+                                        </div>
+                                        <div class="pd-list">
+                                            <p class="text mb10">@Model.SingleProp.Zip</p>
+                                            <p class="text mb-0">@Model.SingleProp.Country</p>
                                         </div>
                                     </div>
-                                    <div class="col-lg-12">
-                                        <div id="mapForDetails" class="h550" loading="lazy"></div>
-                                    </div>
+                                </div>
+                                <div class="col-lg-12">
+                                    <div id="mapForDetails" class="h550" loading="lazy"></div>
+                                </div>
                                 <p id="latitude" class="text mb10" hidden>@Model.SingleProp.Latitude </p>
-                                <p id="longitude" class="text mb10"hidden>@Model.SingleProp.Longitude </p>
+                                <p id="longitude" class="text mb10" hidden>@Model.SingleProp.Longitude </p>
                             </div>
-                            </div>
-                            <div class="ps-widget mb30 overflow-hidden position-relative">
-                                <h4 class="title fz17 mb30">Facilitati</h4>
+                        </div>
+                        <div class="ps-widget mb30 overflow-hidden position-relative">
+                            <h4 class="title fz17 mb30">Facilitati</h4>
                             <div class="row">
                                 @if (!string.IsNullOrEmpty(Model.SingleProp.Features))
                                 {
@@ -423,43 +424,42 @@
                                             <div class="pd-list">
                                                 @for (int j = i * columnCount; j < Math.Min((i + 1) * columnCount, features.Length); j++)
                                                 {
-                                                        <p class="text mb10">
-                                                            <i class="fas fa-circle fz6 align-middle pe-2"></i>
-                                                            @features[j].Trim()
-                                                        </p>
+                                                    <p class="text mb10">
+                                                        <i class="fas fa-circle fz6 align-middle pe-2"></i>
+                                                        @features[j].Trim()
+                                                    </p>
                                                 }
                                             </div>
                                         </div>
                                     }
                                 }
                             </div>
-                            </div>
-                            <div class="ps-widget mb30 overflow-hidden position-relative">
-                                <h4 class="title fz17 mb30">Ce se afla in imprejurimi?</h4>
-                                <div class="row">
-                                    <div class="col-md-12">
-                                        <div class="navtab-style1">
-                                            <div class="tab-content" id="nav-tabContent">
-                                                <div class="tab-pane fade fz15 active show" id="nav-item1" role="tabpanel" aria-labelledby="nav-item1-tab">
-                                                    <div class="nearby d-sm-flex align-items-center mb20">
-                                                        <div class="details">
-                                                            <p class="dark-color fw600 mb-0">@Model.SingleProp.Nearby1</p>
-                                                            <div class="blog-single-review">
-                                                            </div>
+                        </div>
+                        <div class="ps-widget mb30 overflow-hidden position-relative">
+                            <h4 class="title fz17 mb30">Ce se afla in imprejurimi?</h4>
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <div class="navtab-style1">
+                                        <div class="tab-content" id="nav-tabContent">
+                                            <div class="tab-pane fade fz15 active show" id="nav-item1" role="tabpanel" aria-labelledby="nav-item1-tab">
+                                                <div class="nearby d-sm-flex align-items-center mb20">
+                                                    <div class="details">
+                                                        <p class="dark-color fw600 mb-0">@Model.SingleProp.Nearby1</p>
+                                                        <div class="blog-single-review">
                                                         </div>
                                                     </div>
-                                                    <div class="nearby d-sm-flex align-items-center mb20">
-                                                        <div class="details">
-                                                            <p class="dark-color fw600 mb-0">@Model.SingleProp.Nearby2</p>
-                                                            <div class="blog-single-review">
-                                                            </div>
+                                                </div>
+                                                <div class="nearby d-sm-flex align-items-center mb20">
+                                                    <div class="details">
+                                                        <p class="dark-color fw600 mb-0">@Model.SingleProp.Nearby2</p>
+                                                        <div class="blog-single-review">
                                                         </div>
                                                     </div>
-                                                    <div class="nearby d-sm-flex align-items-center">
-                                                        <div class="details">
-                                                            <p class="dark-color fw600 mb-0">@Model.SingleProp.Nearby3</p>
-                                                            <div class="blog-single-review">
-                                                            </div>
+                                                </div>
+                                                <div class="nearby d-sm-flex align-items-center">
+                                                    <div class="details">
+                                                        <p class="dark-color fw600 mb-0">@Model.SingleProp.Nearby3</p>
+                                                        <div class="blog-single-review">
                                                         </div>
                                                     </div>
                                                 </div>
@@ -469,62 +469,66 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="col-lg-4">
-                            <div class="column">
+                    </div>
+                    <div class="col-lg-4">
+                        <div class="column">
                             <div class="agen-personal-info position-relative bgc-white default-box-shadow1 bdrs12 p30 mt30" style="background:#F4FFF2; box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;">
-                                    <div class="widget-wrapper mb-0">
+                                <div class="widget-wrapper mb-0">
                                     <h6 class="title fz17 mb30">Află mai multe</h6>
-                                        <div class="agent-single d-sm-flex align-items-center pb25">
-                                            <div class="single-img mb30-sm">
+                                    <div class="agent-single d-sm-flex align-items-center pb25">
+                                        <div class="single-img mb30-sm">
                                             <img class="w90" src="~/images/team/neuro.png" alt="">
+                                        </div>
+                                        <div class="single-contant ml20 ml0-xs">
+                                            <h6 class="title mb-1">Alex</h6>
+                                            <div class="agent-meta mb10 d-md-flex align-items-center">
+                                                <a class="text fz15" href=""><i class="flaticon-call pe-1"></i>+43 665 65 66 7000</a>
                                             </div>
-                                            <div class="single-contant ml20 ml0-xs">
-                                                <h6 class="title mb-1">Alex</h6>
-                                                <div class="agent-meta mb10 d-md-flex align-items-center">
-                                                    <a class="text fz15" href=""><i class="flaticon-call pe-1"></i>+43 665 65 66 7000</a>
-                                                </div>
 
-                                            </div>
                                         </div>
-                                        <div class="d-grid">
+                                    </div>
+                                    <div class="d-grid">
                                         <button style="background: #F4FFF2" class="ud-btn btn-white2">Contactează<i class="fal fa-arrow-right-long"></i></button>
-                                        </div>
                                     </div>
                                 </div>
                             </div>
                         </div>
                     </div>
-                    <div class="row mt30 wow fadeInUp" data-wow-delay="700ms">
-                        <div class="col-lg-9">
-                            <div class="main-title2">
-                                <h2 class="title">Alte Proprietati</h2>
-                            </div>
+                </div>
+                <div class="row mt30 wow fadeInUp" data-wow-delay="700ms">
+                    <div class="col-lg-9">
+                        <div class="main-title2">
+                            <h2 class="title">Alte Proprietati</h2>
                         </div>
                     </div>
-                    <div class="row wow fadeInUp" data-wow-delay="900ms">
-                        <div class="col-lg-12">
-                            <div class="property-city-slider navi_pagi_top_right slider-dib-sm slider-3-grid owl-theme owl-carousel">
-                                @foreach(var prop in Model.PropList) {
+                </div>
+                <div class="row wow fadeInUp" data-wow-delay="900ms">
+                    <div class="col-lg-12">
+                        <div class="property-city-slider navi_pagi_top_right slider-dib-sm slider-3-grid owl-theme owl-carousel">
+                            @foreach (var prop in Model.PropList)
+                            {
                                 <div class="item">
                                     <div class="listing-style1">
-                                        <a asp-action="Details" asp-controller="Property" asp-route-id="@prop.Id" >
-                                        <div class="list-thumb bdrs12">
-                                            @if (!string.IsNullOrEmpty(prop.PhotoGuids))
-                                            {
-                                                var photoNames = prop.PhotoGuids.Split(new[] { ',' }, StringSplitOptions.RemoveEmptyEntries);
-                                                var firstPhoto = photoNames.FirstOrDefault();
+                                        <a asp-action="Details" asp-controller="Property" asp-route-id="@prop.Id">
+                                            <div class="list-thumb bdrs12">
+                                                @if (!string.IsNullOrEmpty(prop.PhotoGuids))
+                                                {
+                                                    var photoNames = prop.PhotoGuids.Split(new[] { ',' }, StringSplitOptions.RemoveEmptyEntries);
+                                                    var firstPhoto = photoNames.FirstOrDefault();
 
                                                     <img class="w-100" src="@Url.Action("GetImagesDetails", "Property", new { key = firstPhoto })" alt="">
-                                            } else {
+                                                }
+                                                else
+                                                {
                                                     <img class="w-100" src="~/images/listings/g1-1.jpg" alt="">
 
-                                            }
-                                            @if (prop.IsFeatured == "Da")
-                                            {
-                                                <div class="list-tag fz12"><span class="flaticon-electricity me-2"></span>RECOMANDAT</div>
-                                            }
-                                            <div class="list-price">@prop.Price €</div>
-                                        </div>
+                                                }
+                                                @if (prop.IsFeatured == "Da")
+                                                {
+                                                    <div class="list-tag fz12"><span class="flaticon-electricity me-2"></span>RECOMANDAT</div>
+                                                }
+                                                <div class="list-price">@prop.Price €</div>
+                                            </div>
                                         </a>
                                         <div class="list-content">
                                             <h6 class="list-title"><a href="@Url.Action("Details", "Property", new { id = prop.Id })">@prop.Title</a></h6>
@@ -544,147 +548,147 @@
                                                 {
                                                     <a href="@Url.Action("Details", "Property", new { id = prop.Id })"><span class="flaticon-shower"></span>@prop.Bathrooms</a>
                                                 }
-                                                
+
                                             </div>
 
                                         </div>
                                     </div>
                                 </div>
-                                }
-                                
-                            </div>
+                            }
+
                         </div>
                     </div>
                 </div>
-            </section>
+            </div>
+        </section>
 
-            <!-- Our Footer -->
-            <section class="footer-style1 pt60 pb-0">
-                <div class="container">
-                    <div class="row">
-                        <div class="col-lg-5">
-                            <div class="footer-widget mb-4 mb-lg-5">
+        <!-- Our Footer -->
+        <section class="footer-style1 pt60 pb-0">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-5">
+                        <div class="footer-widget mb-4 mb-lg-5">
                             <a class="footer-logo" href="@Url.Action("Index", "Property")"><img class="mb40" src="~/images/MyLogoWhite.svg" alt=""></a>
-                                <div class="row mb-4 mb-lg-5">
-                                    <div class="col-auto">
-                                        <div class="contact-info">
-                                            <p class="info-title">Contactează-ne</p>
+                            <div class="row mb-4 mb-lg-5">
+                                <div class="col-auto">
+                                    <div class="contact-info">
+                                        <p class="info-title">Contactează-ne</p>
                                         <h6 class="info-phone"><span style="color: white">+43 665 65 66 7000</span></h6>
-                                        </div>
                                     </div>
-
                                 </div>
 
-                                <div class="social-widget">
-                                    <h6 class="text-white mb20">Urmărește-ne pe rețelele de socializare</h6>
-                                    <div class="social-style1">
-                                        <a href=""><i class="fab fa-facebook-f list-inline-item"></i></a>
-                                        <a href=""><i class="fab fa-twitter list-inline-item"></i></a>
-                                        <a href=""><i class="fab fa-instagram list-inline-item"></i></a>
-                                        <a href=""><i class="fab fa-linkedin-in list-inline-item"></i></a>
-                                    </div>
+                            </div>
+
+                            <div class="social-widget">
+                                <h6 class="text-white mb20">Urmărește-ne pe rețelele de socializare</h6>
+                                <div class="social-style1">
+                                    <a href=""><i class="fab fa-facebook-f list-inline-item"></i></a>
+                                    <a href=""><i class="fab fa-twitter list-inline-item"></i></a>
+                                    <a href=""><i class="fab fa-instagram list-inline-item"></i></a>
+                                    <a href=""><i class="fab fa-linkedin-in list-inline-item"></i></a>
                                 </div>
                             </div>
                         </div>
-
                     </div>
+
                 </div>
-                <div class="container white-bdrt1 py-4">
-                    <div class="row">
-                        <div class="col-sm-6">
-                            <div class="text-center text-lg-start">
-                                <p class="copyright-text text-gray ff-heading">© NicoReal - All rights reserved</p>
-                            </div>
+            </div>
+            <div class="container white-bdrt1 py-4">
+                <div class="row">
+                    <div class="col-sm-6">
+                        <div class="text-center text-lg-start">
+                            <p class="copyright-text text-gray ff-heading">© NicoReal - All rights reserved</p>
                         </div>
-
                     </div>
+
                 </div>
-            </section>
-            <a class="scrollToHome" href="#"><i class="fas fa-angle-up"></i></a>
-        </div>
+            </div>
+        </section>
+        <a class="scrollToHome" href="#"><i class="fas fa-angle-up"></i></a>
     </div>
-    <!-- Wrapper End -->
-    <script src="~/js/jquery-3.6.4.min.js"></script>
-    <script src="~/js/jquery-migrate-3.0.0.min.js"></script>
-    <script src="~/js/popper.min.js"></script>
-    <script src="~/js/bootstrap.min.js"></script>
-    <script src="~/js/bootstrap-select.min.js"></script>
-    <script src="~/js/jquery.mmenu.all.js"></script>
-    <script src="~/js/ace-responsive-menu.js"></script>
-    <script src="~/js/chart.min.js"></script>
-    <script src="~/js/chart-custome.js"></script>
-    <script src="~/js/jquery-scrolltofixed-min.js"></script>
-    <script src="~/js/wow.min.js"></script>
-    <script src="~/js/owl.js"></script>
-    <script src="~/js/isotop.js"></script>
-    <script src="~/js/scrollbalance.js"></script>
-    <!-- Custom script for all pages -->
-    <script src="~/js/script.js"></script>
-    <script src="~/js/google_maps_details.js"></script>
+</div>
+<!-- Wrapper End -->
+<script src="~/js/jquery-3.6.4.min.js"></script>
+<script src="~/js/jquery-migrate-3.0.0.min.js"></script>
+<script src="~/js/popper.min.js"></script>
+<script src="~/js/bootstrap.min.js"></script>
+<script src="~/js/bootstrap-select.min.js"></script>
+<script src="~/js/jquery.mmenu.all.js"></script>
+<script src="~/js/ace-responsive-menu.js"></script>
+<script src="~/js/chart.min.js"></script>
+<script src="~/js/chart-custome.js"></script>
+<script src="~/js/jquery-scrolltofixed-min.js"></script>
+<script src="~/js/wow.min.js"></script>
+<script src="~/js/owl.js"></script>
+<script src="~/js/isotop.js"></script>
+<script src="~/js/scrollbalance.js"></script>
+<!-- Custom script for all pages -->
+<script src="~/js/script.js"></script>
+<script src="~/js/google_maps_details.js"></script>
 <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyC-K2O3DmYLq4XB0XVkWu4Q--QkVnPnXLc&libraries=places&callback=initMapForDetails&v=weekly" defer></script>
 
- <script>
-        //  Fixed sidebar Custom Script For That
-        $(function () {
-            var cols = $('.wrap .column');
-            var enabled = true;
-            var scrollbalance = new ScrollBalance(cols, {
-                minwidth: 0
-            });
-            // bind to scroll and resize events
-            scrollbalance.bind();
+<script>
+    //  Fixed sidebar Custom Script For That
+    $(function () {
+        var cols = $('.wrap .column');
+        var enabled = true;
+        var scrollbalance = new ScrollBalance(cols, {
+            minwidth: 0
         });
+        // bind to scroll and resize events
+        scrollbalance.bind();
+    });
 
     $(document).ready(function () {
 
         if ($(window).width() > 768) {
 
-        var containerWidth = $("#imageContainer").width();
-        var containerHeight = $("#imageContainer").height();
+            var containerWidth = $("#imageContainer").width();
+            var containerHeight = $("#imageContainer").height();
 
             $('#imageContainerParent img').each(function () {
-        var img = $(this);
+                var img = $(this);
 
-        // Function to resize the image and fit it within the container
-        function resizeImage(img) {
-            var imgWidth = img.width();
-            var imgHeight = img.height();
-            var widthRatio = containerWidth / imgWidth;
-            var heightRatio = containerHeight / imgHeight;
-            var scaleRatio = Math.min(widthRatio, heightRatio);
+                // Function to resize the image and fit it within the container
+                function resizeImage(img) {
+                    var imgWidth = img.width();
+                    var imgHeight = img.height();
+                    var widthRatio = containerWidth / imgWidth;
+                    var heightRatio = containerHeight / imgHeight;
+                    var scaleRatio = Math.min(widthRatio, heightRatio);
 
-            img.css({
-                width: imgWidth * scaleRatio,
-                height: imgHeight * scaleRatio
+                    img.css({
+                        width: imgWidth * scaleRatio,
+                        height: imgHeight * scaleRatio
+                    });
+                }
+                resizeImage(img);
             });
-        }
-        resizeImage(img);
-        });
         }
 
         if ($(window).width() <= 768) {
 
-        var containerWidth = $("#imageContainer").width();
-        var containerHeight = $("#imageContainer").height();
+            var containerWidth = $("#imageContainer").width();
+            var containerHeight = $("#imageContainer").height();
 
             $('#imageContainerParent img').each(function () {
-        var img = $(this);
+                var img = $(this);
 
-        // Function to resize the image and fit it within the container
-        function resizeImage(img) {
-            var imgWidth = img.width();
-            var imgHeight = img.height();
-            var widthRatio = containerWidth / imgWidth;
-            var heightRatio = containerHeight / imgHeight;
-            var scaleRatio = Math.min(widthRatio, heightRatio);
+                // Function to resize the image and fit it within the container
+                function resizeImage(img) {
+                    var imgWidth = img.width();
+                    var imgHeight = img.height();
+                    var widthRatio = containerWidth / imgWidth;
+                    var heightRatio = containerHeight / imgHeight;
+                    var scaleRatio = Math.min(widthRatio, heightRatio);
 
-            img.css({
-                width: containerWidth,
-                height: imgHeight * scaleRatio
+                    img.css({
+                        width: containerWidth,
+                        height: imgHeight * scaleRatio
+                    });
+                }
+                resizeImage(img);
             });
-        }
-        resizeImage(img);
-        });
         }
 
 
@@ -692,4 +696,4 @@
     });
 
 
- </script>
+</script>
