@@ -81,11 +81,11 @@
         };
     });
     
-    $(".mouse_scroll").on('click', function() {
-        $('html, body').animate({
-            scrollTop: $("#feature-property, #property-city").offset().top
-        }, 1000);
-    });
+    //$(".mouse_scroll").on('click', function() {
+     //   $('html, body').animate({
+    //        scrollTop: $("#feature-property, #property-city").offset().top
+    //    }, 1000);
+   // });
     /** Main Menu Custom Script End **/
     
     /* ----- Blog innerpage sidebar according ----- */
@@ -308,11 +308,11 @@
         });
     }
 
-    $(".mouse_scroll").on('click', function() {
-      $('html, body').animate({
-          scrollTop: $("#explore-property").offset().top
-      }, 1200);
-    });
+    //$(".mouse_scroll").on('click', function() {
+      //$('html, body').animate({
+      //    scrollTop: $("#explore-property").offset().top
+      //}, 1200);
+   // });
     
     /* ----- Mega Dropdown Content ----- */
     $(document).on('ready', function(){
