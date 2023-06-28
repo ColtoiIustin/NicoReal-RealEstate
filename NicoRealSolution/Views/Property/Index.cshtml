@@ -260,7 +260,7 @@
                         <li><a href="#ourServicesSection">Serviciile Noastre</a></li>
 
                         <li class="px-3 mobile-menu-btn">
-                            <a href="@Url.Action("Listings", "Property")" class="ud-btn btn-thm text-white m30">Vezi toate proprietățile<i class="fal fa-arrow-right-long"></i></a>
+                            <a href="@Url.Action("Listings", "Property")" class="ud-btn btn-thm text-white m30">Vezi toate<i class="fal fa-arrow-right-long"></i></a>
                         </li>
                         <!-- Only for Mobile View -->
                     </ul>
@@ -712,9 +712,11 @@
                         </div>
                     </div>
                 </section>
-                
-                      <a class="scrollToHome" href="#"><i class="fas fa-angle-up"></i></a>
-                  
+                @if (!isMobileDevice)
+                {
+                    <a class="scrollToHome" href="#"><i class="fas fa-angle-up"></i></a>
+                }
+
             </div>
         </div>
         <!-- Wrapper End -->

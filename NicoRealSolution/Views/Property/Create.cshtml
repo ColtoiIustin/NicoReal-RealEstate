@@ -1,6 +1,7 @@
 ﻿@model Property
 @{
     ViewData["Title"] = "Adauga Proprietate";
+    bool isMobileDevice = Context.Request.Headers["User-Agent"].ToString().Contains("Mobi", StringComparison.OrdinalIgnoreCase);
 }
 <link rel="stylesheet" href="~/css/bootstrap.min.css">
 <link rel="stylesheet" href="~/css/ace-responsive-menu.css">
@@ -410,7 +411,10 @@
                 </div>
             </div>
         </div>
-        <a class="scrollToHome" href="#"><i class="fas fa-angle-up"></i></a>
+        @if (!isMobileDevice)
+        {
+            <a class="scrollToHome" href="#"><i class="fas fa-angle-up"></i></a>
+        }
     </div>
 </div>
 <script src="~/js/jquery-3.6.4.min.js"></script>

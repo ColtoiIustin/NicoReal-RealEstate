@@ -9,6 +9,7 @@
 @model ViewModelDetails
 @{
     ViewData["Title"] = "Detalii";
+    bool isMobileDevice = Context.Request.Headers["User-Agent"].ToString().Contains("Mobi", StringComparison.OrdinalIgnoreCase);
 }
 
 <link rel="stylesheet" href="~/css/bootstrap.min.css">
@@ -604,7 +605,10 @@
                 </div>
             </div>
         </section>
-        <a class="scrollToHome" href="#"><i class="fas fa-angle-up"></i></a>
+        @if (!isMobileDevice)
+        {
+            <a class="scrollToHome" href="#"><i class="fas fa-angle-up"></i></a>
+        }
     </div>
 </div>
 <!-- Wrapper End -->
