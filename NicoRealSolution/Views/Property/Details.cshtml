@@ -147,7 +147,7 @@
 
     <div class="body_content">
         <!-- Property All Lists -->
-        <section class="pt60 pb60 bgc-white" style="background:#F4FFF2">
+        <section class="pt60 pb60 bgc-white" style="background:#FDFFEB">
             <div class="container">
                 <div class="row wow fadeInUp" data-wow-delay="300ms">
                     <div class="col-lg-12">
@@ -183,7 +183,7 @@
             </div>
         </section>
         <!-- Property All Lists -->
-        <section class="pt0 pb90 bgc-white" style="background:#F4FFF2">
+        <section class="pt0 pb90 bgc-white" style="background:#FDFFEB">
             <div class="container">
                 <div class="row wow fadeInUp" data-wow-delay="100ms">
                     <div class="col-lg-8">
@@ -476,7 +476,7 @@
                     </div>
                     <div class="col-lg-4">
                         <div class="column">
-                            <div class="agen-personal-info position-relative bgc-white default-box-shadow1 bdrs12 p30 mt30" style="background:#F4FFF2; box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;">
+                            <div class="agen-personal-info position-relative bgc-white default-box-shadow1 bdrs12 p30 mt30" style="background:#FDFFEB; box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;">
                                 <div class="widget-wrapper mb-0">
                                     <h6 class="title fz17 mb30">Află mai multe</h6>
                                     <div class="agent-single d-sm-flex align-items-center pb25">
@@ -492,7 +492,7 @@
                                         </div>
                                     </div>
                                     <div class="d-grid">
-                                        <button style="background: #F4FFF2" class="ud-btn btn-white2">Contactează<i class="fal fa-arrow-right-long"></i></button>
+                                        <button onclick="makePhoneCall()" style="background: #FDFFEB" class="ud-btn btn-white2">Contactează<i class="fal fa-arrow-right-long"></i></button>
                                     </div>
                                 </div>
                             </div>
@@ -701,6 +701,12 @@
 
 
     });
+
+    function makePhoneCall() {
+        var phoneNumber = "+4366565667000"; 
+
+        window.location.href = "tel:" + phoneNumber; 
+    }
 
 
 </script>
