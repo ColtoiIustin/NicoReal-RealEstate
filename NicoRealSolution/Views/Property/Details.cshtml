@@ -171,6 +171,7 @@
                                             {
                                                 <div class="item" id="imageContainer">
                                                     <img class="bdrs12" src="@Url.Action("GetImage", "Property", new { key = photoName })" alt="">
+                                                    
                                                 </div>
                                             }
                                         }
@@ -188,6 +189,10 @@
                 <div class="row wow fadeInUp" data-wow-delay="100ms">
                     <div class="col-lg-8">
                         <div class="single-property-content mb30-md">
+                                @if (Model.SingleProp.IsSold == "Da")
+                                {
+                                    <h1 class="price mb-0"><span style="color: red">Vândut!</span></h1>
+                                }
                             <h2 class="sp-lg-title">@Model.SingleProp.Title</h2>
                             <div class="pd-meta mb15 d-md-flex align-items-center">
                                 <p class="text fz15 mb-0 pr10 bdrrn-sm">@Model.SingleProp.City , @Model.SingleProp.Country</p>
@@ -210,10 +215,6 @@
                                 @if (Model.SingleProp.IsInvestment == "Da")
                                 {
                                     <p class="text space fz15"><span style="color:green">Oportunitate Investiție</span></p>
-                                }
-                                @if (Model.SingleProp.IsSold == "Da")
-                                {
-                                    <h3 class="price mb-0"><span style="color: red">Vândut!</span></h3>
                                 }
                             </div>
                         </div>
