@@ -24,7 +24,7 @@ function initMapForDetails() {
         circle = new google.maps.Circle({
             map: map,
             center: center,
-            radius: 100, // Radius in meters (200 meters diameter)
+            radius: 200, // Radius in meters (200 meters diameter)
             strokeColor: "#FF0000",
             strokeOpacity: 0.8,
             strokeWeight: 2,

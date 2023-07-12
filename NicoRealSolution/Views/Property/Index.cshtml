@@ -1,11 +1,12 @@
 ﻿@using Microsoft.AspNetCore.Identity;
 @using Microsoft.Extensions.Options;
 @using NicoRealSolution.Areas.Identity.Data;
+@using NicoRealSolution.ViewModels;
 
 @inject UserManager<ApplicationUser> UserManager
 @inject SignInManager<ApplicationUser> SignInManager
 
-@model IEnumerable<Property>
+@model ViewModelIndex
 
 @{
     ViewData["Title"] = "Acasă";
@@ -55,10 +56,8 @@
         }
 
     .wrapper ovh {
-       
         background: #EDFFEB;
     }
-
 
 </style>
 
@@ -77,8 +76,8 @@
                             <div class="col-auto">
                                 <div class="d-flex align-items-center justify-content-between">
                                     <div class="logos mr35">
-                                        <a class="header-logo logo1" asp-action="Index"><img src="~/images/MyLogoWhite.svg" alt="Header Logo"></a>
-                                        <a class="header-logo logo2" asp-action="Index"><img src="~/images/MyLogoDark.svg" alt="Header Logo"></a>
+                                        <a class="header-logo logo1" asp-action="Index" asp-route-language="@Context.Request.Query["language"]"><img src="~/images/MyLogoWhite.svg" alt="Header Logo"></a>
+                                        <a class="header-logo logo2" asp-action="Index" asp-route-language="@Context.Request.Query["language"]"><img src="~/images/MyLogoDark.svg" alt="Header Logo"></a>
                                     </div>
                                     <!-- Responsive Menu Structure-->
                                     <ul id="respMenu" class="ace-responsive-menu" data-menu-style="horizontal">
@@ -86,12 +85,12 @@
                                             <a class="list-item" href="#"><span class="title">Categorii</span></a>
                                             <!-- Level Two-->
                                             <ul>
-                                                <li><a asp-action="Listings">Toate</a></li>
-                                                <li><a asp-action="Listings" asp-route-category="Casa/Vila">Case/Vile</a></li>
-                                                <li><a asp-action="Listings" asp-route-category="Apartament">Apartamente</a></li>
-                                                <li><a asp-action="Listings" asp-route-category="Teren">Terenuri</a></li>
-                                                <li><a asp-action="Listings" asp-route-category="Hotel">Hoteluri</a></li>
-                                                <li><a asp-action="Listings" asp-route-category="Investiție">Investiții</a></li>
+                                                <li><a asp-action="Listings" asp-route-language="@Context.Request.Query["language"]">Toate</a></li>
+                                                <li><a asp-action="Listings" asp-route-category="Casa/Vila" asp-route-language="@Context.Request.Query["language"]">Case/Vile</a></li>
+                                                <li><a asp-action="Listings" asp-route-category="Apartament" asp-route-language="@Context.Request.Query["language"]">Apartamente</a></li>
+                                                <li><a asp-action="Listings" asp-route-category="Teren" asp-route-language="@Context.Request.Query["language"]">Terenuri</a></li>
+                                                <li><a asp-action="Listings" asp-route-category="Hotel" asp-route-language="@Context.Request.Query["language"]">Hoteluri</a></li>
+                                                <li><a asp-action="Listings" asp-route-category="Investiție" asp-route-language="@Context.Request.Query["language"]">Investiții</a></li>
 
 
                                             </ul>
@@ -101,6 +100,8 @@
                                         </li>
                                         <li class="visible_list">
                                             <a class="list-item" href="#ourServicesSection"><span class="title">Serviciile Noastre</span></a>
+                                        </li>
+                                        <li>
                                         </li>
                                         @if (User.Identity.IsAuthenticated)
                                         {
@@ -113,8 +114,17 @@
                                 </div>
                             </div>
                             <div class="col-auto">
+
                                 <div class="d-flex align-items-center">
                                     <a class="login-info d-flex align-items-center me-3" href="tel:+4366565667000"><i class="far fa-phone fz16 me-2"></i> <span class="d-none d-xl-block d-md-block d-lg-block">+43 665 65 66 7000</span></a>
+                                    <form asp-controller="Property" asp-action="Index" method="get">
+                                        <select id="languageDropdown" asp-for="@Model.Language" name="language" onchange="this.form.submit()">
+                                            <option>Română</option>
+                                            <option>English</option>
+                                            <option>Deutsch</option>
+                                        </select>
+                                        
+                                    </form>
                                 </div>
                             </div>
                         </div>
@@ -126,6 +136,7 @@
             <div class="advance-feature-modal">
                 <form asp-controller="Property" asp-action="Listings" method="get">
                     <!-- Modal -->
+                    <input type="hidden" name="language" value="@Context.Request.Query["language"]" />
                     <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
                         <div class="modal-dialog modal-dialog-centered modal-lg">
                             <div class="modal-content">
@@ -246,20 +257,28 @@
                         <li>
                             <span>Categorii</span>
                             <ul>
-                                <li><a asp-action="Listings">Toate</a></li>
-                                <li><a asp-action="Listings" asp-route-category="Casa/Vila">Case/Vile</a></li>
-                                <li><a asp-action="Listings" asp-route-category="Apartament">Apartamente</a></li>
-                                <li><a asp-action="Listings" asp-route-category="Teren">Terenuri</a></li>
-                                <li><a asp-action="Listings" asp-route-category="Hotel">Hoteluri</a></li>
-                                <li><a asp-action="Listings" asp-route-category="Investiție">Investiții</a></li>
+                                <li><a asp-action="Listings" asp-route-language="@Context.Request.Query["language"]">Toate</a></li>
+                                <li><a asp-action="Listings" asp-route-category="Casa/Vila" asp-route-language="@Context.Request.Query["language"]">Case/Vile</a></li>
+                                <li><a asp-action="Listings" asp-route-category="Apartament" asp-route-language="@Context.Request.Query["language"]">Apartamente</a></li>
+                                <li><a asp-action="Listings" asp-route-category="Teren" asp-route-language="@Context.Request.Query["language"]">Terenuri</a></li>
+                                <li><a asp-action="Listings" asp-route-category="Hotel" asp-route-language="@Context.Request.Query["language"]">Hoteluri</a></li>
+                                <li><a asp-action="Listings" asp-route-category="Investiție" asp-route-language="@Context.Request.Query["language"]">Investiții</a></li>
                             </ul>
                         </li>
                         <li><a href="#featuredSection">Recomandate</a></li>
                         <li><a href="#ourServicesSection">Serviciile Noastre</a></li>
 
                         <li class="px-3 mobile-menu-btn">
-                            <a href="@Url.Action("Listings", "Property")" class="ud-btn btn-thm text-white m30">Vezi toate<i class="fal fa-arrow-right-long"></i></a>
+                            <a asp-controller="Property" asp-action="Listings" class="ud-btn btn-thm text-white m30" asp-route-language="@Context.Request.Query["language"]">Vezi toate<i class="fal fa-arrow-right-long"></i></a>
                         </li>
+                        <form asp-controller="Property" asp-action="Index" method="get">
+                            <select class="m20" id="languageDropdown" asp-for="@Model.Language" name="language" onchange="this.form.submit()">
+                                <option>Română</option>
+                                <option>English</option>
+                                <option>Deutsch</option>
+                            </select>
+
+                        </form>
                         <!-- Only for Mobile View -->
                     </ul>
                 </nav>
@@ -283,6 +302,7 @@
                                                 <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
                                                     <div class="advance-content-style2">
                                                         <form asp-controller="Property" asp-action="Listings" method="get" class="form-search position-relative">
+                                                            <input type="hidden" name="language" value="@Context.Request.Query["language"]" />
                                                             <div class="row align-items-center justify-content-start justify-content-md-center">
                                                                 <div class="col-md-5 col-lg-6">
                                                                     <div class="advance-search-field position-relative text-start bdrr1 bdrrn-sm bb1-sm">
@@ -336,7 +356,7 @@
                             <div class="col-lg-12">
                                 <div class="dots_none slider-dib-sm slider-5-grid vam_nav_style owl-theme owl-carousel">
                                     <div class="item landingCarousel">
-                                        <a asp-controller="Property" asp-action="Listings" asp-route-category="Casa/Vila">
+                                        <a asp-controller="Property" asp-action="Listings" asp-route-category="Casa/Vila" asp-route-language="@Context.Request.Query["language"]">
                                             <div class="iconbox-style4">
                                                 <span class="icon flaticon-home"></span>
                                                 <div class="iconbox-content">
@@ -354,7 +374,7 @@
                                         </a>
                                     </div>
                                     <div class="item landingCarousel">
-                                        <a asp-controller="Property" asp-action="Listings" asp-route-category="Apartament">
+                                        <a asp-controller="Property" asp-action="Listings" asp-route-category="Apartament" asp-route-language="@Context.Request.Query["language"]">
                                             <div class="iconbox-style4">
                                                 <span class="icon flaticon-corporation"></span>
                                                 <div class="iconbox-content">
@@ -372,7 +392,7 @@
                                         </a>
                                     </div>
                                     <div class="item landingCarousel">
-                                        <a asp-controller="Property" asp-action="Listings" asp-route-category="Teren">
+                                        <a asp-controller="Property" asp-action="Listings" asp-route-category="Teren" asp-route-language="@Context.Request.Query["language"]">
                                             <div class="iconbox-style4">
                                                 <span class="icon flaticon-garden"></span>
                                                 <div class="iconbox-content">
@@ -390,7 +410,7 @@
                                         </a>
                                     </div>
                                     <div class="item landingCarousel">
-                                        <a asp-controller="Property" asp-action="Listings" asp-route-category="Investiție">
+                                        <a asp-controller="Property" asp-action="Listings" asp-route-category="Investiție" asp-route-language="@Context.Request.Query["language"]">
                                             <div class="iconbox-style4">
                                                 <span class="icon flaticon-chat"></span>
                                                 <div class="iconbox-content">
@@ -408,7 +428,7 @@
                                         </a>
                                     </div>
                                     <div class="item landingCarousel">
-                                        <a asp-controller="Property" asp-action="Listings" asp-route-category="Hotel">
+                                        <a asp-controller="Property" asp-action="Listings" asp-route-category="Hotel" asp-route-language="@Context.Request.Query["language"]">
                                             <div class="iconbox-style4">
                                                 <span class="icon flaticon-network"></span>
                                                 <div class="iconbox-content">
@@ -444,17 +464,17 @@
                             </div>
                             <div class="col-lg-3">
                                 <div class="text-start text-lg-end mb-3">
-                                    <a class="ud-btn2" asp-action="Listings">Vezi toate proprietățile<i class="fal fa-arrow-right-long"></i></a>
+                                    <a class="ud-btn2" asp-action="Listings" asp-route-language="@Context.Request.Query["language"]">Vezi toate proprietățile<i class="fal fa-arrow-right-long"></i></a>
                                 </div>
                             </div>
                         </div>
                         <div class="row">
                             <div class="col-lg-12 wow fadeInUp" data-wow-delay="300ms">
                                 <div class="feature-listing-slider2 vam_nav_style dots_none slider-dib-sm slider-3-grid owl-carousel owl-theme">
-                                    @foreach (var prop in Model)
+                                    @foreach (var prop in Model.PropList)
                                     {
                                         <div class="item">
-                                            <a asp-action="Details" asp-controller="Property" asp-route-id="@prop.Id">
+                                            <a asp-action="Details" asp-controller="Property" asp-route-id="@prop.Id" asp-route-language="@Context.Request.Query["language"]">
                                                 <div class="listing-style1 style4" style="background: #FDFFEB">
                                                     <div class="list-thumb">
                                                         @if (!string.IsNullOrEmpty(prop.PhotoGuids))
@@ -479,45 +499,45 @@
                                                         <div class="list-meta d-flex align-items-center">
                                                             @if (isMobileDevice)
                                                             {
-                                                                <a href="@Url.Action("Details", "Property", new { id = prop.Id })"><span class="flaticon-home"></span>@prop.Category</a>
+                                                                <a asp-controller="Property" asp-action="Details" asp-route-id="@prop.Id" asp-route-language="@Context.Request.Query["language"]"><span class="flaticon-home"></span>@prop.Category</a>
                                                                 @if (prop.Surface != null)
                                                                 {
-                                                                    <a href="@Url.Action("Details", "Property", new { id = prop.Id })"><span class="flaticon-expand"></span>@prop.Surface m²</a>
+                                                                    <a asp-controller="Property" asp-action="Details" asp-route-id="@prop.Id" asp-route-language="@Context.Request.Query["language"]"><span class="flaticon-expand"></span>@prop.Surface m²</a>
                                                                 }
                                                                 @if (prop.Bathrooms != null)
                                                                 {
-                                                                    <a href="@Url.Action("Details", "Property", new { id = prop.Id })"><span class="flaticon-bed"></span>@prop.Rooms </a>
+                                                                    <a asp-controller="Property" asp-action="Details" asp-route-id="@prop.Id" asp-route-language="@Context.Request.Query["language"]"><span class="flaticon-bed"></span>@prop.Rooms </a>
                                                                 }
 
                                                                 @if (prop.Bathrooms != null)
                                                                 {
 
-                                                                    <a href="@Url.Action("Details", "Property", new { id = prop.Id })"><span class="flaticon-shower"></span>@prop.Bathrooms </a>
+                                                                    <a asp-controller="Property" asp-action="Details" asp-route-id="@prop.Id" asp-route-language="@Context.Request.Query["language"]"><span class="flaticon-shower"></span>@prop.Bathrooms </a>
 
 
                                                                 }
                                                             }
                                                             else
                                                             {
-                                                                <a href="@Url.Action("Details", "Property", new { id = prop.Id })"><span class="flaticon-home"></span>@prop.Category</a>
+                                                                <a asp-controller="Property" asp-action="Details" asp-route-id="@prop.Id" asp-route-language="@Context.Request.Query["language"]"><span class="flaticon-home"></span>@prop.Category</a>
                                                                 @if (prop.Surface != null)
                                                                 {
-                                                                    <a href="@Url.Action("Details", "Property", new { id = prop.Id })"><span class="flaticon-expand"></span>@prop.Surface m²</a>
+                                                                    <a asp-controller="Property" asp-action="Details" asp-route-id="@prop.Id" asp-route-language="@Context.Request.Query["language"]"><span class="flaticon-expand"></span>@prop.Surface m²</a>
                                                                 }
                                                                 @if (prop.Bathrooms != null)
                                                                 {
-                                                                    <a href="@Url.Action("Details", "Property", new { id = prop.Id })"><span class="flaticon-bed"></span>@prop.Rooms camere</a>
+                                                                    <a asp-controller="Property" asp-action="Details" asp-route-id="@prop.Id" asp-route-language="@Context.Request.Query["language"]"><span class="flaticon-bed"></span>@prop.Rooms camere</a>
                                                                 }
 
                                                                 @if (prop.Bathrooms != null)
                                                                 {
                                                                     if (prop.Bathrooms == 1)
                                                                     {
-                                                                        <a href="@Url.Action("Details", "Property", new { id = prop.Id })"><span class="flaticon-shower"></span>@prop.Bathrooms baie</a>
+                                                                        <a asp-controller="Property" asp-action="Details" asp-route-id="@prop.Id" asp-route-language="@Context.Request.Query["language"]"><span class="flaticon-shower"></span>@prop.Bathrooms baie</a>
                                                                     }
                                                                     else
                                                                     {
-                                                                        <a href="@Url.Action("Details", "Property", new { id = prop.Id })"><span class="flaticon-shower"></span>@prop.Bathrooms băi</a>
+                                                                        <a asp-controller="Property" asp-action="Details" asp-route-id="@prop.Id" asp-route-language="@Context.Request.Query["language"]"><span class="flaticon-shower"></span>@prop.Bathrooms băi</a>
                                                                     }
                                                                 }
                                                             }
@@ -555,7 +575,7 @@
                                         <div class="iconbox-content">
                                             <h4 class="title">Găsește-ți caminul mult visat</h4>
                                             <p class="text">Experimentează bucuria de a locui într-un mediu care rezonează cu sufletul tău.</p>
-                                            <a asp-action="Listings" class="ud-btn btn-thm3">Descoperă<i class="fal fa-arrow-right-long"></i></a>
+                                            <a asp-action="Listings" asp-route-language="@Context.Request.Query["language"]" class="ud-btn btn-thm3">Descoperă<i class="fal fa-arrow-right-long"></i></a>
                                         </div>
                                     </div>
                                 </div>
@@ -565,7 +585,7 @@
                                         <div class="iconbox-content">
                                             <h4 class="title">Descoperă oportunități de investiții</h4>
                                             <p class="text">Explorează noi oportunități de investiții pentru a-ți spori creșterea financiară.</p>
-                                            <a asp-action="Listings" asp-route-category="Investiție" class="ud-btn btn-thm3">Investește înţelept<i class="fal fa-arrow-right-long"></i></a>
+                                            <a asp-action="Listings" asp-route-category="Investiție" asp-route-language="@Context.Request.Query["language"]" class="ud-btn btn-thm3">Investește înţelept<i class="fal fa-arrow-right-long"></i></a>
                                         </div>
                                     </div>
                                 </div>
@@ -664,7 +684,7 @@
                                     <div class="cta-style2">
                                         <h2 class="cta-title">Bine ai venit în lumea NicoReal, hai să-ți găsim căminul ideal!</h2>
                                         <p class="cta-text"></p>
-                                        <a asp-action="Listings" class="ud-btn btn-dark mt10">Vezi toate proprietățile<i class="fal fa-arrow-right-long"></i></a>
+                                        <a asp-action="Listings" asp-route-language="@Context.Request.Query["language"]" class="ud-btn btn-dark mt10">Vezi toate proprietățile<i class="fal fa-arrow-right-long"></i></a>
                                     </div>
                                 </div>
                             </div>
@@ -678,7 +698,7 @@
                         <div class="row">
                             <div class="col-lg-5">
                                 <div class="footer-widget mb-4 mb-lg-5">
-                                    <a class="footer-logo" asp-action="Index"><img class="mb40" src="~/images/MyLogoWhite.svg" alt=""></a>
+                                    <a class="footer-logo" asp-action="Index" asp-route-language="@Context.Request.Query["language"]"><img class="mb40" src="~/images/MyLogoWhite.svg" alt=""></a>
                                     <div class="row mb-4 mb-lg-5">
                                         <div class="col-auto">
                                             <div class="contact-info">
@@ -688,12 +708,10 @@
                                         </div>
                                     </div>
                                     <div class="social-widget">
-                                        <h6 class="text-white mb20">Follow us on social media</h6>
+                                        <h6 class="text-white mb20">Alte rețele</h6>
                                         <div class="social-style1">
-                                            <a href=""><i class="fab fa-facebook-f list-inline-item"></i></a>
-                                            <a href=""><i class="fab fa-twitter list-inline-item"></i></a>
-                                            <a href=""><i class="fab fa-instagram list-inline-item"></i></a>
-                                            <a href=""><i class="fab fa-linkedin-in list-inline-item"></i></a>
+                                            <a href="msteams://teams.microsoft.com/l/chat/0/0?users=isiasiasii@gmail.com"><i class="fab fa-microsoft list-inline-item"></i></a>
+                                            <a href="https://api.whatsapp.com/send?phone=4366565667000"><i class="fab fa-whatsapp list-inline-item"></i></a>
                                         </div>
                                     </div>
                                 </div>

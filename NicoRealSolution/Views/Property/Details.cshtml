@@ -76,15 +76,15 @@
                     <div class="col-auto">
                         <div class="d-flex align-items-center justify-content-between">
                             <div class="logos mr40 mr10-lg">
-                                <a class="header-logo logo2" href="@Url.Action("Index", "Property")"><img src="~/images/MyLogoDark.svg" alt=""></a>
+                                <a class="header-logo logo2" asp-controller="Property" asp-action="Index" asp-route-language="@Context.Request.Query["language"]"><img src="~/images/MyLogoDark.svg" alt=""></a>
                             </div>
                             <!-- Responsive Menu Structure-->
                             <ul id="respMenu" class="ace-responsive-menu" data-menu-style="horizontal">
                                 <li class="megamenu_style">
-                                    <a class="list-item" href="@Url.Action("Index", "Property")"><span class="title">Acasă</span></a>
+                                    <a class="list-item" asp-controller="Property" asp-action="Index" asp-route-language="@Context.Request.Query["language"]"><span class="title">Acasă</span></a>
                                     <!-- Level Two-->
                                 <li class="megamenu_style">
-                                    <a class="list-item" href="@Url.Action("Listings", "Property")"><span class="title">Toate anunțurile</span></a>
+                                    <a class="list-item" asp-controller="Property" asp-action="Listings" asp-route-language="@Context.Request.Query["language"]"><span class="title">Toate anunțurile</span></a>
                                 </li>
 
                                     @if (User.Identity.IsAuthenticated)
@@ -105,9 +105,18 @@
                     <div class="col-auto">
                         <div class="d-flex align-items-center">
                             <a class="login-info d-flex align-items-center me-3" href="tel:+4366565667000">
-                                <i class="far fa-phone fz16 me-2"></i> 
+                                <i class="far fa-phone fz16 me-2"></i>
                                 <span class="d-none d-xl-block d-md-block d-lg-block">+43 665 65 66 7000</span>
                             </a>
+                            <form asp-controller="Property" asp-action="Details" method="get">
+                                <input type="hidden" name="id" value="@Model.SingleProp.Id" />
+                                <select id="languageDropdown" asp-for="@Model.Language" name="language" onchange="this.form.submit()">
+                                    <option>Română</option>
+                                    <option>English</option>
+                                    <option>Deutsch</option>
+                                </select>
+
+                            </form>
                         </div>
                     </div>
 
@@ -125,7 +134,7 @@
                 <div class="menu_and_widgets">
                     <div class="mobile_menu_bar d-flex justify-content-between align-items-center">
                         <a class="menubar" href="#menu"><img src="~/images/mobile-dark-nav-icon.svg" alt=""></a>
-                        <a class="mobile_logo" href="@Url.Action("Index", "Property")"><img src="~/images/MyLogoDark.svg" alt=""></a>
+                        <a class="mobile_logo" asp-controller="Property" asp-action="Index" asp-route-language="@Context.Request.Query["language"]"><img src="~/images/MyLogoDark.svg" alt=""></a>
                         <a></a>
                     </div>
                 </div>
@@ -135,11 +144,20 @@
         <nav id="menu" class="">
             <ul>
                 <li class="megamenu_style">
-                    <a class="list-item" href="@Url.Action("Index", "Property")"><span class="title">Acasă</span></a>
+                    <a class="list-item" asp-controller="Property" asp-action="Index" asp-route-language="@Context.Request.Query["language"]"><span class="title">Acasă</span></a>
                     <!-- Level Two-->
                 <li class="megamenu_style">
-                    <a class="list-item" href="@Url.Action("Listings", "Property")"><span class="title">Toate anunțurile</span></a>
+                    <a class="list-item" asp-controller="Property" asp-action="Listings" asp-route-language="@Context.Request.Query["language"]"><span class="title">Toate anunțurile</span></a>
                 </li>
+                <form asp-controller="Property" asp-action="Details" method="get">
+                    <input type="hidden" name="id" value="@Model.SingleProp.Id" />
+                    <select class="m20" id="languageDropdown" asp-for="@Model.Language" name="language" onchange="this.form.submit()">
+                        <option>Română</option>
+                        <option>English</option>
+                        <option>Deutsch</option>
+                    </select>
+
+                </form>
                 <!-- Only for Mobile View -->
             </ul>
         </nav>
@@ -171,7 +189,7 @@
                                             {
                                                 <div class="item" id="imageContainer">
                                                     <img class="bdrs12" src="@Url.Action("GetImage", "Property", new { key = photoName })" alt="">
-                                                    
+
                                                 </div>
                                             }
                                         }
@@ -189,10 +207,10 @@
                 <div class="row wow fadeInUp" data-wow-delay="100ms">
                     <div class="col-lg-8">
                         <div class="single-property-content mb30-md">
-                                @if (Model.SingleProp.IsSold == "Da")
-                                {
-                                    <h1 class="price mb-0"><span style="color: red">Vândut!</span></h1>
-                                }
+                            @if (Model.SingleProp.IsSold == "Da")
+                            {
+                                <h1 class="price mb-0"><span style="color: red">Vândut!</span></h1>
+                            }
                             <h2 class="sp-lg-title">@Model.SingleProp.Title</h2>
                             <div class="pd-meta mb15 d-md-flex align-items-center">
                                 <p class="text fz15 mb-0 pr10 bdrrn-sm">@Model.SingleProp.City , @Model.SingleProp.Country</p>
@@ -514,7 +532,7 @@
                             {
                                 <div class="item">
                                     <div class="listing-style1">
-                                        <a asp-action="Details" asp-controller="Property" asp-route-id="@prop.Id">
+                                        <a asp-action="Details" asp-controller="Property" asp-route-id="@prop.Id" asp-route-language="@Context.Request.Query["language"]">
                                             <div class="list-thumb bdrs12">
                                                 @if (!string.IsNullOrEmpty(prop.PhotoGuids))
                                                 {
@@ -536,22 +554,22 @@
                                             </div>
                                         </a>
                                         <div class="list-content">
-                                            <h6 class="list-title"><a href="@Url.Action("Details", "Property", new { id = prop.Id })">@prop.Title</a></h6>
+                                            <h6 class="list-title"><a asp-action="Details" asp-controller="Property" asp-route-id="@prop.Id" asp-route-language="@Context.Request.Query["language"]">@prop.Title</a></h6>
                                             <p class="list-text">@prop.City , @prop.Country</p>
                                             <div class="list-meta d-flex align-items-center">
-                                                <a href="@Url.Action("Details", "Property", new { id = prop.Id })"><span class="flaticon-home"></span>@prop.Category</a>
+                                                <a asp-action="Details" asp-controller="Property" asp-route-id="@prop.Id" asp-route-language="@Context.Request.Query["language"]"><span class="flaticon-home"></span>@prop.Category</a>
                                                 @if (prop.Surface != null)
                                                 {
-                                                    <a href="@Url.Action("Details", "Property", new { id = prop.Id })"><span class="flaticon-expand"></span>@prop.Surface m²</a>
+                                                    <a asp-action="Details" asp-controller="Property" asp-route-id="@prop.Id" asp-route-language="@Context.Request.Query["language"]"><span class="flaticon-expand"></span>@prop.Surface m²</a>
                                                 }
                                                 @if (prop.Rooms != null)
                                                 {
-                                                    <a href="@Url.Action("Details", "Property", new { id = prop.Id })"><span class="flaticon-bed"></span>@prop.Rooms</a>
+                                                    <a asp-action="Details" asp-controller="Property" asp-route-id="@prop.Id" asp-route-language="@Context.Request.Query["language"]"><span class="flaticon-bed"></span>@prop.Rooms</a>
                                                 }
 
                                                 @if (prop.Bathrooms != null)
                                                 {
-                                                    <a href="@Url.Action("Details", "Property", new { id = prop.Id })"><span class="flaticon-shower"></span>@prop.Bathrooms</a>
+                                                    <a asp-action="Details" asp-controller="Property" asp-route-id="@prop.Id" asp-route-language="@Context.Request.Query["language"]"><span class="flaticon-shower"></span>@prop.Bathrooms</a>
                                                 }
 
                                             </div>
@@ -573,7 +591,7 @@
                 <div class="row">
                     <div class="col-lg-5">
                         <div class="footer-widget mb-4 mb-lg-5">
-                            <a class="footer-logo" href="@Url.Action("Index", "Property")"><img class="mb40" src="~/images/MyLogoWhite.svg" alt=""></a>
+                            <a class="footer-logo" asp-action="Index" asp-controller="Property" asp-route-language="@Context.Request.Query["language"]"><img class="mb40" src="~/images/MyLogoWhite.svg" alt=""></a>
                             <div class="row mb-4 mb-lg-5">
                                 <div class="col-auto">
                                     <div class="contact-info">
@@ -585,12 +603,10 @@
                             </div>
 
                             <div class="social-widget">
-                                <h6 class="text-white mb20">Urmărește-ne pe rețelele de socializare</h6>
+                                <h6 class="text-white mb20">Alte rețele</h6>
                                 <div class="social-style1">
-                                    <a href=""><i class="fab fa-facebook-f list-inline-item"></i></a>
-                                    <a href=""><i class="fab fa-twitter list-inline-item"></i></a>
-                                    <a href=""><i class="fab fa-instagram list-inline-item"></i></a>
-                                    <a href=""><i class="fab fa-linkedin-in list-inline-item"></i></a>
+                                    <a href="msteams://teams.microsoft.com/l/chat/0/0?users=isiasiasii@gmail.com"><i class="fab fa-microsoft list-inline-item"></i></a>
+                                    <a href="https://api.whatsapp.com/send?phone=4366565667000"><i class="fab fa-whatsapp list-inline-item"></i></a>
                                 </div>
                             </div>
                         </div>
@@ -704,9 +720,9 @@
     });
 
     function makePhoneCall() {
-        var phoneNumber = "+4366565667000"; 
+        var phoneNumber = "+4366565667000";
 
-        window.location.href = "tel:" + phoneNumber; 
+        window.location.href = "tel:" + phoneNumber;
     }
 
 

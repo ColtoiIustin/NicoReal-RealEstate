@@ -33,7 +33,7 @@ namespace NicoRealSolution.Controllers
             _webHostEnvironment = webHostEnvironment;
             _userManager = userManager;
         }
-        public async Task<IActionResult> Index()
+        public async Task<IActionResult> Index(string language= "Română")
         {
             Dictionary<string, int> map = new Dictionary<string, int>();
             map = await _propService.CategCountMap();
@@ -44,14 +44,22 @@ namespace NicoRealSolution.Controllers
             ViewData["Investments"] = map["Investitie"];
             ViewData["Hotels"] = map["Hotel"];
 
+            ViewData["language"] = language;
 
             var properties = await _propService.GetProperties();
             var filteredProperties = properties.Where(p => p.IsFeatured == "Da").ToList();
-            return View(filteredProperties);
+
+            var viewModel = new ViewModelIndex
+            {
+                PropList = filteredProperties,
+                Language = language
+            
+            };
+            return View(viewModel);
 
         }
 
-        public async Task<IActionResult> Details(int id)
+        public async Task<IActionResult> Details(int id, string language = "Română")
         {
             var property = await _propService.GetByIdAsync(id);
             var properties = await _propService.GetProperties();
@@ -65,7 +73,8 @@ namespace NicoRealSolution.Controllers
             var viewModel = new ViewModelDetails
             {
                 SingleProp = property,
-                PropList = properties
+                PropList = properties,
+                Language = language
 
             };
             return View(viewModel);
@@ -159,7 +168,8 @@ namespace NicoRealSolution.Controllers
 
         [HttpGet]
         public async Task<IActionResult> Listings(int pg = 1, string sortOrder = "New", string searchString = "",
-            string category = "", decimal minPrice = 0, decimal maxPrice = 5000000, string location = "", decimal minSurface = 0, decimal maxSurface = 999999999)
+            string category = "", decimal minPrice = 0, decimal maxPrice = 5000000, string location = "", decimal minSurface = 0, 
+            decimal maxSurface = 999999999, string language = "Română")
         {
             var properties = await _propService.GetProperties();
 
@@ -219,6 +229,7 @@ namespace NicoRealSolution.Controllers
                 PropList = data,
                 SelectCateg = category,
                 SelectLocation = location,
+                Language= language,
 
             };
 
