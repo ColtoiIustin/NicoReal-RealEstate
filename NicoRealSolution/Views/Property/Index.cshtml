@@ -109,6 +109,8 @@
                                                 <a class="list-item" href="@Url.Action("Create", "Property")"><span class="title"><span style="color:red">Adaugă anunț</span></span></a>
                                             </li>
                                         }
+                                        
+
 
                                     </ul>
                                 </div>
@@ -117,14 +119,10 @@
 
                                 <div class="d-flex align-items-center">
                                     <a class="login-info d-flex align-items-center me-3" href="tel:+4366565667000"><i class="far fa-phone fz16 me-2"></i> <span class="d-none d-xl-block d-md-block d-lg-block">+43 665 65 66 7000</span></a>
-                                    <form asp-controller="Property" asp-action="Index" method="get">
-                                        <select id="languageDropdown" asp-for="@Model.Language" name="language" onchange="this.form.submit()">
-                                            <option>Română</option>
-                                            <option>English</option>
-                                            <option>Deutsch</option>
-                                        </select>
-                                        
-                                    </form>
+                                    @if (!isMobileDevice)
+                                    {
+                                        <div id="google_translate_element" class="translate-widget"></div>
+                                    }
                                 </div>
                             </div>
                         </div>
@@ -247,7 +245,10 @@
                                 <a class="menubar" href="#menu"><img src="~/images/mobile-dark-nav-icon.svg" alt=""></a>
                                 <a class="mobile_logo" style="background-color:white; border-radius:40px" href="#"><img src="~/images/MyLogoDark1.svg" alt=""></a>
                                 <a></a>
+                                    
+                                
                             </div>
+                                        
                         </div>
                     </div>
                 </div>
@@ -271,14 +272,12 @@
                         <li class="px-3 mobile-menu-btn">
                             <a asp-controller="Property" asp-action="Listings" class="ud-btn btn-thm text-white m30" asp-route-language="@Context.Request.Query["language"]">Vezi toate<i class="fal fa-arrow-right-long"></i></a>
                         </li>
-                        <form asp-controller="Property" asp-action="Index" method="get">
-                            <select class="m20" id="languageDropdown" asp-for="@Model.Language" name="language" onchange="this.form.submit()">
-                                <option>Română</option>
-                                <option>English</option>
-                                <option>Deutsch</option>
-                            </select>
-
-                        </form>
+                        @if (isMobileDevice)
+                        {
+                            
+                                <div id="google_translate_element" class="translate-widget"></div>
+                            
+                        }
                         <!-- Only for Mobile View -->
                     </ul>
                 </nav>
@@ -670,7 +669,7 @@
                 <section class="our-cta2 p0 px20">
                     <div class="cta-banner2 bgc-thm maxw1600 mx-auto pt100 pt50-md pb85 pb50-md px30-md bdrs12 position-relative">
                         <div class="img-box-5">
-                            <img class="img-1 spin-right" src="~/images/about/element-1.png" alt="">a
+                            <img class="img-1 spin-right" src="~/images/about/element-1.png" alt="">
                         </div>
                         <div class="img-box-6">
                             <img class="img-1 spin-left" src="~/images/about/element-2.png" alt="">
@@ -753,7 +752,10 @@
         <script src="~/js/swiper.js"></script>
         <!-- Custom script for all pages -->
         <script src="~/js/script.js"></script>
+        
+        <script type="text/javascript" src="https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
 
+        
     </body>
 
 </div>

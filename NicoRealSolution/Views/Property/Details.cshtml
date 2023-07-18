@@ -108,15 +108,11 @@
                                 <i class="far fa-phone fz16 me-2"></i>
                                 <span class="d-none d-xl-block d-md-block d-lg-block">+43 665 65 66 7000</span>
                             </a>
-                            <form asp-controller="Property" asp-action="Details" method="get">
-                                <input type="hidden" name="id" value="@Model.SingleProp.Id" />
-                                <select id="languageDropdown" asp-for="@Model.Language" name="language" onchange="this.form.submit()">
-                                    <option>Română</option>
-                                    <option>English</option>
-                                    <option>Deutsch</option>
-                                </select>
-
-                            </form>
+                            @if (!isMobileDevice)
+                            {
+                                <div id="google_translate_element" class="translate-widget"></div>
+                            }
+                            
                         </div>
                     </div>
 
@@ -149,15 +145,10 @@
                 <li class="megamenu_style">
                     <a class="list-item" asp-controller="Property" asp-action="Listings" asp-route-language="@Context.Request.Query["language"]"><span class="title">Toate anunțurile</span></a>
                 </li>
-                <form asp-controller="Property" asp-action="Details" method="get">
-                    <input type="hidden" name="id" value="@Model.SingleProp.Id" />
-                    <select class="m20" id="languageDropdown" asp-for="@Model.Language" name="language" onchange="this.form.submit()">
-                        <option>Română</option>
-                        <option>English</option>
-                        <option>Deutsch</option>
-                    </select>
-
-                </form>
+                    @if (isMobileDevice)
+                    {
+                    <div id="google_translate_element" class="translate-widget"></div>
+                    }
                 <!-- Only for Mobile View -->
             </ul>
         </nav>
@@ -727,3 +718,6 @@
 
 
 </script>
+
+
+<script type="text/javascript" src="https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>

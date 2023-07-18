@@ -95,13 +95,11 @@
                     <div class="col-auto">
                         <div class="d-flex align-items-center">
                             <a class="login-info d-flex align-items-center me-3" href="tel:+4366565667000"><i class="far fa-phone fz16 me-2"></i> <span class="d-none d-xl-block d-md-block d-lg-block">+43 665 65 66 7000</span></a>
-                            <form asp-controller="Property" asp-action="Listings" method="get">
-                                <select id="languageDropdown" asp-for="@Model.Language" name="language" onchange="this.form.submit()">
-                                <option >Română</option>
-                                <option >English</option>
-                                <option >Deutsch</option>
-                            </select>
-                            </form>
+                            
+                            @if (!isMobileDevice)
+                            {
+                                <div id="google_translate_element" class="translate-widget"></div>
+                            }
                         </div>
                     </div>
                 </div>
@@ -590,4 +588,7 @@
         form.submit();
     }
 </script>
+
+
+<script type="text/javascript" src="https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
 
