@@ -74,28 +74,29 @@
 
                 <div class="d-flex align-items-center justify-content-between">
                     <div class="col-auto">
-                        <a asp-controller="Property" asp-action="Index" asp-route-language="@Context.Request.Query["language"]" class="header-logo"><img src="~/images/MyLogoDark1.svg" alt="Header Logo"></a>
+                        <a asp-controller="Property" asp-action="Index" class="header-logo"><img src="~/images/MyLogoDark1.svg" alt="Header Logo"></a>
                     </div>
                     <ul id="respMenu" class="ace-responsive-menu" data-menu-style="horizontal">
                         <li class="visible_list">
-                            <a class="list-item" asp-controller="Property" asp-action="Index" asp-route-language="@Context.Request.Query["language"]"><span class="title">Acasă</span></a>
-                            <!-- Level Two-->
-                        <li class="megamenu_style">
-                            <a class="list-item" asp-controller="Property" asp-action="Listings" asp-route-language="@Context.Request.Query["language"]"><span class="title">Toate anunțurile</span></a>
+                            <a class="list-item" asp-controller="Property" asp-action="Index"><span class="title">Acasă</span></a>
                         </li>
-                            @if (User.Identity.IsAuthenticated)
-                            {
+                        <!-- Level Two-->
+                        <li class="megamenu_style">
+                            <a class="list-item" asp-controller="Property" asp-action="Listings"><span class="title">Toate anunțurile</span></a>
+                        </li>
+                        @if (User.Identity.IsAuthenticated)
+                        {
                             <li class="megamenu_style">
                                 <a class="list-item" href="@Url.Action("Create", "Property")"><span class="title"><span style="color:red">Adaugă anunț</span></span></a>
                             </li>
-                            }
+                        }
 
                     </ul>
 
                     <div class="col-auto">
                         <div class="d-flex align-items-center">
                             <a class="login-info d-flex align-items-center me-3" href="tel:+4366565667000"><i class="far fa-phone fz16 me-2"></i> <span class="d-none d-xl-block d-md-block d-lg-block">+43 665 65 66 7000</span></a>
-                            
+
                             @if (!isMobileDevice)
                             {
                                 <div id="google_translate_element" class="translate-widget"></div>
@@ -117,7 +118,7 @@
         </div>
         <div class="hsidebar-content">
             <form id="formSortMob" asp-controller="Property" asp-action="Listings" method="get">
-                <input type="hidden" name="language" value="@Context.Request.Query["language"]" />
+
                 <div class="widget-wrapper">
                     <h6 class="list-title">Filtrare</h6>
                     <div class="search_area">
@@ -129,12 +130,12 @@
                     <h6 class="list-title">Categorie</h6>
                     <div class="form-style2 input-group">
                         <select asp-for="@Model.SelectCateg" name="category" class="selectpicker" data-width="100%" onchange="document.getElementById('formSortMob').submit();">
-                            <option>Toate</option>
-                            <option>Apartament</option>
-                            <option>Casa/Vila</option>
-                            <option>Teren</option>
-                            <option>Investiție</option>
-                            <option>Hotel</option>
+                            <option value="Toate">Toate</option>
+                            <option value="Apartament">Apartament</option>
+                            <option value="Casa/Vila">Casa/Vila</option>
+                            <option value="Teren">Teren</option>
+                            <option value="Investiție">Investiție</option>
+                            <option value="Hotel">Hotel</option>
                         </select>
                     </div>
                 </div>
@@ -156,9 +157,9 @@
                     <h6 class="list-title">Locație</h6>
                     <div class="form-style2 input-group">
                         <select asp-for="@Model.SelectLocation" name="location" class="selectpicker" data-width="100%" onchange="document.getElementById('formSortMob').submit();">
-                            <option>Toate</option>
-                            <option>Romania</option>
-                            <option>Austria</option>
+                            <option value="Toate">Toate</option>
+                            <option value="Romania">Romania</option>
+                            <option value="Austria">Austria</option>
 
                         </select>
                     </div>
@@ -201,7 +202,7 @@
             <div class="header innerpage-style">
                 <div class="menu_and_widgets">
                     <div class="mobile_menu_bar d-flex justify-content-between align-items-center">
-                        <a class="mobile_logo" asp-controller="Property" asp-action="Index" asp-route-language="@Context.Request.Query["language"]"><img src="~/images/MyLogoDark1.svg" alt=""></a>
+                        <a class="mobile_logo" asp-controller="Property" asp-action="Index"><img src="~/images/MyLogoDark1.svg" alt=""></a>
                     </div>
                 </div>
             </div>
@@ -220,7 +221,7 @@
                         <div class="breadcumb-style1" style="background:#FDFFEB">
                             <h2 class="title">Caută o proprietate</h2>
                             <div class="breadcumb-list">
-                                <a asp-controller="Property" asp-action="Index" asp-route-language="@Context.Request.Query["language"]">Acasă</a>
+                                <a asp-controller="Property" asp-action="Index">Acasă</a>
                             </div>
                             <a href="" class="filter-btn-left mobile-filter-btn d-block d-lg-none"><span class="flaticon-settings"></span> Filtre</a>
                         </div>
@@ -235,7 +236,7 @@
                 <div class="row gx-xl-5">
                     <div class="col-lg-4 d-none d-lg-block">
                         <form id="formSort" asp-controller="Property" asp-action="Listings" method="get">
-                            <input type="hidden" name="language" value="@Context.Request.Query["language"]" />
+
                             <div class="list-sidebar-style1" style="box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;">
                                 <div class="widget-wrapper">
                                     <h6 class="list-title">Filtrare</h6>
@@ -249,12 +250,12 @@
                                     <h6 class="list-title">Categorie</h6>
                                     <div class="form-style2 input-group">
                                         <select asp-for="@Model.SelectCateg" name="category" class="selectpicker" data-width="100%" onchange="document.getElementById('formSort').submit();">
-                                            <option>Toate</option>
-                                            <option>Apartament</option>
-                                            <option>Casa/Vila</option>
-                                            <option>Teren</option>
-                                            <option>Investiție</option>
-                                            <option>Hotel</option>
+                                            <option value="Toate">Toate</option>
+                                            <option value="Apartament">Apartament</option>
+                                            <option value="Casa/Vila">Casa/Vila</option>
+                                            <option value="Teren">Teren</option>
+                                            <option value="Investiție">Investiție</option>
+                                            <option value="Hotel">Hotel</option>
 
                                         </select>
                                     </div>
@@ -277,9 +278,9 @@
                                     <h6 class="list-title">Locație</h6>
                                     <div class="form-style2 input-group">
                                         <select asp-for="@Model.SelectLocation" name="location" class="selectpicker" data-width="100%" onchange="document.getElementById('formSort').submit();">
-                                            <option>Toate</option>
-                                            <option>Romania</option>
-                                            <option>Austria</option>
+                                            <option value="Toate">Toate</option>
+                                            <option value="Romania">Romania</option>
+                                            <option value="Austria">Austria</option>
                                         </select>
                                     </div>
                                 </div>
@@ -303,7 +304,7 @@
                                     </div>
                                 </div>
                                 <div class="reset-area d-flex align-items-center justify-content-between">
-                                    <a class="reset-button" asp-controller="Property" asp-action="Listings" asp-route-language="@Context.Request.Query["language"]"><span class="flaticon-turn-back"></span><u>Resetează filtrele</u></a>
+                                    <a class="reset-button" asp-controller="Property" asp-action="Listings"><span class="flaticon-turn-back"></span><u>Resetează filtrele</u></a>
 
                                 </div>
                             </div>
@@ -325,7 +326,7 @@
                                         @if ((string)ViewData["sortOrder"] == "New")
                                         {
                                             <select class="selectpicker show-tick" onchange="updateSortOrder(this.value)">
-                                                <option value="New" selected>Noi</option>
+                                                <option value="New" selected>Nou adăugate</option>
                                                 <option value="Price">Preț crescător</option>
                                                 <option value="PriceDesc">Preț descrescător</option>
                                             </select>
@@ -333,7 +334,7 @@
                                         else if ((string)ViewData["sortOrder"] == "Price")
                                         {
                                             <select class="selectpicker show-tick" onchange="updateSortOrder(this.value)">
-                                                <option value="New">Noi</option>
+                                                <option value="New">Nou adăugate</option>
                                                 <option value="Price" selected>Preț crescător</option>
                                                 <option value="PriceDesc">Preț descrescător</option>
                                             </select>
@@ -341,7 +342,7 @@
                                         else
                                         {
                                             <select class="selectpicker show-tick" onchange="updateSortOrder(this.value)">
-                                                <option value="New">Noi</option>
+                                                <option value="New">Nou adăugate</option>
                                                 <option value="Price">Preț crescător</option>
                                                 <option value="PriceDesc" selected>Preț descrescător</option>
                                             </select>
@@ -356,7 +357,7 @@
                             {
                                 <div class="col-lg-12">
                                     <div class="listing-style1 listing-type" style="background:white; box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;">
-                                        <a asp-controller="Property" asp-action="Details" asp-route-language="@Context.Request.Query["language"]" asp-route-id="@prop.Id">
+                                        <a asp-controller="Property" asp-action="Details" asp-route-id="@prop.Id">
                                             <div id="divItem" class="list-thumb flex-shrink-0">
                                                 @if (!string.IsNullOrEmpty(prop.PhotoGuids))
                                                 {
@@ -376,41 +377,41 @@
                                             </div>
                                         </a>
                                         <div class="list-content flex-shrink-1">
-                                            <h6 class="list-title"><a asp-controller="Property" asp-action="Details" asp-route-language="@Context.Request.Query["language"]" asp-route-id="@prop.Id">@prop.Title</a></h6>
+                                            <h6 class="list-title"><a asp-controller="Property" asp-action="Details" asp-route-id="@prop.Id">@prop.Title</a></h6>
                                             <p class="list-text">@prop.City , @prop.Country</p>
                                             <div class="list-meta d-flex align-items-center">
                                                 @if (isMobileDevice)
                                                 {
-                                                    <a asp-controller="Property" asp-action="Details" asp-route-id="@prop.Id" asp-route-language="@Context.Request.Query["language"]"><span class="flaticon-home"></span>@prop.Category</a>
+                                                    <a asp-controller="Property" asp-action="Details" asp-route-id="@prop.Id"><span class="flaticon-home"></span>@prop.Category</a>
                                                     @if (prop.Surface != null)
                                                     {
-                                                        <a asp-controller="Property" asp-action="Details" asp-route-id="@prop.Id" asp-route-language="@Context.Request.Query["language"]"><span class="flaticon-expand"></span>@prop.Surface m²</a>
+                                                        <a asp-controller="Property" asp-action="Details" asp-route-id="@prop.Id"><span class="flaticon-expand"></span>@prop.Surface m²</a>
                                                     }
                                                     @if (prop.Bathrooms != null)
                                                     {
-                                                        <a asp-controller="Property" asp-action="Details" asp-route-id="@prop.Id" asp-route-language="@Context.Request.Query["language"]"><span class="flaticon-bed"></span>@prop.Rooms</a>
+                                                        <a asp-controller="Property" asp-action="Details" asp-route-id="@prop.Id"><span class="flaticon-bed"></span>@prop.Rooms</a>
                                                     }
 
                                                     @if (prop.Bathrooms != null)
                                                     {
-                                                        <a asp-controller="Property" asp-action="Details" asp-route-id="@prop.Id" asp-route-language="@Context.Request.Query["language"]"><span class="flaticon-shower"></span>@prop.Bathrooms</a>
+                                                        <a asp-controller="Property" asp-action="Details" asp-route-id="@prop.Id"><span class="flaticon-shower"></span>@prop.Bathrooms</a>
                                                     }
                                                 }
                                                 else
                                                 {
-                                                    <a asp-controller="Property" asp-action="Details" asp-route-id="@prop.Id" asp-route-language="@Context.Request.Query["language"]"><span class="flaticon-home"></span>@prop.Category</a>
+                                                    <a asp-controller="Property" asp-action="Details" asp-route-id="@prop.Id"><span class="flaticon-home"></span>@prop.Category</a>
                                                     @if (prop.Surface != null)
                                                     {
-                                                        <a asp-controller="Property" asp-action="Details" asp-route-id="@prop.Id" asp-route-language="@Context.Request.Query["language"]"><span class="flaticon-expand"></span>@prop.Surface m²</a>
+                                                        <a asp-controller="Property" asp-action="Details" asp-route-id="@prop.Id"><span class="flaticon-expand"></span>@prop.Surface m²</a>
                                                     }
                                                     @if (prop.Bathrooms != null)
                                                     {
-                                                        <a asp-controller="Property" asp-action="Details" asp-route-id="@prop.Id" asp-route-language="@Context.Request.Query["language"]"><span class="flaticon-bed"></span>@prop.Rooms camere</a>
+                                                        <a asp-controller="Property" asp-action="Details" asp-route-id="@prop.Id"><span class="flaticon-bed"></span>@prop.Rooms camere</a>
                                                     }
 
                                                     @if (prop.Bathrooms != null)
                                                     {
-                                                        <a asp-controller="Property" asp-action="Details" asp-route-id="@prop.Id" asp-route-language="@Context.Request.Query["language"]"><span class="flaticon-shower"></span>@prop.Bathrooms băi</a>
+                                                        <a asp-controller="Property" asp-action="Details" asp-route-id="@prop.Id"><span class="flaticon-shower"></span>@prop.Bathrooms băi</a>
                                                     }
 
                                                 }
@@ -445,8 +446,7 @@
                                            asp-route-maxPrice="@ViewData["maxPrice"]"
                                            asp-route-location="@Model.SelectLocation"
                                            asp-route-minSurface="@ViewData["minSurface"]"
-                                           asp-route-maxSurface="@ViewData["maxSurface"]"
-                                           asp-route-language="@Context.Request.Query["language"]"> <span class="fas fa-angle-double-left"></span></a>
+                                           asp-route-maxSurface="@ViewData["maxSurface"]"> <span class="fas fa-angle-double-left"></span></a>
                                     </li>
                                     @if (pager.CurrentPage > 1)
                                     {
@@ -459,8 +459,7 @@
                                            asp-route-maxPrice="@ViewData["maxPrice"]"
                                            asp-route-location="@Model.SelectLocation"
                                            asp-route-minSurface="@ViewData["minSurface"]"
-                                           asp-route-maxSurface="@ViewData["maxSurface"]"
-                                           asp-route-language="@Context.Request.Query["language"]"> <span class="fas fa-angle-left"></span></a>
+                                           asp-route-maxSurface="@ViewData["maxSurface"]"> <span class="fas fa-angle-left"></span></a>
                                         </li>
                                     }
                                     @for (var pge = pager.StartPage; pge <= pager.EndPage; pge++)
@@ -474,8 +473,7 @@
                                            asp-route-maxPrice="@ViewData["maxPrice"]"
                                            asp-route-location="@Model.SelectLocation"
                                            asp-route-minSurface="@ViewData["minSurface"]"
-                                           asp-route-maxSurface="@ViewData["maxSurface"]"
-                                           asp-route-language="@Context.Request.Query["language"]">@pge</a>
+                                           asp-route-maxSurface="@ViewData["maxSurface"]">@pge</a>
                                         </li>
 
                                     }
@@ -490,8 +488,7 @@
                                            asp-route-maxPrice="@ViewData["maxPrice"]"
                                            asp-route-location="@Model.SelectLocation"
                                            asp-route-minSurface="@ViewData["minSurface"]"
-                                           asp-route-maxSurface="@ViewData["maxSurface"]"
-                                           asp-route-language="@Context.Request.Query["language"]"><span class="fas fa-angle-right"></span></a>
+                                           asp-route-maxSurface="@ViewData["maxSurface"]"><span class="fas fa-angle-right"></span></a>
                                         </li>
                                     }
                                     <li class="page-item">
@@ -503,8 +500,7 @@
                                            asp-route-maxPrice="@ViewData["maxPrice"]"
                                            asp-route-location="@Model.SelectLocation"
                                            asp-route-minSurface="@ViewData["minSurface"]"
-                                           asp-route-maxSurface="@ViewData["maxSurface"]"
-                                           asp-route-language="@Context.Request.Query["language"]"><span class="fas fa-angle-double-right"></span></a>
+                                           asp-route-maxSurface="@ViewData["maxSurface"]"><span class="fas fa-angle-double-right"></span></a>
                                     </li>
 
                                 </ul>
@@ -522,7 +518,7 @@
                 <div class="row">
                     <div class="col-lg-5">
                         <div class="footer-widget mb-4 mb-lg-5">
-                            <a class="footer-logo" asp-controller="Property" asp-action="Index" asp-route-language="@Context.Request.Query["language"]"><img class="mb40" src="~/images/MyLogoWhite1.svg" alt=""></a>
+                            <a class="footer-logo" asp-controller="Property" asp-action="Index"><img class="mb40" src="~/images/MyLogoWhite1.svg" alt=""></a>
                             <div class="row mb-4 mb-lg-5">
                                 <div class="col-auto">
                                     <div class="contact-info">
@@ -557,9 +553,9 @@
             </div>
         </section>
         @if (!isMobileDevice)
-                {
-                    <a class="scrollToHome" href="#"><i class="fas fa-angle-up"></i></a>
-                }
+        {
+            <a class="scrollToHome" href="#"><i class="fas fa-angle-up"></i></a>
+        }
     </div>
 </div>
 <!-- Wrapper End -->

@@ -270,10 +270,14 @@
                                                     </div>
                                                 </div>
                                                 <div class="col-sm-6 col-xl-4">
-                                                    <div class="mb20">
-                                                        <label class="heading-color ff-heading fw600 mb10">Tara</label>
-                                                        <input asp-for=Country type="text" class="form-control" placeholder="Tara">
-                                                    </div>
+                                                    <label class="heading-color ff-heading fw600 mb10">Tara</label>
+                                                    <div class="location-area">
+                                                        <select asp-for="Country" class="selectpicker">
+                                                            <option value="">Tara</option>
+                                                            <option >România</option>
+                                                            <option >Austria</option>
+                                                        </select>
+                                                    </div>  
                                                 </div>
                                                 <div class="col-sm-12">
                                                     <div class="mb20 mt30">

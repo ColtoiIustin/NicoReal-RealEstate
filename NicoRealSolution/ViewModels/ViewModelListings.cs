@@ -7,6 +7,6 @@ namespace NicoRealSolution.ViewModels
         public IEnumerable<Property> PropList { get; set; }
         public string SelectCateg { get; set; }
         public string SelectLocation { get; set; }
-        public string Language { get; set; }
+       
     }
 }

@@ -33,7 +33,7 @@ namespace NicoRealSolution.Controllers
             _webHostEnvironment = webHostEnvironment;
             _userManager = userManager;
         }
-        public async Task<IActionResult> Index(string language= "Română")
+        public async Task<IActionResult> Index(string language = "Română")
         {
             Dictionary<string, int> map = new Dictionary<string, int>();
             map = await _propService.CategCountMap();
@@ -52,18 +52,21 @@ namespace NicoRealSolution.Controllers
             var viewModel = new ViewModelIndex
             {
                 PropList = filteredProperties,
-                Language = language
-            
+
             };
             return View(viewModel);
 
         }
 
-        public async Task<IActionResult> Details(int id, string language = "Română")
+        public async Task<IActionResult> Details(int id)
         {
             var property = await _propService.GetByIdAsync(id);
             var properties = await _propService.GetProperties();
             if (property.Price != null && property.Surface != null)
+            {
+                decimal priceMp = 0;
+                ViewBag.priceMp = 0;
+            } else if (property.Price != null && property.Surface != null)
             {
                 decimal priceMp = (decimal)(property.Price / property.Surface);
                 decimal roundedPriceMp = decimal.Round(priceMp, 2);
@@ -74,7 +77,6 @@ namespace NicoRealSolution.Controllers
             {
                 SingleProp = property,
                 PropList = properties,
-                Language = language
 
             };
             return View(viewModel);
@@ -127,6 +129,8 @@ namespace NicoRealSolution.Controllers
             }
             string guidsString = string.Join(",", guidList);
             property.PhotoGuids = guidsString;
+            if (property.Price == null) { property.Price = 0; }
+            if (property.Surface == null) { property.Surface = 0; }
             await _propService.AddProperty(property);
 
             return RedirectToAction(nameof(Index));
@@ -168,8 +172,8 @@ namespace NicoRealSolution.Controllers
 
         [HttpGet]
         public async Task<IActionResult> Listings(int pg = 1, string sortOrder = "New", string searchString = "",
-            string category = "", decimal minPrice = 0, decimal maxPrice = 5000000, string location = "", decimal minSurface = 0, 
-            decimal maxSurface = 999999999, string language = "Română")
+            string category = "", decimal minPrice = 0, decimal maxPrice = 5000000, string location = "", decimal minSurface = 0,
+            decimal maxSurface = 999999999)
         {
             var properties = await _propService.GetProperties();
 
@@ -229,7 +233,6 @@ namespace NicoRealSolution.Controllers
                 PropList = data,
                 SelectCateg = category,
                 SelectLocation = location,
-                Language= language,
 
             };
 

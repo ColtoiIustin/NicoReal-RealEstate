@@ -244,7 +244,7 @@
                                             </div>
                                         </div>
                                         <div class="ps-widget bgc-white bdrs12 p30 overflow-hidden position-relative">
-                                            <h4 class="title fz17 mb30">Incarca fotografii (cel putin una), ultima adaugata este prima in anunt</h4>
+                                            <h4 class="title fz17 mb30">Incarca fotografii (cel putin una), adaugate de la coada la cap</h4>
                                             <input name="userFiles" type="file" multiple="multiple" />
 
                                         </div>
@@ -273,10 +273,14 @@
                                                     </div>
                                                 </div>
                                                 <div class="col-sm-6 col-xl-4">
-                                                    <div class="mb20">
-                                                        <label class="heading-color ff-heading fw600 mb10">Tara</label>
-                                                        <input asp-for=Country type="text" class="form-control" placeholder="Tara">
-                                                    </div>
+                                                    <label class="heading-color ff-heading fw600 mb10">Tara</label>
+                                                    <div class="location-area">
+                                                        <select asp-for="Country" class="selectpicker">
+                                                            <option value="">Tara</option>
+                                                            <option value="România">România</option>
+                                                            <option value="Austria">Austria</option>
+                                                        </select>
+                                                    </div>  
                                                 </div>
                                                 <div class="col-sm-12">
                                                     <div class="mb20 mt30">
