@@ -29,28 +29,7 @@ namespace NicoRealSolution.Data.Services
         public async Task DeleteAsync(int id)
         {
             var result = await _context.Properties.FirstOrDefaultAsync(x => x.Id == id);
-            if(!string.IsNullOrEmpty(result.PhotoGuids))
-            { 
-                var photoNames =result.PhotoGuids.Split(new[] { ',' }, StringSplitOptions.RemoveEmptyEntries);
-
-                var accessKeyID = "AKIAQ6FH3UCG4LCO4RE3";
-                var secretKey = "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";
-                var credentials = new BasicAWSCredentials(accessKeyID, secretKey);
-                using (var amazons3client = new AmazonS3Client(credentials, RegionEndpoint.USEast1))
-                {
-                    foreach (var photoName in photoNames)
-                    {
-                        var transferUtility = new TransferUtility(amazons3client);
-                        await transferUtility.S3Client.DeleteObjectAsync(new DeleteObjectRequest()
-                        {
-                            BucketName= "s3bucketnicoreal",
-                            Key= photoName,
-                        });
-
-                    }
-                }      
-
-            }
+            
             _context.Properties.Remove(result);
             await _context.SaveChangesAsync();
         }

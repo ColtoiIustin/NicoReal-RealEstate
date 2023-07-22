@@ -76,8 +76,8 @@
                             <div class="col-auto">
                                 <div class="d-flex align-items-center justify-content-between">
                                     <div class="logos mr35">
-                                        <a class="header-logo logo1" asp-action="Index" ><img src="~/images/MyLogoWhite1.svg" alt="Header Logo"></a>
-                                        <a class="header-logo logo2" asp-action="Index" ><img src="~/images/MyLogoDark1.svg" alt="Header Logo"></a>
+                                        <a class="header-logo logo1" asp-action="Index"><img src="~/images/MyLogoWhite1.svg" alt="Header Logo"></a>
+                                        <a class="header-logo logo2" asp-action="Index"><img src="~/images/MyLogoDark1.svg" alt="Header Logo"></a>
                                     </div>
                                     <!-- Responsive Menu Structure-->
                                     <ul id="respMenu" class="ace-responsive-menu" data-menu-style="horizontal">
@@ -85,12 +85,12 @@
                                             <a class="list-item" href="#"><span class="title">Categorii</span></a>
                                             <!-- Level Two-->
                                             <ul>
-                                                <li><a asp-action="Listings" asp-route-category="Toate" >Toate</a></li>
-                                                <li><a asp-action="Listings" asp-route-category="Casa/Vila" >Case/Vile</a></li>
-                                                <li><a asp-action="Listings" asp-route-category="Apartament" >Apartamente</a></li>
-                                                <li><a asp-action="Listings" asp-route-category="Teren" >Terenuri</a></li>
-                                                <li><a asp-action="Listings" asp-route-category="Hotel" >Hoteluri</a></li>
-                                                <li><a asp-action="Listings" asp-route-category="Investiție" >Investiții</a></li>
+                                                <li><a asp-action="Listings" asp-route-category="Toate">Toate</a></li>
+                                                <li><a asp-action="Listings" asp-route-category="Casa/Vila">Case/Vile</a></li>
+                                                <li><a asp-action="Listings" asp-route-category="Apartament">Apartamente</a></li>
+                                                <li><a asp-action="Listings" asp-route-category="Teren">Terenuri</a></li>
+                                                <li><a asp-action="Listings" asp-route-category="Hotel">Hoteluri</a></li>
+                                                <li><a asp-action="Listings" asp-route-category="Investiție">Investiții</a></li>
 
 
                                             </ul>
@@ -109,7 +109,7 @@
                                                 <a class="list-item" href="@Url.Action("Create", "Property")"><span class="title"><span style="color:red">Adaugă anunț</span></span></a>
                                             </li>
                                         }
-                                        
+
 
 
                                     </ul>
@@ -134,7 +134,7 @@
             <div class="advance-feature-modal">
                 <form asp-controller="Property" asp-action="Listings" method="get">
                     <!-- Modal -->
-                    
+
                     <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
                         <div class="modal-dialog modal-dialog-centered modal-lg">
                             <div class="modal-content">
@@ -245,10 +245,10 @@
                                 <a class="menubar" href="#menu"><img src="~/images/mobile-dark-nav-icon.svg" alt=""></a>
                                 <a class="mobile_logo" style="background-color:white; border-radius:40px" href="#"><img src="~/images/MyLogoDark1.svg" alt=""></a>
                                 <a></a>
-                                    
-                                
+
+
                             </div>
-                                        
+
                         </div>
                     </div>
                 </div>
@@ -259,24 +259,24 @@
                             <span>Categorii</span>
                             <ul>
                                 <li><a asp-action="Listings" asp-route-category="Toate">Toate</a></li>
-                                <li><a asp-action="Listings" asp-route-category="Casa/Vila" >Case/Vile</a></li>
-                                <li><a asp-action="Listings" asp-route-category="Apartament" >Apartamente</a></li>
-                                <li><a asp-action="Listings" asp-route-category="Teren" >Terenuri</a></li>
-                                <li><a asp-action="Listings" asp-route-category="Hotel" >Hoteluri</a></li>
-                                <li><a asp-action="Listings" asp-route-category="Investiție" >Investiții</a></li>
+                                <li><a asp-action="Listings" asp-route-category="Casa/Vila">Case/Vile</a></li>
+                                <li><a asp-action="Listings" asp-route-category="Apartament">Apartamente</a></li>
+                                <li><a asp-action="Listings" asp-route-category="Teren">Terenuri</a></li>
+                                <li><a asp-action="Listings" asp-route-category="Hotel">Hoteluri</a></li>
+                                <li><a asp-action="Listings" asp-route-category="Investiție">Investiții</a></li>
                             </ul>
                         </li>
                         <li><a href="#featuredSection">Recomandate</a></li>
                         <li><a href="#ourServicesSection">Serviciile Noastre</a></li>
 
                         <li class="px-3 mobile-menu-btn">
-                            <a asp-controller="Property" asp-action="Listings" class="ud-btn btn-thm text-white m30" >Vezi toate<i class="fal fa-arrow-right-long"></i></a>
+                            <a asp-controller="Property" asp-action="Listings" class="ud-btn btn-thm text-white m30">Vezi toate<i class="fal fa-arrow-right-long"></i></a>
                         </li>
                         @if (isMobileDevice)
                         {
-                            
-                                <div id="google_translate_element" class="translate-widget"></div>
-                            
+
+                            <div id="google_translate_element" class="translate-widget"></div>
+
                         }
                         <!-- Only for Mobile View -->
                     </ul>
@@ -301,7 +301,7 @@
                                                 <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
                                                     <div class="advance-content-style2">
                                                         <form asp-controller="Property" asp-action="Listings" method="get" class="form-search position-relative">
-                                                            
+
                                                             <div class="row align-items-center justify-content-start justify-content-md-center">
                                                                 <div class="col-md-5 col-lg-6">
                                                                     <div class="advance-search-field position-relative text-start bdrr1 bdrrn-sm bb1-sm">
@@ -373,7 +373,7 @@
                                         </a>
                                     </div>
                                     <div class="item landingCarousel">
-                                        <a asp-controller="Property" asp-action="Listings" asp-route-category="Apartament" >
+                                        <a asp-controller="Property" asp-action="Listings" asp-route-category="Apartament">
                                             <div class="iconbox-style4">
                                                 <span class="icon flaticon-corporation"></span>
                                                 <div class="iconbox-content">
@@ -391,7 +391,7 @@
                                         </a>
                                     </div>
                                     <div class="item landingCarousel">
-                                        <a asp-controller="Property" asp-action="Listings" asp-route-category="Teren" >
+                                        <a asp-controller="Property" asp-action="Listings" asp-route-category="Teren">
                                             <div class="iconbox-style4">
                                                 <span class="icon flaticon-garden"></span>
                                                 <div class="iconbox-content">
@@ -409,7 +409,7 @@
                                         </a>
                                     </div>
                                     <div class="item landingCarousel">
-                                        <a asp-controller="Property" asp-action="Listings" asp-route-category="Investiție" >
+                                        <a asp-controller="Property" asp-action="Listings" asp-route-category="Investiție">
                                             <div class="iconbox-style4">
                                                 <span class="icon flaticon-chat"></span>
                                                 <div class="iconbox-content">
@@ -427,7 +427,7 @@
                                         </a>
                                     </div>
                                     <div class="item landingCarousel">
-                                        <a asp-controller="Property" asp-action="Listings" asp-route-category="Hotel" >
+                                        <a asp-controller="Property" asp-action="Listings" asp-route-category="Hotel">
                                             <div class="iconbox-style4">
                                                 <span class="icon flaticon-network"></span>
                                                 <div class="iconbox-content">
@@ -457,13 +457,13 @@
                         <div class="row align-items-center wow fadeInUp" data-wow-delay="00ms">
                             <div class="col-lg-9">
                                 <div class="main-title2">
-                                    <h2 class="title">Descopera Proprietatile Recomandate</h2>
+                                    <h2 class="title">Descoperă Proprietățile Recomandate</h2>
                                     <!-- <p class="paragraph">Aliquam lacinia diam quis lacus euismod</p> -->
                                 </div>
                             </div>
                             <div class="col-lg-3">
                                 <div class="text-start text-lg-end mb-3">
-                                    <a class="ud-btn2" asp-action="Listings" >Vezi toate proprietățile<i class="fal fa-arrow-right-long"></i></a>
+                                    <a class="ud-btn2" asp-action="Listings">Vezi toate proprietățile<i class="fal fa-arrow-right-long"></i></a>
                                 </div>
                             </div>
                         </div>
@@ -473,7 +473,7 @@
                                     @foreach (var prop in Model.PropList)
                                     {
                                         <div class="item">
-                                            <a asp-action="Details" asp-controller="Property" asp-route-id="@prop.Id" >
+                                            <a asp-action="Details" asp-controller="Property" asp-route-id="@prop.Id">
                                                 <div class="listing-style1 style4" style="background: #FDFFEB">
                                                     <div class="list-thumb">
                                                         @if (!string.IsNullOrEmpty(prop.PhotoGuids))
@@ -490,7 +490,7 @@
                                                         }
                                                         <div class="list-tag fz12"><span class="flaticon-electricity me-2"></span>RECOMANDAT</div>
 
-                                                        <div class="list-price">@prop.Price €</div>
+                                                        <div class="list-price">@string.Format("{0:N0} €", prop.Price)</div>
                                                     </div>
                                                     <div class="list-content">
                                                         <h6 class="list-title"><a href="@Url.Action("Details", "Property", new { id = prop.Id })">@prop.Title</a></h6>
@@ -498,45 +498,45 @@
                                                         <div class="list-meta d-flex align-items-center">
                                                             @if (isMobileDevice)
                                                             {
-                                                                <a asp-controller="Property" asp-action="Details" asp-route-id="@prop.Id" ><span class="flaticon-home"></span>@prop.Category</a>
+                                                                <a asp-controller="Property" asp-action="Details" asp-route-id="@prop.Id"><span class="flaticon-home"></span>@prop.Category</a>
                                                                 @if (prop.Surface != null)
                                                                 {
-                                                                    <a asp-controller="Property" asp-action="Details" asp-route-id="@prop.Id" ><span class="flaticon-expand"></span>@prop.Surface m²</a>
+                                                                    <a asp-controller="Property" asp-action="Details" asp-route-id="@prop.Id"><span class="flaticon-expand"></span>@prop.Surface m²</a>
                                                                 }
                                                                 @if (prop.Bathrooms != null)
                                                                 {
-                                                                    <a asp-controller="Property" asp-action="Details" asp-route-id="@prop.Id" ><span class="flaticon-bed"></span>@prop.Rooms </a>
+                                                                    <a asp-controller="Property" asp-action="Details" asp-route-id="@prop.Id"><span class="flaticon-bed"></span>@prop.Rooms </a>
                                                                 }
 
                                                                 @if (prop.Bathrooms != null)
                                                                 {
 
-                                                                    <a asp-controller="Property" asp-action="Details" asp-route-id="@prop.Id" ><span class="flaticon-shower"></span>@prop.Bathrooms </a>
+                                                                    <a asp-controller="Property" asp-action="Details" asp-route-id="@prop.Id"><span class="flaticon-shower"></span>@prop.Bathrooms </a>
 
 
                                                                 }
                                                             }
                                                             else
                                                             {
-                                                                <a asp-controller="Property" asp-action="Details" asp-route-id="@prop.Id" ><span class="flaticon-home"></span>@prop.Category</a>
+                                                                <a asp-controller="Property" asp-action="Details" asp-route-id="@prop.Id"><span class="flaticon-home"></span>@prop.Category</a>
                                                                 @if (prop.Surface != null)
                                                                 {
-                                                                    <a asp-controller="Property" asp-action="Details" asp-route-id="@prop.Id" ><span class="flaticon-expand"></span>@prop.Surface m²</a>
+                                                                    <a asp-controller="Property" asp-action="Details" asp-route-id="@prop.Id"><span class="flaticon-expand"></span>@prop.Surface m²</a>
                                                                 }
                                                                 @if (prop.Bathrooms != null)
                                                                 {
-                                                                    <a asp-controller="Property" asp-action="Details" asp-route-id="@prop.Id" ><span class="flaticon-bed"></span>@prop.Rooms camere</a>
+                                                                    <a asp-controller="Property" asp-action="Details" asp-route-id="@prop.Id"><span class="flaticon-bed"></span>@prop.Rooms camere</a>
                                                                 }
 
                                                                 @if (prop.Bathrooms != null)
                                                                 {
                                                                     if (prop.Bathrooms == 1)
                                                                     {
-                                                                        <a asp-controller="Property" asp-action="Details" asp-route-id="@prop.Id" ><span class="flaticon-shower"></span>@prop.Bathrooms baie</a>
+                                                                        <a asp-controller="Property" asp-action="Details" asp-route-id="@prop.Id"><span class="flaticon-shower"></span>@prop.Bathrooms baie</a>
                                                                     }
                                                                     else
                                                                     {
-                                                                        <a asp-controller="Property" asp-action="Details" asp-route-id="@prop.Id" ><span class="flaticon-shower"></span>@prop.Bathrooms băi</a>
+                                                                        <a asp-controller="Property" asp-action="Details" asp-route-id="@prop.Id"><span class="flaticon-shower"></span>@prop.Bathrooms băi</a>
                                                                     }
                                                                 }
                                                             }
@@ -546,6 +546,95 @@
                                                 </div>
                                             </a>
                                         </div>
+                                    }
+                                    @if (Model.PropList.Count() == 1)
+                                    {
+                                        <div class="item">
+
+                                            <div class="listing-style1 style4" style="background: #FDFFEB">
+                                                <div class="list-thumb">
+
+                                                    <img class="w-100" src="~/images/listings/g1-1.jpg" alt="">
+
+                                                    <div class="list-tag fz12"><span class="flaticon-electricity me-2"></span>RECOMANDAT</div>
+                                                </div>
+                                                <div class="list-content">
+                                                    <h6 class="list-title">Titlu</h6>
+                                                    
+                                                    <div class="list-meta d-flex align-items-center">
+                                                        
+                                                            <span class="flaticon-home"></span>
+                                                            <span class="flaticon-expand"></span>
+                                                            
+                                                           <span class="flaticon-bed"></span>
+                                                            <span class="flaticon-shower"></span>
+                                                            
+
+                                                    </div>
+                                                    <hr class="mt-2 mb-2">
+                                                </div>
+                                            </div>
+
+                                        </div>
+
+                                        <div class="item">
+
+                                            <div class="listing-style1 style4" style="background: #FDFFEB">
+                                                <div class="list-thumb">
+
+                                                    <img class="w-100" src="~/images/listings/g1-1.jpg" alt="">
+
+                                                    <div class="list-tag fz12"><span class="flaticon-electricity me-2"></span>RECOMANDAT</div>
+                                                </div>
+                                                <div class="list-content">
+                                                    <h6 class="list-title">Titlu</h6>
+                                                    
+                                                    <div class="list-meta d-flex align-items-center">
+                                                        
+                                                            <span class="flaticon-home"></span>
+                                                            <span class="flaticon-expand"></span>
+                                                            
+                                                           <span class="flaticon-bed"></span>
+                                                            <span class="flaticon-shower"></span>
+                                                            
+
+                                                    </div>
+                                                    <hr class="mt-2 mb-2">
+                                                </div>
+                                            </div>
+
+                                        </div>
+
+                                    }else if(Model.PropList.Count() == 2)
+                                    {
+                                        <div class="item">
+
+                                            <div class="listing-style1 style4" style="background: #FDFFEB">
+                                                <div class="list-thumb">
+
+                                                    <img class="w-100" src="~/images/listings/g1-1.jpg" alt="">
+
+                                                    <div class="list-tag fz12"><span class="flaticon-electricity me-2"></span>RECOMANDAT</div>
+                                                </div>
+                                                <div class="list-content">
+                                                    <h6 class="list-title">Titlu</h6>
+                                                    
+                                                    <div class="list-meta d-flex align-items-center">
+                                                        
+                                                            <span class="flaticon-home"></span>
+                                                            <span class="flaticon-expand"></span>
+                                                            
+                                                           <span class="flaticon-bed"></span>
+                                                            <span class="flaticon-shower"></span>
+                                                            
+
+                                                    </div>
+                                                    <hr class="mt-2 mb-2">
+                                                </div>
+                                            </div>
+
+                                        </div>   
+
                                     }
 
                                 </div>
@@ -572,9 +661,9 @@
                                     <div class="iconbox-style3 text-center">
                                         <div class="icon"><img class="w-100" src="~/images/icon/property-buy-2.svg" alt=""></div>
                                         <div class="iconbox-content">
-                                            <h4 class="title">Găsește-ți caminul mult visat</h4>
+                                            <h4 class="title">Găsește-ți căminul mult visat</h4>
                                             <p class="text">Experimentează bucuria de a locui într-un mediu care rezonează cu sufletul tău.</p>
-                                            <a asp-action="Listings"  class="ud-btn btn-thm3">Descoperă<i class="fal fa-arrow-right-long"></i></a>
+                                            <a asp-action="Listings" class="ud-btn btn-thm3">Descoperă<i class="fal fa-arrow-right-long"></i></a>
                                         </div>
                                     </div>
                                 </div>
@@ -584,7 +673,7 @@
                                         <div class="iconbox-content">
                                             <h4 class="title">Descoperă oportunități de investiții</h4>
                                             <p class="text">Explorează noi oportunități de investiții pentru a-ți spori creșterea financiară.</p>
-                                            <a asp-action="Listings" asp-route-category="Investiție"  class="ud-btn btn-thm3">Investește înţelept<i class="fal fa-arrow-right-long"></i></a>
+                                            <a asp-action="Listings" asp-route-category="Investiție" class="ud-btn btn-thm3">Investește înţelept<i class="fal fa-arrow-right-long"></i></a>
                                         </div>
                                     </div>
                                 </div>
@@ -683,7 +772,7 @@
                                     <div class="cta-style2">
                                         <h2 class="cta-title">Bine ai venit în lumea NicoReal, hai să-ți găsim căminul ideal!</h2>
                                         <p class="cta-text"></p>
-                                        <a asp-action="Listings"  class="ud-btn btn-dark mt10">Vezi toate proprietățile<i class="fal fa-arrow-right-long"></i></a>
+                                        <a asp-action="Listings" class="ud-btn btn-dark mt10">Vezi toate proprietățile<i class="fal fa-arrow-right-long"></i></a>
                                     </div>
                                 </div>
                             </div>
@@ -697,7 +786,7 @@
                         <div class="row">
                             <div class="col-lg-5">
                                 <div class="footer-widget mb-4 mb-lg-5">
-                                    <a class="footer-logo" asp-action="Index" ><img class="mb40" src="~/images/MyLogoWhite1.svg" alt=""></a>
+                                    <a class="footer-logo" asp-action="Index"><img class="mb40" src="~/images/MyLogoWhite1.svg" alt=""></a>
                                     <div class="row mb-4 mb-lg-5">
                                         <div class="col-auto">
                                             <div class="contact-info">
@@ -709,7 +798,7 @@
                                     <div class="social-widget">
                                         <h6 class="text-white mb20">Alte rețele</h6>
                                         <div class="social-style1">
-                                            <a href="msteams://teams.microsoft.com/l/chat/0/0?users=isiasiasii@gmail.com"><i class="fab fa-microsoft list-inline-item"></i></a>
+
                                             <a href="https://api.whatsapp.com/send?phone=4366565667000"><i class="fab fa-whatsapp list-inline-item"></i></a>
                                         </div>
                                     </div>
@@ -752,10 +841,10 @@
         <script src="~/js/swiper.js"></script>
         <!-- Custom script for all pages -->
         <script src="~/js/script.js"></script>
-        
+
         <script type="text/javascript" src="https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
 
-        
+
     </body>
 
 </div>

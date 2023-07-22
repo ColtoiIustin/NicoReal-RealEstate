@@ -76,15 +76,15 @@
                     <div class="col-auto">
                         <div class="d-flex align-items-center justify-content-between">
                             <div class="logos mr40 mr10-lg">
-                                <a class="header-logo logo2" asp-controller="Property" asp-action="Index" ><img src="~/images/MyLogoDark1.svg" alt=""></a>
+                                <a class="header-logo logo2" asp-controller="Property" asp-action="Index"><img src="~/images/MyLogoDark1.svg" alt=""></a>
                             </div>
                             <!-- Responsive Menu Structure-->
                             <ul id="respMenu" class="ace-responsive-menu" data-menu-style="horizontal">
                                 <li class="megamenu_style">
-                                    <a class="list-item" asp-controller="Property" asp-action="Index" ><span class="title">Acasă</span></a>
+                                    <a class="list-item" asp-controller="Property" asp-action="Index"><span class="title">Acasă</span></a>
                                     <!-- Level Two-->
                                 <li class="megamenu_style">
-                                    <a class="list-item" asp-controller="Property" asp-action="Listings" ><span class="title">Toate anunțurile</span></a>
+                                    <a class="list-item" asp-controller="Property" asp-action="Listings"><span class="title">Toate anunțurile</span></a>
                                 </li>
 
                                     @if (User.Identity.IsAuthenticated)
@@ -112,7 +112,7 @@
                             {
                                 <div id="google_translate_element" class="translate-widget"></div>
                             }
-                            
+
                         </div>
                     </div>
 
@@ -130,7 +130,7 @@
                 <div class="menu_and_widgets">
                     <div class="mobile_menu_bar d-flex justify-content-between align-items-center">
                         <a class="menubar" href="#menu"><img src="~/images/mobile-dark-nav-icon.svg" alt=""></a>
-                        <a class="mobile_logo" asp-controller="Property" asp-action="Index" ><img src="~/images/MyLogoDark1.svg" alt=""></a>
+                        <a class="mobile_logo" asp-controller="Property" asp-action="Index"><img src="~/images/MyLogoDark1.svg" alt=""></a>
                         <a></a>
                     </div>
                 </div>
@@ -140,10 +140,10 @@
         <nav id="menu" class="">
             <ul>
                 <li class="megamenu_style">
-                    <a class="list-item" asp-controller="Property" asp-action="Index" ><span class="title">Acasă</span></a>
+                    <a class="list-item" asp-controller="Property" asp-action="Index"><span class="title">Acasă</span></a>
                     <!-- Level Two-->
                 <li class="megamenu_style">
-                    <a class="list-item" asp-controller="Property" asp-action="Listings" ><span class="title">Toate anunțurile</span></a>
+                    <a class="list-item" asp-controller="Property" asp-action="Listings"><span class="title">Toate anunțurile</span></a>
                 </li>
                     @if (isMobileDevice)
                     {
@@ -216,7 +216,7 @@
                             <div class="property-action text-lg-end">
                                 <div class="d-flex mb20 mb10-md align-items-center justify-content-lg-end">
                                 </div>
-                                <h3 class="price mb-0">@Model.SingleProp.Price €</h3>
+                                <h3 class="price mb-0">@string.Format("{0:N0} €", Model.SingleProp.Price)</h3>
                                 @if (ViewBag.priceMp != null)
                                 {
                                     <p class="text space fz15">@ViewBag.priceMp €/m²</p>
@@ -383,7 +383,7 @@
                                             {
                                                 <p class="text mb10">@Model.SingleProp.ConstructionYear</p>
                                             }
-                                            <p class="text mb10">@Model.SingleProp.Price €</p>
+                                            <p class="text mb10">@string.Format("{0:N0} €", Model.SingleProp.Price)</p>
                                             <p class="text mb10">@Model.SingleProp.IsInvestment</p>
                                         </div>
                                     </div>
@@ -450,7 +450,7 @@
                             </div>
                         </div>
                         <div class="ps-widget mb30 overflow-hidden position-relative">
-                            <h4 class="title fz17 mb30">Ce se afla in imprejurimi?</h4>
+                            <h4 class="title fz17 mb30">Ce se află în împrejurimi?</h4>
                             <div class="row">
                                 <div class="col-md-12">
                                     <div class="navtab-style1">
@@ -523,7 +523,7 @@
                             {
                                 <div class="item">
                                     <div class="listing-style1">
-                                        <a asp-action="Details" asp-controller="Property" asp-route-id="@prop.Id" >
+                                        <a asp-action="Details" asp-controller="Property" asp-route-id="@prop.Id">
                                             <div class="list-thumb bdrs12">
                                                 @if (!string.IsNullOrEmpty(prop.PhotoGuids))
                                                 {
@@ -541,27 +541,103 @@
                                                 {
                                                     <div class="list-tag fz12"><span class="flaticon-electricity me-2"></span>RECOMANDAT</div>
                                                 }
-                                                <div class="list-price">@prop.Price €</div>
+                                                <div class="list-price">@string.Format("{0:N0} €", prop.Price)</div>
                                             </div>
                                         </a>
                                         <div class="list-content">
-                                            <h6 class="list-title"><a asp-action="Details" asp-controller="Property" asp-route-id="@prop.Id" >@prop.Title</a></h6>
+                                            <h6 class="list-title"><a asp-action="Details" asp-controller="Property" asp-route-id="@prop.Id">@prop.Title</a></h6>
                                             <p class="list-text">@prop.City , @prop.Country</p>
                                             <div class="list-meta d-flex align-items-center">
-                                                <a asp-action="Details" asp-controller="Property" asp-route-id="@prop.Id" ><span class="flaticon-home"></span>@prop.Category</a>
+                                                <a asp-action="Details" asp-controller="Property" asp-route-id="@prop.Id"><span class="flaticon-home"></span>@prop.Category</a>
                                                 @if (prop.Surface != null)
                                                 {
-                                                    <a asp-action="Details" asp-controller="Property" asp-route-id="@prop.Id" ><span class="flaticon-expand"></span>@prop.Surface m²</a>
+                                                    <a asp-action="Details" asp-controller="Property" asp-route-id="@prop.Id"><span class="flaticon-expand"></span>@prop.Surface m²</a>
                                                 }
                                                 @if (prop.Rooms != null)
                                                 {
-                                                    <a asp-action="Details" asp-controller="Property" asp-route-id="@prop.Id" ><span class="flaticon-bed"></span>@prop.Rooms</a>
+                                                    <a asp-action="Details" asp-controller="Property" asp-route-id="@prop.Id"><span class="flaticon-bed"></span>@prop.Rooms</a>
                                                 }
 
                                                 @if (prop.Bathrooms != null)
                                                 {
-                                                    <a asp-action="Details" asp-controller="Property" asp-route-id="@prop.Id" ><span class="flaticon-shower"></span>@prop.Bathrooms</a>
+                                                    <a asp-action="Details" asp-controller="Property" asp-route-id="@prop.Id"><span class="flaticon-shower"></span>@prop.Bathrooms</a>
                                                 }
+
+                                            </div>
+
+                                        </div>
+                                    </div>
+                                </div>
+                            }
+
+                            @if (Model.PropList.Count() == 1)
+                            {
+                                <div class="item">
+                                    <div class="listing-style1">
+                                        <div class="list-thumb bdrs12">
+                                            <img class="w-100" src="~/images/listings/g1-1.jpg" alt="">
+
+                                            <div class="list-tag fz12"><span class="flaticon-electricity me-2"></span>RECOMANDAT</div>
+
+                                        </div>
+
+                                        <div class="list-content">
+                                            <h6 class="list-title">Titlu</h6>
+
+                                            <div class="list-meta d-flex align-items-center">
+                                                <span class="flaticon-home"></span>
+                                                <span class="flaticon-expand"></span>
+                                                <span class="flaticon-bed"></span>
+                                                <span class="flaticon-shower"></span>
+
+                                            </div>
+
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="item">
+                                    <div class="listing-style1">
+                                        <div class="list-thumb bdrs12">
+                                            <img class="w-100" src="~/images/listings/g1-1.jpg" alt="">
+
+                                            <div class="list-tag fz12"><span class="flaticon-electricity me-2"></span>RECOMANDAT</div>
+
+                                        </div>
+
+                                        <div class="list-content">
+                                            <h6 class="list-title">Titlu</h6>
+
+                                            <div class="list-meta d-flex align-items-center">
+                                                <span class="flaticon-home"></span>
+                                                <span class="flaticon-expand"></span>
+                                                <span class="flaticon-bed"></span>
+                                                <span class="flaticon-shower"></span>
+
+                                            </div>
+
+                                        </div>
+                                    </div>
+                                </div>
+                            }else if(Model.PropList.Count() == 2)
+                            {
+                                <div class="item">
+                                    <div class="listing-style1">
+                                        <div class="list-thumb bdrs12">
+                                            <img class="w-100" src="~/images/listings/g1-1.jpg" alt="">
+
+                                            <div class="list-tag fz12"><span class="flaticon-electricity me-2"></span>RECOMANDAT</div>
+
+                                        </div>
+
+                                        <div class="list-content">
+                                            <h6 class="list-title">Titlu</h6>
+
+                                            <div class="list-meta d-flex align-items-center">
+                                                <span class="flaticon-home"></span>
+                                                <span class="flaticon-expand"></span>
+                                                <span class="flaticon-bed"></span>
+                                                <span class="flaticon-shower"></span>
 
                                             </div>
 
@@ -582,7 +658,7 @@
                 <div class="row">
                     <div class="col-lg-5">
                         <div class="footer-widget mb-4 mb-lg-5">
-                            <a class="footer-logo" asp-action="Index" asp-controller="Property" ><img class="mb40" src="~/images/MyLogoWhite1.svg" alt=""></a>
+                            <a class="footer-logo" asp-action="Index" asp-controller="Property"><img class="mb40" src="~/images/MyLogoWhite1.svg" alt=""></a>
                             <div class="row mb-4 mb-lg-5">
                                 <div class="col-auto">
                                     <div class="contact-info">
@@ -596,7 +672,6 @@
                             <div class="social-widget">
                                 <h6 class="text-white mb20">Alte rețele</h6>
                                 <div class="social-style1">
-                                    <a href="msteams://teams.microsoft.com/l/chat/0/0?users=isiasiasii@gmail.com"><i class="fab fa-microsoft list-inline-item"></i></a>
                                     <a href="https://api.whatsapp.com/send?phone=4366565667000"><i class="fab fa-whatsapp list-inline-item"></i></a>
                                 </div>
                             </div>

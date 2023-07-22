@@ -62,7 +62,7 @@ namespace NicoRealSolution.Controllers
         {
             var property = await _propService.GetByIdAsync(id);
             var properties = await _propService.GetProperties();
-            if (property.Price != null && property.Surface != null)
+            if (property.Price == null && property.Surface == null)
             {
                 decimal priceMp = 0;
                 ViewBag.priceMp = 0;
