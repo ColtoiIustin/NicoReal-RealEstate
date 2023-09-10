@@ -358,7 +358,7 @@
         preloaderLoad();
     });
     // window on Scroll function
-    $(window).on('scroll', function() {
+    $(window).on('scroll', function() { 
         // add your functions
     });
 
