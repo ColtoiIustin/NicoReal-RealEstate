@@ -51,51 +51,7 @@
             </div>
         </nav>
     </header>
-    <!-- Menu In Hiddn SideBar -->
-    <div class="rightside-hidden-bar">
-        <div class="hsidebar-header">
-            <div class="sidebar-close-icon"><span class="far fa-times"></span></div>
-            <h4 class="title">Welcome to Realton</h4>
-        </div>
-        <div class="hsidebar-content">
-            <div class="hiddenbar_navbar_content">
-                <div class="hiddenbar_navbar_menu">
-                    <ul class="navbar-nav">
-                        <li class="nav-item"> <a class="nav-link" href="" role="button">Apartments</a></li>
-                        <li class="nav-item"> <a class="nav-link" href="" role="button">Bungalow</a></li>
-                        <li class="nav-item"> <a class="nav-link" href="" role="button">Houses</a></li>
-                        <li class="nav-item"> <a class="nav-link" href="" role="button">Loft</a></li>
-                        <li class="nav-item"> <a class="nav-link" href="" role="button">Office</a></li>
-                        <li class="nav-item"> <a class="nav-link" href="" role="button">Townhome</a></li>
-                        <li class="nav-item"> <a class="nav-link" href="" role="button">Villa</a></li>
-                    </ul>
-                </div>
-                <div class="hiddenbar_footer position-relative bdrt1">
-                    <div class="row pt45 pb30 pl30">
-                        <div class="col-auto">
-                            <div class="contact-info">
-                               
-                            </div>
-                        </div>
-                        <div class="col-auto">
-                            <div class="contact-info">
-                                
-                            </div>
-                        </div>
-                    </div>
-                    <div class="row pt30 pb30 bdrt1">
-                        <div class="col-auto">
-                            <div class="social-style-sidebar d-flex align-items-center pl30">
-                                <h6 class="me-4 mb-0">Alte rețele</h6>
-                                <a href="https://api.whatsapp.com/send?phone=4366565667000"><i class="fab fa-whatsapp list-inline-item"></i></a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-    <!--End Menu In Hiddn SideBar -->
+    
     <!-- Mobile Nav  -->
     <div id="page" class="mobilie_header_nav stylehome1">
         <div class="mobile-menu">
@@ -171,7 +127,7 @@
                                     <div asp-validation-summary="ModelOnly" class="text-danger"></div>
                                     <div class="navtab-style1">
                                         <div class="ps-widget bgc-white bdrs12 p30 overflow-hidden position-relative">
-                                            <h4 class="title fz17 mb30">Descrierea Proprietatii</h4>
+                                            <h4 class="title fz17 mb30">Descrierea Proprietății</h4>
                                             <div class="row">
                                                 <div class="col-sm-12">
 
@@ -188,10 +144,10 @@
 
                                                 <div class="col-sm-6 col-xl-4">
                                                     <div class="mb20">
-                                                        <label class="heading-color ff-heading fw600 mb10">Selecteaza Categoria</label>
+                                                        <label class="heading-color ff-heading fw600 mb10">Selectează Categoria</label>
                                                         <div class="location-area">
                                                             <select asp-for="Category" class="selectpicker">
-                                                                <option value="">-- Selecteaza Categoria --</option>
+                                                                <option value="">-- Selectează Categoria --</option>
                                                                 <option>Apartament</option>
                                                                 <option>Casa/Vila</option>
                                                                 <option>Teren</option>
@@ -204,23 +160,23 @@
                                                 <div class="col-sm-6 col-xl-4">
                                                     <div class="mb20">
                                                         <span asp-validation-for="Price" class="text-danger"></span>
-                                                        <label class="heading-color ff-heading fw600 mb10">Pret (ex: 1200.50)</label>
-                                                        <input asp-for="Price" type="text" class="form-control" placeholder="Pret">
+                                                        <label class="heading-color ff-heading fw600 mb10">Preț (ex: 1200.50)</label>
+                                                        <input asp-for="Price" type="text" class="form-control" placeholder="Preț">
                                                     </div>
                                                 </div>
 
                                                 <div class="col-sm-6 col-xl-4">
-                                                    <label class="heading-color ff-heading fw600 mb10">Recomandata</label>
+                                                    <label class="heading-color ff-heading fw600 mb10">Recomandată</label>
                                                     <div class="location-area">
                                                         <select asp-for="IsFeatured" class="selectpicker">
-                                                            <option value="">-- Recomandata --</option>
+                                                            <option value="">-- Recomandată --</option>
                                                             <option>Nu</option>
                                                             <option>Da</option>
                                                         </select>
                                                     </div>
                                                 </div>
                                                 <div class="col-sm-6 col-xl-4">
-                                                    <label class="heading-color ff-heading fw600 mb10">Investitie</label>
+                                                    <label class="heading-color ff-heading fw600 mb10">Investiție</label>
                                                     <div class="location-area">
                                                         <select asp-for="IsInvestment" class="selectpicker">
                                                             <option value="">-- Investitie --</option>
@@ -232,10 +188,10 @@
                                                 </div>
 
                                                 <div class="col-sm-6 col-xl-4">
-                                                    <label class="heading-color ff-heading fw600 mb10"><span style="color: red">Vandut?</span></label>
+                                                    <label class="heading-color ff-heading fw600 mb10"><span style="color: red">Vândut?</span></label>
                                                     <div class="location-area">
                                                         <select asp-for="IsSold" class="selectpicker">
-                                                            <option value="">-- Vandut? --</option>
+                                                            <option value="">-- Vândut? --</option>
                                                             <option>Nu</option>
                                                             <option>Da</option>
 
@@ -247,33 +203,33 @@
                                         </div>
 
                                         <div class="ps-widget bgc-white bdrs12 p30 overflow-hidden position-relative">
-                                            <h4 class="title fz17 mb30">Locatie</h4>
+                                            <h4 class="title fz17 mb30">Locație</h4>
 
                                             <div class="row">
                                                 <div class="col-sm-12">
                                                     <div class="mb20">
-                                                        <label class="heading-color ff-heading fw600 mb10">Adresa</label>
-                                                        <input asp-for=Address type="text" class="form-control" placeholder="Adresa">
+                                                        <label class="heading-color ff-heading fw600 mb10">Adresă</label>
+                                                        <input asp-for=Address type="text" class="form-control" placeholder="Adresă">
                                                     </div>
                                                 </div>
                                                 <div class="col-sm-6 col-xl-4">
                                                     <div class="mb20">
                                                         <label class="heading-color ff-heading fw600 mb10">Oras</label>
-                                                        <input asp-for=City type="text" class="form-control" placeholder="Oras">
+                                                        <input asp-for=City type="text" class="form-control" placeholder="Județ/Oraș">
                                                     </div>
                                                 </div>
 
                                                 <div class="col-sm-6 col-xl-4">
                                                     <div class="mb20">
-                                                        <label class="heading-color ff-heading fw600 mb10">Zip</label>
-                                                        <input asp-for=Zip type="text" class="form-control" placeholder="Zip">
+                                                        <label class="heading-color ff-heading fw600 mb10">Zip/Cod Poștal</label>
+                                                        <input asp-for=Zip type="text" class="form-control" placeholder="Zip/Cod Poștal">
                                                     </div>
                                                 </div>
                                                 <div class="col-sm-6 col-xl-4">
-                                                    <label class="heading-color ff-heading fw600 mb10">Tara</label>
+                                                    <label class="heading-color ff-heading fw600 mb10">Țară</label>
                                                     <div class="location-area">
                                                         <select asp-for="Country" class="selectpicker">
-                                                            <option value="">Tara</option>
+                                                            <option value="">Țară</option>
                                                             <option >România</option>
                                                             <option >Austria</option>
                                                         </select>
@@ -309,7 +265,7 @@
                                                 <div class="col-sm-6 col-xl-4">
                                                     <div class="mb20">
                                                         <span asp-validation-for="Surface" class="text-danger"></span>
-                                                        <label class="heading-color ff-heading fw600 mb10">Suprafata in mp<span style="color: red"> (număr)</span></label>
+                                                        <label class="heading-color ff-heading fw600 mb10">Suprafața in mp<span style="color: red"> (număr)</span></label>
                                                         <input asp-for=Surface type="text" class="form-control" placeholder="Suprafata in mp">
                                                     </div>
                                                 </div>
@@ -330,7 +286,7 @@
                                                 </div>
                                                 <div class="col-sm-6 col-xl-4">
                                                     <div class="mb20">
-                                                        <label class="heading-color ff-heading fw600 mb10">Anul constructiei (An-An)</label>
+                                                        <label class="heading-color ff-heading fw600 mb10">Anul construcției (An-An)</label>
                                                         <input asp-for=ConstructionYear type="text" class="form-control" placeholder="Anul constructiei">
                                                     </div>
                                                 </div>
@@ -368,16 +324,16 @@
                                         </div>
 
                                         <div class="ps-widget bgc-white bdrs12 p30 overflow-hidden position-relative">
-                                            <h4 class="title fz17 mb30">Adauga Facilitati</h4>
+                                            <h4 class="title fz17 mb30">Adauga Facilități</h4>
                                             <div class="row">
-                                                <label>Facilitati (separate prin virgula)</label>
+                                                <label>Facilitati (separate prin virgulă)</label>
                                                 <input asp-for="Features" class="form-control" />
 
                                             </div>
                                         </div>
 
                                         <div class="ps-widget bgc-white bdrs12 p30 overflow-hidden position-relative">
-                                            <h4 class="title fz17 mb30">Ce se afla in imprejurimi?</h4>
+                                            <h4 class="title fz17 mb30">Ce se află in imprejurimi?</h4>
                                             <div class="row">
                                                 <label>Imprejurimi_1</label>
                                                 <input asp-for="Nearby1" class="form-control" />

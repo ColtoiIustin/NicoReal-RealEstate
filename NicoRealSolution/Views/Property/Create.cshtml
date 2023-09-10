@@ -143,11 +143,11 @@
                                         </li>
                                         <li class="active">
                                             <a href="@Url.Action("Create", "Property")">
-                                                <i class="flaticon-new-tab mr10"></i>Adauga anunt
+                                                <i class="flaticon-new-tab mr10"></i>Adaugă anunț
                                             </a>
                                         </li>
-                                        <li><a href="@Url.Action("Index", "Property")"><i class="flaticon-home mr10"></i>Acasa</a></li>
-                                        <li><a href="@Url.Action("Listings", "Property")"><i class="flaticon-like mr10"></i>Toate anunturile</a></li>
+                                        <li><a href="@Url.Action("Index", "Property")"><i class="flaticon-home mr10"></i>Acasă</a></li>
+                                        <li><a href="@Url.Action("Listings", "Property")"><i class="flaticon-like mr10"></i>Toate anunțurile</a></li>
                                     </ul>
                                 </div>
                             </div>
@@ -156,7 +156,7 @@
                     <div class="row align-items-center pb40">
                         <div class="col-lg-12">
                             <div class="dashboard_title_area">
-                                <h2>Adauga anunt</h2>
+                                <h2>Adaugă anunț</h2>
                             </div>
                         </div>
                     </div>
@@ -168,7 +168,7 @@
                                 <form id="formular" asp-action="AddProperty" asp-controller="Property" method="post" enctype="multipart/form-data">
                                     <div class="navtab-style1">
                                         <div class="ps-widget bgc-white bdrs12 p30 overflow-hidden position-relative">
-                                            <h4 class="title fz17 mb30">Descrierea Proprietatii</h4>
+                                            <h4 class="title fz17 mb30">Descrierea Proprietății</h4>
                                             <div class="row">
                                                 <div class="col-sm-12">
                                                     <div class="mb20">
@@ -185,10 +185,10 @@
                                                 </div>
                                                 <div class="col-sm-6 col-xl-4">
                                                     <div class="mb20">
-                                                        <label class="heading-color ff-heading fw600 mb10">Selecteaza Categoria</label>
+                                                        <label class="heading-color ff-heading fw600 mb10">Selectează Categoria</label>
                                                         <div class="location-area">
                                                             <select asp-for="Category" class="selectpicker">
-                                                                <option value="">-- Selecteaza Categoria --</option>
+                                                                <option value="">-- Selectează Categoria --</option>
                                                                 <option>Apartament</option>
                                                                 <option>Casa/Vila</option>
                                                                 <option>Teren</option>
@@ -201,14 +201,14 @@
                                                 <div class="col-sm-6 col-xl-4">
                                                     <div class="mb20">
                                                         <span asp-validation-for="Price" class="text-danger"></span>
-                                                        <label class="heading-color ff-heading fw600 mb10">Pret (ex: 1200.50)</label>
-                                                        <input asp-for="Price" type="text" class="form-control" placeholder="Pret">
+                                                        <label class="heading-color ff-heading fw600 mb10">Preț (ex: 1200.50)</label>
+                                                        <input asp-for="Price" type="text" class="form-control" placeholder="Preț">
 
                                                     </div>
                                                 </div>
 
                                                 <div class="col-sm-6 col-xl-4">
-                                                    <label class="heading-color ff-heading fw600 mb10">Recomandata</label>
+                                                    <label class="heading-color ff-heading fw600 mb10">Recomandată</label>
                                                     <div class="location-area">
                                                         <select asp-for="IsFeatured" class="selectpicker">
                                                             <option value="">-- Recomandata --</option>
@@ -218,7 +218,7 @@
                                                     </div>
                                                 </div>
                                                 <div class="col-sm-6 col-xl-4">
-                                                    <label class="heading-color ff-heading fw600 mb10">Investitie</label>
+                                                    <label class="heading-color ff-heading fw600 mb10">Investiție</label>
                                                     <div class="location-area">
                                                         <select asp-for="IsInvestment" class="selectpicker">
                                                             <option value="">-- Investitie --</option>
@@ -230,7 +230,7 @@
                                                 </div>
 
                                                 <div class="col-sm-6 col-xl-4">
-                                                    <label class="heading-color ff-heading fw600 mb10"><span style="color: red">Vandut?</span></label>
+                                                    <label class="heading-color ff-heading fw600 mb10"><span style="color: red">Vândut?</span></label>
                                                     <div class="location-area">
                                                         <select asp-for="IsSold" class="selectpicker">
                                                             <option value="">-- Vandut? --</option>
@@ -250,19 +250,19 @@
                                         </div>
 
                                         <div class="ps-widget bgc-white bdrs12 p30 overflow-hidden position-relative">
-                                            <h4 class="title fz17 mb30">Locatie</h4>
+                                            <h4 class="title fz17 mb30">Locație</h4>
 
                                             <div class="row">
                                                 <div class="col-sm-12">
                                                     <div class="mb20">
                                                         <label class="heading-color ff-heading fw600 mb10">Adresa</label>
-                                                        <input asp-for=Address type="text" class="form-control" placeholder="Adresa">
+                                                        <input asp-for=Address type="text" class="form-control" placeholder="Adresă">
                                                     </div>
                                                 </div>
                                                 <div class="col-sm-6 col-xl-4">
                                                     <div class="mb20">
-                                                        <label class="heading-color ff-heading fw600 mb10">Oras</label>
-                                                        <input asp-for=City type="text" class="form-control" placeholder="Oras">
+                                                        <label class="heading-color ff-heading fw600 mb10">Oraș</label>
+                                                        <input asp-for=City type="text" class="form-control" placeholder="Oraș">
                                                     </div>
                                                 </div>
 
@@ -273,7 +273,7 @@
                                                     </div>
                                                 </div>
                                                 <div class="col-sm-6 col-xl-4">
-                                                    <label class="heading-color ff-heading fw600 mb10">Tara</label>
+                                                    <label class="heading-color ff-heading fw600 mb10">Țară</label>
                                                     <div class="location-area">
                                                         <select asp-for="Country" class="selectpicker">
                                                             <option value="">Tara</option>
@@ -312,7 +312,7 @@
                                                 <div class="col-sm-6 col-xl-4">
                                                     <div class="mb20">
                                                         <span asp-validation-for="Surface" class="text-danger"></span>
-                                                        <label class="heading-color ff-heading fw600 mb10">Suprafata in mp<span style="color: red"> (număr)</span></label>
+                                                        <label class="heading-color ff-heading fw600 mb10">Suprafața in mp<span style="color: red"> (număr)</span></label>
                                                         <input asp-for=Surface type="text" class="form-control" placeholder="Suprafata">
                                                     </div>
                                                 </div>
@@ -333,8 +333,8 @@
                                                 </div>
                                                 <div class="col-sm-6 col-xl-4">
                                                     <div class="mb20">
-                                                        <label class="heading-color ff-heading fw600 mb10">Anul constructiei</label>
-                                                        <input asp-for=ConstructionYear type="text" class="form-control" placeholder="Anul constructiei">
+                                                        <label class="heading-color ff-heading fw600 mb10">Anul construcției</label>
+                                                        <input asp-for=ConstructionYear type="text" class="form-control" placeholder="Anul construcției">
                                                     </div>
                                                 </div>
 
@@ -359,16 +359,16 @@
 
                                         </div>
                                         <div class="ps-widget bgc-white bdrs12 p30 overflow-hidden position-relative">
-                                            <h4 class="title fz17 mb30">Adauga Facilitati</h4>
+                                            <h4 class="title fz17 mb30">Adaugă Facilități</h4>
                                             <div class="row">
-                                                <label>Facilitati (separate prin virgula)</label>
+                                                <label>Facilități (separate prin virgulă)</label>
                                                 <input asp-for=Features id="features" class="form-control" />
 
                                             </div>
                                         </div>
 
                                         <div class="ps-widget bgc-white bdrs12 p30 overflow-hidden position-relative">
-                                            <h4 class="title fz17 mb30">Ce se afla in imprejurimi?</h4>
+                                            <h4 class="title fz17 mb30">Ce se află in împrejurimi?</h4>
                                             <div class="row">
                                                 <label>Imprejurimi_1</label>
                                                 <input asp-for="Nearby1" class="form-control" />
@@ -384,7 +384,7 @@
                                         </div>
                                     </div>
                                     <div class="d-sm-flex justify-content-between">
-                                        <button class="ud-btn btn-dark" type="submit" id="submit-all">Adauga Anuntul</button>
+                                        <button class="ud-btn btn-dark" type="submit" id="submit-all">Adaugă Anunțul</button>
                                     </div>
 
                                 </form>

@@ -109,7 +109,6 @@ namespace NicoRealSolution.Controllers
                 {
                     var fileExtension = Path.GetExtension(image.FileName);
                     var uniqueFileName = $"{Guid.NewGuid()}{fileExtension}";
-
                     using (var memorystream = new MemoryStream())
                     {
                         image.CopyTo(memorystream);
@@ -144,6 +143,31 @@ namespace NicoRealSolution.Controllers
 
             var property = await _propService.GetByIdAsync(id);
             if (property == null) return View("NotFound");
+
+
+            if (!string.IsNullOrEmpty(property.PhotoGuids))
+            {
+                var photoNames = property.PhotoGuids.Split(new[] { ',' }, StringSplitOptions.RemoveEmptyEntries);
+
+                var accessKeyID = "AKIAQ6FH3UCG4LCO4RE3";
+                var secretKey = "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";
+                var credentials = new BasicAWSCredentials(accessKeyID, secretKey);
+                using (var amazons3client = new AmazonS3Client(credentials, RegionEndpoint.USEast1))
+                {
+                    foreach (var photoName in photoNames)
+                    {
+                        var deleteObjectRequest = new DeleteObjectRequest
+                        {
+                            BucketName = "s3bucketnicoreal",
+                            Key = photoName
+                        };
+                        await amazons3client.DeleteObjectAsync(deleteObjectRequest);
+                    
+
+                    }
+                }
+
+            }
 
             await _propService.DeleteAsync(id);
             return RedirectToAction(nameof(Index));

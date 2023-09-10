@@ -1,4 +1,4 @@
-(function($) {
+﻿(function($) {
     
     "use strict";
     function preloaderLoad() {
@@ -369,9 +369,10 @@ function googleTranslateElementInit() {
    
     new google.translate.TranslateElement({
         pageLanguage: 'ro', 
-        includedLanguages: 'en,de', 
+        includedLanguages: 'ro,en,de,fr,ar,zh-CN', 
         layout: google.translate.TranslateElement.InlineLayout.SIMPLE
     }, 'google_translate_element');
+
 }
 
 

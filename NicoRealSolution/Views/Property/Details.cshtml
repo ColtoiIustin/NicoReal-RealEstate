@@ -372,7 +372,10 @@
                                                 <p class="fw600 mb10 ff-heading dark-color">Anul construcției</p>
                                             }
                                             <p class="fw600 mb10 ff-heading dark-color">Preț</p>
-                                            <p class="fw600 mb10 ff-heading dark-color">Oportunitate investiție</p>
+                                            @if (Model.SingleProp.IsInvestment != null)
+                                            {
+                                                <p class="fw600 mb10 ff-heading dark-color">Oportunitate investiție</p>
+                                            }
                                         </div>
                                         <div class="pd-list">
                                             @if (Model.SingleProp.GardenSurface != null)
@@ -384,36 +387,63 @@
                                                 <p class="text mb10">@Model.SingleProp.ConstructionYear</p>
                                             }
                                             <p class="text mb10">@string.Format("{0:N0} €", Model.SingleProp.Price)</p>
-                                            <p class="text mb10">@Model.SingleProp.IsInvestment</p>
+                                            @if (Model.SingleProp.IsInvestment != null)
+                                            {
+                                                <p class="text mb10">@Model.SingleProp.IsInvestment</p>
+                                            }
                                         </div>
                                     </div>
                                 </div>
                             </div>
                         </div>
                         <div class="ps-widget mb30 overflow-hidden position-relative">
-                            <h4 class="title fz17 mb30 mt30">Addresa</h4>
+                            <h4 class="title fz17 mb30 mt30">Adresă</h4>
                             <div class="row">
                                 <div class="col-md-6 col-xl-4">
                                     <div class="d-flex justify-content-between">
                                         <div class="pd-list">
-                                            <p class="fw600 mb10 ff-heading dark-color">Address</p>
-                                            <p class="fw600 mb10 ff-heading dark-color">City</p>
+                                             @if (Model.SingleProp.Address != null)
+                                            {
+                                                <p class="fw600 mb10 ff-heading dark-color">Addresă</p>
+                                            }
+                                             @if (Model.SingleProp.City != null)
+                                            {
+                                                <p class="fw600 mb10 ff-heading dark-color">Județ/Oraș</p>
+                                            }
                                         </div>
                                         <div class="pd-list">
-                                            <p class="text mb10">@Model.SingleProp.Address</p>
-                                            <p class="text mb10">@Model.SingleProp.City</p>
+                                             @if (Model.SingleProp.Address != null)
+                                            {
+                                                <p class="text mb10">@Model.SingleProp.Address</p>
+                                            }
+                                             @if (Model.SingleProp.City != null)
+                                            {
+                                                <p class="text mb10">@Model.SingleProp.City</p>
+                                            }
                                         </div>
                                     </div>
                                 </div>
                                 <div class="col-md-6 col-xl-4 offset-xl-2">
                                     <div class="d-flex justify-content-between">
                                         <div class="pd-list">
-                                            <p class="fw600 mb10 ff-heading dark-color">Zip/Cod Postal</p>
-                                            <p class="fw600 mb-0 ff-heading dark-color">Country</p>
+                                             @if (Model.SingleProp.Zip != null)
+                                            {
+                                                <p class="fw600 mb10 ff-heading dark-color">Zip/Cod Postal</p>
+                                            }
+                                             @if (Model.SingleProp.Country != null)
+                                            {
+                                                <p class="fw600 mb-0 ff-heading dark-color">Țară</p>
+                                            }
                                         </div>
                                         <div class="pd-list">
-                                            <p class="text mb10">@Model.SingleProp.Zip</p>
-                                            <p class="text mb-0">@Model.SingleProp.Country</p>
+                                             @if (Model.SingleProp.Zip != null)
+                                            {
+                                                <p class="text mb10">@Model.SingleProp.Zip</p>
+                                            }
+                                            @if (Model.SingleProp.Country != null)
+                                            {
+                                                <p class="text mb-0">@Model.SingleProp.Country</p>
+                                            }
                                         </div>
                                     </div>
                                 </div>
@@ -512,7 +542,7 @@
                 <div class="row mt30 wow fadeInUp" data-wow-delay="700ms">
                     <div class="col-lg-9">
                         <div class="main-title2">
-                            <h2 class="title">Alte Proprietati</h2>
+                            <h2 class="title">Alte Proprietăți</h2>
                         </div>
                     </div>
                 </div>
